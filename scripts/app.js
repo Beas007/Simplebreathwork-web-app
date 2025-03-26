@@ -1,55 +1,28 @@
-// Breathing Techniques Data
-const techniques = {
-    box: {
-        phases: [4, 4, 4, 4], // Inhale, Hold, Exhale, Hold
-        description: "Military technique for stress control"
-    },
-    wimhof: {
-        phases: [4, 0, 4, 0],
-        description: "Cold exposure breathing method"
-    }
-};
-
-// Theme Toggle
-document.getElementById('theme-toggle').addEventListener('click', () => {
-    document.body.classList.toggle('day-mode');
-    document.body.classList.toggle('night-mode');
-    document.getElementById('theme-toggle').textContent = 
-        document.body.classList.contains('night-mode') ? '☀️ Day Mode' : '🌙 Night Mode';
-});
-
-// Start Breathing Session
-document.querySelectorAll('.start-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        const technique = e.target.closest('.card').dataset.technique;
-        startBreathingSession(technique);
-    });
-});
-
-function startBreathingSession(technique) {
-    const phases = techniques[technique].phases;
-    let currentPhase = 0;
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
     
-    document.getElementById('breathing-overlay').style.display = 'flex';
-    
-    const interval = setInterval(() => {
-        if(currentPhase >= phases.length) {
-            clearInterval(interval);
-            document.getElementById('breathing-overlay').style.display = 'none';
-            return;
-        }
+    // Check if user has previously selected a theme
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', currentTheme);
+    updateThemeToggleButton(currentTheme);
+
+    themeToggle.addEventListener('click', () => {
+        // Toggle between light and dark themes
+        const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
         
-        updateAnimation(phases[currentPhase]);
-        currentPhase++;
-    }, phases[currentPhase] * 1000);
-}
-// Language Support
-const translations = {
-    en: { start: 'Begin Session' },
-    es: { start: 'Comenzar Sesión' }
-};
+        // Update HTML attribute
+        html.setAttribute('data-theme', newTheme);
+        
+        // Save preference to localStorage
+        localStorage.setItem('theme', newTheme);
+        
+        // Update button text
+        updateThemeToggleButton(newTheme);
+    });
 
-// Bandwidth Detection
-if (navigator.connection?.effectiveType === '4g') {
-    loadHighResAnimations();
-}
+    function updateThemeToggleButton(theme) {
+        themeToggle.textContent = theme === 'light' ? '🌙 Night Mode' : '☀️ Day Mode';
+        themeToggle.setAttribute('aria-label', `Switch to ${theme === 'light' ? 'dark' : 'light'} mode`);
+    }
+});

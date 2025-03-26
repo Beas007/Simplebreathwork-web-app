@@ -1,38 +1,92 @@
-/* Base Styles */
 :root {
-    --primary: #4A90E2;
-    --secondary: #50E3C2;
-    --background: #FFFFFF;
+    /* Light Theme */
+    --background: #F5F7FA;
+    --card-bg: #FFFFFF;
     --text: #2C3E50;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --footer-bg: #2C3E50;
+
+    /* Light Theme Card Gradients */
+    --box-gradient: linear-gradient(145deg, #9D50BB, #6E48AA);
+    --48-gradient: linear-gradient(145deg, #FF6B6B, #FF8E53);
+    --wim-gradient: linear-gradient(145deg, #4CA1AF, #2C3E50);
+    --box-back: linear-gradient(145deg, #BE8AD4, #9B7CC3);
+    --48-back: linear-gradient(145deg, #FFA5A5, #FFBB96);
+    --wim-back: linear-gradient(145deg, #7FC7D2, #546E7A);
+}
+
+[data-theme="dark"] {
+    /* Dark Theme */
+    --background: #1a1a2e;
+    --card-bg: #162447;
+    --text: #e6e6e6;
+    --shadow: rgba(0, 0, 0, 0.2);
+    --footer-bg: #1f1f3a;
+
+    /* Dark Theme Card Gradients - Sleep Friendly */
+    --box-gradient: linear-gradient(145deg, #2d3250, #424874);
+    --48-gradient: linear-gradient(145deg, #1a454e, #2c6975);
+    --wim-gradient: linear-gradient(145deg, #2c3e50, #34495e);
+    --box-back: linear-gradient(145deg, #353b60, #4a5187);
+    --48-back: linear-gradient(145deg, #1f5059, #347885);
+    --wim-back: linear-gradient(145deg, #34495e, #3d566e);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background: var(--background);
+    background-color: var(--background);
     color: var(--text);
-    transition: all 0.3s ease;
+    font-family: 'Arial', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Card Flip Animation */
+header {
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem; 
+}
+
+h1 {
+    color: var(--text);
+    font-size: 2.5rem;
+    margin: 2rem 0; 
+    transition: color 0.3s ease;
+}
+
+main {
+    flex: 1;
+    padding: 2rem;
+}
+
 .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 2rem;
 }
 
 .card {
     perspective: 1000px;
     height: 400px;
-    cursor: pointer;
 }
 
 .card-inner {
     position: relative;
     width: 100%;
     height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
     transform-style: preserve-3d;
-    transition: transform 0.6s;
 }
 
 .card:hover .card-inner {
@@ -45,27 +99,130 @@ body {
     height: 100%;
     backface-visibility: hidden;
     border-radius: 15px;
-    padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.card-front {
+    background: var(--card-bg);
+    box-shadow: 0 10px 20px var(--shadow);
+}
+
+.card[data-technique="box"] .card-front {
+    background: var(--box-gradient);
+    color: white;
+}
+
+.card[data-technique="48"] .card-front {
+    background: var(--48-gradient);
+    color: white;
+}
+
+.card[data-technique="wim-hof"] .card-front {
+    background: var(--wim-gradient);
+    color: white;
 }
 
 .card-back {
     transform: rotateY(180deg);
-    background: var(--primary);
+    box-shadow: 0 10px 20px var(--shadow);
+}
+
+.card[data-technique="box"] .card-back {
+    background: var(--box-back);
     color: white;
 }
 
-/* Breathing Animation */
-@keyframes breathe {
-    0% { transform: scale(0.9); opacity: 0.7; }
-    50% { transform: scale(1.1); opacity: 1; }
-    100% { transform: scale(0.9); opacity: 0.7; }
+.card[data-technique="48"] .card-back {
+    background: var(--48-back);
+    color: white;
 }
 
-.circle-animation {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: var(--secondary);
-    animation: breathe 4s infinite;
+.card[data-technique="wim-hof"] .card-back {
+    background: var(--wim-back);
+    color: white;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.timing {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.card-back p {
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.start-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.8rem 1.5rem;
+    background: var(--card-bg);
+    color: var(--text);
+    border: 1px solid var(--text);
+    border-radius: 25px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--text);
+    color: var(--background);
+    transform: translateY(-2px);
+}
+
+footer {
+    background: var(--footer-bg);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+footer a, footer button {
+    color: white;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+footer a:hover, footer button:hover {
+    opacity: 1;
 }
