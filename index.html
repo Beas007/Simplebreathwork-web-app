@@ -22,18 +22,34 @@
     }
     </script>
     
-
     <!-- Styles -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/themes.css">
 </head>
 <body class="day-mode">
     <header>
-        <h1></h1> Simple Breathwork</h1>
-        <button id="theme-toggle">🌙 Night Mode</button>
+        <h1>Simple Breathwork</h1>
+        <nav>
+            <button id="theme-toggle">🌙 Night Mode</button>
+            <button id="preferences-btn">⚙️ Settings</button>
+        </nav>
     </header>
 
     <main>
+        <!-- Session Controls -->
+        <div class="controls-container">
+            <select id="duration-select">
+                <option value="180">3 minutes</option>
+                <option value="300">5 minutes</option>
+                <option value="600">10 minutes</option>
+                <option value="custom">Custom</option>
+            </select>
+            <div class="control-buttons">
+                <button id="sound-toggle">🔊</button>
+                <button id="haptic-toggle">📳</button>
+                <button id="guide-toggle">🎙️</button>
+            </div>
+        </div>
         <!-- Technique Cards -->
         <div class="card-container">
             <!-- Box Breathing Card -->
@@ -47,7 +63,55 @@
                     <button class="start-btn">Begin Session</button>
                 </div>
             </div>
-            <!-- Add other technique cards -->
+            <!-- 4-7-8 Breathing Card -->
+            <div class="card" data-technique="478">
+                <div class="card-front">
+                    <h2>Instant Zen</h2>
+                    <div class="timing">4-8</div>
+                </div>
+                <div class="card-back">
+                    <p>Natural tranquilizer for the nervous system</p>
+                    <button class="start-btn">Begin Session</button>
+                </div>
+            </div>
+            <!-- Wim Hoff Breathing Card -->
+            <div class="card" data-technique="deep">
+                <div class="card-front">
+                    <h2>Wim Hoff Breathing</h2>
+                    <div class="timing">4-4</div>
+                </div>
+                <div class="card-back">
+                    <p>Simple technique for instant relaxation</p>
+                    <button class="start-btn">Begin Session</button>
+                </div>
+            </div>
+        </div>
+        <!-- Custom Pattern Creator -->
+        <div id="pattern-creator" class="hidden">
+            <h3>Create Custom Pattern</h3>
+            <div class="pattern-inputs">
+                <input type="number" id="inhale" placeholder="Inhale (s)">
+                <input type="number" id="hold1" placeholder="Hold (s)">
+                <input type="number" id="exhale" placeholder="Exhale (s)">
+                <input type="number" id="hold2" placeholder="Hold (s)">
+                <button id="save-pattern">Save Pattern</button>
+            </div>
+        </div>
+
+        <!-- Session Progress -->
+        <div class="progress-container hidden">
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <div class="session-stats">
+                <span class="time-remaining">00:00</span>
+                <span class="breath-count">Breaths: 0</span>
+            </div>
+            <div class="session-controls">
+                <button id="pause-btn">⏸️</button>
+                <button id="stop-btn">⏹️</button>
+                <button id="restart-btn">🔄</button>
+            </div>
         </div>
     </main>
 
@@ -58,24 +122,50 @@
             <div class="instructions">Breathe In</div>
         </div>
     </div>
-     <!-- Non-Intrusive Ad Placement -->
-     <div class="ad-container">
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-YOUR_AD_ID"
-            data-ad-slot="1234567890"
-            data-ad-format="auto"></ins>
-    </div>
-    <!-- Footer -->
-    <footer>
-        <div class="ad-container"></div>
-        <div class="links">
-            <a href="/privacy">Privacy Policy</a>
-            <button id="feedback-btn">Share Feedback</button>
+
+      <!-- Settings Modal -->
+      <div id="settings-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>Settings</h3>
+            <div class="settings-group">
+                <label>
+                    <input type="checkbox" id="enable-notifications">
+                    Enable Daily Reminders
+                </label>
+                <label>
+                    <input type="checkbox" id="enable-sound">
+                    Enable Sound
+                </label>
+                <label>
+                    <input type="checkbox" id="enable-haptic">
+                    Enable Haptic Feedback
+                </label>
+            </div>
+            <button id="close-settings">Close</button>
         </div>
+    </div>
+
+    <!-- Achievement Toast -->
+    <div id="achievement-toast" class="hidden">
+        <span class="achievement-icon">🏆</span>
+        <span class="achievement-text"></span>
+    </div>
+
+    <!-- Footer (existing) -->
+    <footer>
+    <div class="links">
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/stats.html">Your Progress</a>
+            <button id="feedback-btn">Share Feedback</button>
+            <button id="share-btn">Share App</button>
+    </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="scripts/ads.js"></script>
     <script src="scripts/app.js"></script>
+    <script src="scripts/settings.js"></script>
+    <script src="scripts/achievements.js"></script>
+
 </body>
 </html>
