@@ -52,10 +52,17 @@ body {
 
 .breath-animation {
     position: relative;
-    width: 300px;
-    height: 300px;
+    /* Use viewport width, limit size on large screens */
+    width: 75vw; /* Adjust percentage as needed */
+    max-width: 350px; /* Or your preferred max size */
+    aspect-ratio: 1 / 1; /* Keeps it square */
+
+    /* Ensure it centers if smaller than container */
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* .circle already uses 100% width/height, so it will adapt */
 .circle {
     position: relative;
     width: 100%;
@@ -63,6 +70,7 @@ body {
     border-radius: 50%;
     background: var(--circle-bg);
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    /* Keep existing transitions/display properties */
     transition: all 0.5s ease;
     display: flex;
     justify-content: center;
@@ -85,29 +93,33 @@ body {
 
 .breathing-indicator {
     position: absolute;
-    width: 40px;
-    height: 120px;
+    width: 2em;
+    height: 6em;
     z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .arrow-up, .arrow-down {
     position: absolute;
     width: 0;
     height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
+    border-left: 1em solid transparent;
+    border-right: 1em solid transparent;
     opacity: 0;
     transition: opacity 0.3s ease;
+    left: 0;
 }
 
 .arrow-up {
     top: 0;
-    border-bottom: 20px solid var(--arrow-color);
+    border-bottom: 1em solid var(--arrow-color);
 }
 
 .arrow-down {
     bottom: 0;
-    border-top: 20px solid var(--arrow-color);
+    border-top: 1em solid var(--arrow-color);
 }
 
 .inhale .arrow-up {
