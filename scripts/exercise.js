@@ -61,15 +61,26 @@ document.addEventListener('DOMContentLoaded', () => {
         timer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     }
 
-    function updateBreathAnimation(phase) {
-        const animations = {
-            'Inhale': 'expand 4s ease-in-out forwards',
-            'Deep Inhale': 'expand 2s ease-in-out forwards',
-            'Exhale': 'contract 8s ease-in-out forwards',
-            'Quick Exhale': 'contract 1s ease-in-out forwards',
-            'Hold': 'hold 2s ease-in-out infinite'
-        };
-        circle.style.animation = animations[phase] || 'none';
+    function updateBreathAnimation(phase, duration) {
+        let animationType;
+        
+        if (phase.includes('Inhale')) {
+            animationType = 'expand';
+        } else if (phase.includes('Exhale')) {
+            animationType = 'contract';
+        } else if (phase.includes('Hold')) {
+            animationType = 'hold';
+        } else {
+            animationType = 'none';
+        }
+        
+        if (animationType !== 'none') {
+            const durationInSeconds = duration ? `${duration}s` : '2s';
+            circle.style.animation = `${animationType} ${durationInSeconds} ease-in-out ${animationType === 'hold' ? 'infinite' : 'forwards'}`;
+        } else {
+            circle.style.animation = 'none';
+        }
+        
         breathingText.textContent = phase;
     }
 
@@ -79,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let timeLeft = exercise.durations[0];
 
         updateTimer(timeLeft);
-        updateBreathAnimation(exercise.sequence[0]);
+        updateBreathAnimation(exercise.sequence[0], exercise.durations[0]);
         updateBreathingIndicator(exercise.sequence[0]);
 
         const intervalId = setInterval(() => {
@@ -99,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 timeLeft = exercise.durations[currentPhase];
-                updateBreathAnimation(exercise.sequence[currentPhase]);
+                updateBreathAnimation(exercise.sequence[currentPhase], exercise.durations[currentPhase]);
                 updateBreathingIndicator(exercise.sequence[currentPhase]);
             }
         }, 1000);
