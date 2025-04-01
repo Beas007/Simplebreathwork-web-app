@@ -95,6 +95,11 @@ main {
     transform: rotateY(180deg);
 }
 
+/* Add this rule to handle the flip via JavaScript class */
+.card-inner.is-flipped {
+    transform: rotateY(180deg);
+}
+
 .card-front, .card-back {
     position: 2rem 1.5rem;
     position: absolute;
