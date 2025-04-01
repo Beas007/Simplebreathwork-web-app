@@ -193,7 +193,8 @@ body {
 }
 
 .timer {
-    font-size: 3rem;
+    /* clamp(MIN_SIZE, PREFERRED_SIZE, MAX_SIZE) */
+    font-size: clamp(2rem, 8vw, 3.5rem); /* Adjust values as needed */
     color: var(--text);
     font-weight: 300;
 }
