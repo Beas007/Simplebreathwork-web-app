@@ -1,18 +1,39 @@
-/* Theme variables */
 :root {
+    --circle-bg: rgba(255, 255, 255, 0.8);
+    --text: #2C3E50;
     --animation-glow-inhale: rgba(76, 175, 80, 0.4);
     --animation-glow-hold: rgba(255, 193, 7, 0.3);
-    --text: #2C3E50;
-    --circle-bg: rgba(255, 255, 255, 0.8);
 }
 
 [data-theme="dark"] {
-    --text: #E0E0E0;
     --circle-bg: rgba(255, 255, 255, 0.1);
+    --text: #E0E0E0;
 }
 
-/* Base styles */
-/* Update circle styles */
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.exercise-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.breath-animation {
+    position: relative;
+    width: min(300px, 90vw);
+    height: min(300px, 90vw);
+    margin: 2rem auto;
+}
+
 .circle {
     width: 100%;
     height: 100%;
@@ -25,15 +46,7 @@
     transition: all 0.3s ease;
     will-change: transform, box-shadow;
 }
-/* Add after Base styles */
-.breath-animation {
-    position: relative;
-    width: min(300px, 90vw);
-    height: min(300px, 90vw);
-    margin: 2rem auto;
-}
 
-/* Breathing text container */
 .breathing-text-container {
     position: absolute;
     top: 50%;
@@ -58,20 +71,15 @@
     white-space: pre-line;
 }
 
-/* Update timer styles */
 .timer {
-    position: absolute;
-    bottom: -50px;
-    left: 50%;
-    transform: translateX(-50%);
     font-size: 2rem;
     color: var(--text);
     font-weight: bold;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    min-height: 2rem;
+    min-height: 2.5rem;
+    margin-top: 1rem;
 }
 
-/* Wim Hof animations */
+/* Animations */
 @keyframes quickBreath {
     0%, 100% {
         transform: scale(1);
@@ -104,16 +112,13 @@
     }
 }
 
-/* Animation classes */
 .quick-breath {
     animation: quickBreath 2s ease-in-out infinite;
 }
 
-/* Update retention class */
 .retention {
     animation: retentionPulse 3s ease-in-out infinite;
     cursor: pointer;
-    box-shadow: 0 0 30px var(--animation-glow-hold);
 }
 
 .retention:hover {
@@ -125,7 +130,6 @@
     animation: recoveryHold 2s ease-in-out forwards;
 }
 
-/* Text animations */
 .fade-in {
     animation: textFadeIn 0.5s ease-in-out;
 }
@@ -141,7 +145,24 @@
     }
 }
 
-/* Responsive design */
+.exit-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    background: rgba(0, 0, 0, 0.1);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.exit-btn:hover {
+    background: rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
 @media screen and (max-width: 480px) {
     .circle {
         width: 250px;
@@ -157,6 +178,11 @@
     }
     
     .timer {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
+    }
+    
+    .exit-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
     }
 }

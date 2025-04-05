@@ -4,29 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Breathing Exercise</title>
-    <link rel="stylesheet" href="./styles/exercise.css">
+    <link rel="stylesheet" href="styles/exercise.css">
 </head>
 <body>
     <div class="exercise-container">
         <div class="breathing-guide">
-            <div class="set-counter"></div>
             <div class="breath-animation">
                 <div class="circle">
-                    <div class="breathing-indicator">
-                        <div class="arrow-up"></div>
-                        <div class="arrow-down"></div>
-                    </div>
-                    <!-- Replace single breathing-text with container -->
                     <div class="breathing-text-container">
                         <div class="main-text"></div>
                         <div class="sub-text"></div>
                     </div>
+                    <div class="breathing-indicator">
+                        <div class="arrow-up"></div>
+                        <div class="arrow-down"></div>
+                    </div>
                 </div>
             </div>
-            <div class="timer">00:00</div>
+            <div class="timer"></div>
         </div>
         <button class="exit-btn" onclick="window.location.href='index.html'">Exit</button>
     </div>
-    <script src="./scripts/exercise.js"></script>
+    <script src="scripts/exercise.js"></script>
 </body>
 </html>

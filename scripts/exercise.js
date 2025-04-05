@@ -1,59 +1,64 @@
 document.addEventListener('DOMContentLoaded', () => {
-    function animateBreathingText(mainText, subText = '') {
-        const textContainer = document.querySelector('.breathing-text-container');
-        textContainer.innerHTML = `
-            <div class="main-text fade-in">${mainText}</div>
-            ${subText ? `<div class="sub-text fade-in">${subText}</div>` : ''}
-        `;
-    }
-    
-    // Theme initialization
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.documentElement.setAttribute('data-theme', savedTheme);
-
-    // DOM elements
     const circle = document.querySelector('.circle');
     const timer = document.querySelector('.timer');
+    const breathingIndicator = document.querySelector('.breathing-indicator');
+    const mainText = document.querySelector('.main-text');
+    const subText = document.querySelector('.sub-text');
+    
     const urlParams = new URLSearchParams(window.location.search);
     const exerciseType = urlParams.get('type');
-    function animateBreathingText(mainText, subText = '') {
-        const textContainer = document.querySelector('.breathing-text-container');
-        textContainer.innerHTML = `
-            <div class="main-text fade-in">${mainText}</div>
-            ${subText ? `<div class="sub-text fade-in">${subText}</div>` : ''}
-        `;
-    }
+
     const exercises = {
         'box': {
             sequence: ['Inhale', 'Hold', 'Exhale', 'Hold'],
             durations: [4, 4, 4, 4],
+            rounds: 5,
             background: {
-                light: '#E8F4F8',
-                dark: '#1a2327'
-            },
-            rounds: 5
+                light: '#E6F3FF',
+                dark: '#1a2432'
+            }
         },
         '48': {
             sequence: ['Inhale', 'Exhale'],
             durations: [4, 8],
+            rounds: 6,
             background: {
-                light: '#FFF5F5',
-                dark: '#272121'
-            },
-            rounds: 6
+                light: '#E6FFE6',
+                dark: '#1a321a'
+            }
         },
         'wim-hof': {
             sequence: ['Quick Breath', 'Retention', 'Recovery'],
             durations: [2, 0, 15],
-            background: {
-                light: '#E6F3FF',
-                dark: '#1a2432'
-            },
             totalBreaths: 30,
             sets: 3,
-            isClickBased: true
+            background: {
+                light: '#FFF3E6',
+                dark: '#32261a'
+            }
         }
     };
+
+    const exercise = exercises[exerciseType];
+    if (!exercise) {
+        window.location.href = 'index.html';
+        return;
+    }
+
+    // Set background color based on theme
+    const theme = document.documentElement.getAttribute('data-theme') || 'light';
+    document.body.style.backgroundColor = exercise.background[theme];
+
+    function updateBreathingText(main, sub = '') {
+        mainText.textContent = main;
+        subText.textContent = sub;
+        mainText.classList.remove('fade-in');
+        subText.classList.remove('fade-in');
+        void mainText.offsetWidth;
+        void subText.offsetWidth;
+        mainText.classList.add('fade-in');
+        subText.classList.add('fade-in');
+    }
 
     function startWimHofExercise() {
         let currentSet = 1;
@@ -61,29 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
         let retentionTimer = 0;
         let timerInterval;
 
-        // Clear existing timers and listeners
-        if (timerInterval) clearInterval(timerInterval);
-        circle.replaceWith(circle.cloneNode(true));
-        circle = document.querySelector('.circle');
-
-        function updateTimer(time) {
-            const minutes = Math.floor(time / 60);
-            const seconds = time % 60;
-            return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-        }
-
         function startBreathingPhase() {
             breathCount++;
-            if (breathCount <= exercises['wim-hof'].totalBreaths) {
-                animateBreathingText(
-                    `Set ${currentSet} of ${exercises['wim-hof'].sets}`,
-                    `Quick breath ${breathCount}/${exercises['wim-hof'].totalBreaths}`
+            if (breathCount <= exercise.totalBreaths) {
+                updateBreathingText(
+                    `Set ${currentSet} of ${exercise.sets}`,
+                    `Quick breath ${breathCount}/${exercise.totalBreaths}`
                 );
                 
                 circle.className = 'circle quick-breath';
                 
                 setTimeout(() => {
-                    if (breathCount < exercises['wim-hof'].totalBreaths) {
+                    if (breathCount < exercise.totalBreaths) {
                         startBreathingPhase();
                     } else {
                         startRetentionPhase();
@@ -94,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function startRetentionPhase() {
             circle.className = 'circle retention';
-            animateBreathingText(
+            updateBreathingText(
                 'Exhale fully and hold',
                 'Click when you need to breathe'
             );
@@ -105,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (timerInterval) clearInterval(timerInterval);
             timerInterval = setInterval(() => {
                 retentionTimer++;
-                timer.textContent = updateTimer(retentionTimer);
+                timer.textContent = Math.floor(retentionTimer);
             }, 1000);
 
             circle.onclick = () => {
@@ -119,12 +113,12 @@ document.addEventListener('DOMContentLoaded', () => {
             circle.style.cursor = 'default';
             circle.className = 'circle recovery';
             
-            animateBreathingText(
+            updateBreathingText(
                 'Deep breath in',
                 'Hold for 15 seconds'
             );
 
-            let recoveryTime = exercises['wim-hof'].durations[2];
+            let recoveryTime = exercise.durations[2];
             timer.textContent = recoveryTime;
 
             if (timerInterval) clearInterval(timerInterval);
@@ -134,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (recoveryTime < 0) {
                     clearInterval(timerInterval);
-                    if (currentSet < exercises['wim-hof'].sets) {
+                    if (currentSet < exercise.sets) {
                         currentSet++;
                         breathCount = 0;
                         timer.textContent = '';
@@ -155,13 +149,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let currentPhase = 0;
         let timeLeft = exercise.durations[0];
 
-        updateTimer(timeLeft);
-        updateBreathAnimation(exercise.sequence[0]);
-        updateBreathingIndicator(exercise.sequence[0]);
+        timer.textContent = timeLeft;
+        updateBreathingText(exercise.sequence[0]);
 
         const intervalId = setInterval(() => {
             timeLeft--;
-            updateTimer(timeLeft);
+            timer.textContent = timeLeft;
 
             if (timeLeft === 0) {
                 currentPhase = (currentPhase + 1) % exercise.sequence.length;
@@ -176,55 +169,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 timeLeft = exercise.durations[currentPhase];
-                updateBreathAnimation(exercise.sequence[currentPhase]);
-                updateBreathingIndicator(exercise.sequence[currentPhase]);
+                updateBreathingText(exercise.sequence[currentPhase]);
             }
         }, 1000);
     }
 
     function completeExercise() {
-        circle.style.animation = 'none';
-        breathingText.textContent = 'Exercise Complete';
-        breathingIndicator.style.opacity = '0';
-        
+        circle.className = 'circle';
+        updateBreathingText('Exercise Complete!', 'Well done!');
+        timer.textContent = '';
         setTimeout(() => {
-            if (confirm('Would you like to do another round?')) {
-                window.location.reload();
-            } else {
-                window.location.href = './index.html';
-            }
+            window.location.href = 'index.html';
         }, 3000);
     }
 
-    updateBackground();
-
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.attributeName === 'data-theme') {
-                updateBackground();
-            }
-        });
-    });
-
-    observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ['data-theme']
-    });
-
-    let countdown = 3;
-    breathingText.textContent = `Starting in ${countdown}...`;
-    
-    const countdownInterval = setInterval(() => {
-        countdown--;
-        if (countdown > 0) {
-            breathingText.textContent = `Starting in ${countdown}...`;
-        } else {
-            clearInterval(countdownInterval);
-            startExercise();
-        }
-    }, 1000);
-
-    if ('ontouchstart' in window) {
-        document.body.style.WebkitTapHighlightColor = 'transparent';
+    // Start appropriate exercise
+    if (exerciseType === 'wim-hof') {
+        startWimHofExercise();
+    } else {
+        startRegularExercise();
     }
 });
