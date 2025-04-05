@@ -1,0 +1,53 @@
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.audio-controls {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.audio-btn {
+    background: var(--card-bg);
+    color: var(--text);
+    border: 1px solid var(--text);
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.audio-btn:hover {
+    background: var(--text);
+    color: var(--background);
+    transform: translateY(-2px);
+}
+
+.about-content {
+    line-height: 1.6;
+    color: var(--text);
+}
+
+.about-content h2 {
+    margin: 2rem 0 1rem;
+    color: var(--text);
+}
+
+.about-content p {
+    margin-bottom: 1.5rem;
+}
+
+.techniques-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        padding: 1rem;
+    }
+}
