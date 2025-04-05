@@ -1,25 +1,61 @@
+/* Theme Variables */
 :root {
     /* Light theme */
     --about-bg: #F5F7FA;
     --about-text: #2C3E50;
+    --table-bg: #FFFFFF;
     --table-border: rgba(0, 0, 0, 0.1);
-    --table-header: #2C3E50;
-    --important-text: #e74c3c;
+    --table-header: linear-gradient(145deg, #4CA1AF, #2C3E50);
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --btn-hover: rgba(255, 255, 255, 0.3);
 }
 
 [data-theme="dark"] {
     /* Dark theme */
-    --about-bg: #1a1a2e;
-    --about-text: #e6e6e6;
+    --about-bg: #121212;
+    --about-text: #E0E0E0;
+    --table-bg: #1E1E1E;
     --table-border: rgba(255, 255, 255, 0.1);
-    --table-header: #1f1f3a;
-    --important-text: #ff6b6b;
+    --table-header: linear-gradient(145deg, #1F444B, #1A252F);
+    --card-shadow: rgba(255, 255, 255, 0.05);
+    --btn-hover: rgba(255, 255, 255, 0.2);
 }
 
+/* Base Container */
 .about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
     background-color: var(--about-bg);
     color: var(--about-text);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+/* Audio Controls */
+.audio-controls {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.audio-btn {
+    background: var(--table-bg);
+    color: var(--about-text);
+    border: 1px solid var(--about-text);
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.audio-btn:hover {
+    background: var(--about-text);
+    color: var(--about-bg);
+    transform: translateY(-2px);
+}
+
+/* Content Typography */
+.about-content {
+    line-height: 1.6;
 }
 
 .about-content h2,
@@ -29,136 +65,65 @@
     transition: color 0.3s ease;
 }
 
-.guidelines-table, .benefits-table {
-    background: var(--card-bg);
-    box-shadow: 0 2px 4px var(--shadow);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
+.about-content h2 { margin: 2rem 0 1rem; }
+.about-content h3 { margin-top: 2.5rem; margin-bottom: 1rem; }
+.about-content h4 { margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.about-content p { margin-bottom: 1.5rem; }
 
-th, td {
-    border: 1px solid var(--table-border);
-    transition: border-color 0.3s ease;
-}
-
-th {
-    background: var(--table-header);
-    color: var(--about-text);
-}
-
-.important {
-    color: var(--important-text);
-    transition: color 0.3s ease;
-}
-
-/* ... rest of existing styles ... */
-/* Base container styles */
-.about-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-/* Audio controls */
-.audio-controls {
-    text-align: center;
-    margin: 2rem 0;
-}
-
-.audio-btn {
-    background: var(--card-bg);
-    color: var(--text);
-    border: 1px solid var(--text);
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.audio-btn:hover {
-    background: var(--text);
-    color: var(--background);
-    transform: translateY(-2px);
-}
-
-/* Content styles */
-.about-content {
-    line-height: 1.6;
-    color: var(--text);
-}
-
-.about-content h2 {
-    margin: 2rem 0 1rem;
-    color: var(--text);
-}
-
-.about-content p {
-    margin-bottom: 1.5rem;
-}
-
-/* Technique details */
-.technique-details h3 {
-    color: var(--text);
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.technique-details h4 {
-    color: var(--text);
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
+/* Technique Details */
 .technique-details ul {
     list-style-type: disc;
     margin-left: 2rem;
     margin-bottom: 1.5rem;
 }
 
-/* Table styles */
-.guidelines-table, .benefits-table {
+/* Tables */
+.guidelines-table,
+.benefits-table {
     width: 100%;
     border-collapse: collapse;
     margin: 1.5rem 0;
-    background: var(--card-bg);
-    border-radius: 8px;
+    background: var(--table-bg);
+    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 2px 4px var(--shadow);
-}
-
-th, td {
-    padding: 1rem;
-    text-align: left;
-    border: 1px solid var(--shadow);
+    box-shadow: 0 10px 20px var(--card-shadow);
+    transition: all 0.3s ease;
 }
 
 th {
-    background: var(--footer-bg);
+    background: var(--table-header);
     color: white;
+    padding: 1.5rem;
+    text-align: left;
 }
 
-/* Important notice */
+td {
+    padding: 1.2rem 1.5rem;
+    border: 1px solid var(--table-border);
+    transition: border-color 0.3s ease;
+}
+
+/* Important Notices */
 .important {
-    color: #e74c3c;
+    color: #ff6b6b;
     font-weight: bold;
     margin: 1.5rem 0;
 }
 
-/* Grid layout */
-.techniques-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-/* Media queries */
+/* Responsive Design */
 @media (max-width: 768px) {
     .about-container {
         padding: 1rem;
     }
     
-    .guidelines-table, .benefits-table {
+    .guidelines-table,
+    .benefits-table {
         display: block;
         overflow-x: auto;
+    }
+
+    .audio-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
     }
 }
