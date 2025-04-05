@@ -138,6 +138,7 @@ main {
 .card-back {
     transform: rotateY(180deg);
     box-shadow: 0 10px 20px var(--shadow);
+    text-align: justify;
 }
 
 .card[data-technique="box"] .card-back {
