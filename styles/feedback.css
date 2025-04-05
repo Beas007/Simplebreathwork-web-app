@@ -1,73 +1,112 @@
+/* Base container */
 .feedback-container {
-    max-width: 1000px; /* Increased width for larger screens */
+    width: min(90%, 1000px);
     margin: 2rem auto;
-    padding: 0 0.5rem;
-    width: 90%; /* Added to ensure proper scaling */
+    padding: 0 clamp(0.5rem, 2vw, 1rem);
 }
 
 .form-wrapper {
     background: var(--form-bg);
-    padding: 3rem; /* Increased padding */
+    padding: clamp(1.5rem, 4vw, 3rem);
     border-radius: 15px;
     box-shadow: 0 4px 6px var(--shadow);
     transition: all 0.3s ease;
 }
 
+/* Form elements */
 .form-group {
-    margin-bottom: 2.5rem; /* More spacing between elements */
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
 }
 
 label {
     display: block;
-    margin-bottom: 1rem;
+    margin-bottom: clamp(0.5rem, 2vw, 1rem);
     color: var(--text);
-    font-size: 1.2rem; /* Larger font */
+    font-size: clamp(1rem, 2vw, 1.2rem);
     font-weight: 500;
 }
 
 input, select {
     width: 100%;
-    padding: 1.2rem; /* Increased input padding */
+    padding: clamp(0.8rem, 2vw, 1.2rem);
     border: 1px solid var(--input-border);
     border-radius: 8px;
     background: var(--input-bg);
     color: var(--text);
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     transition: all 0.3s ease;
 }
 
 textarea {
     width: 100%;
-    min-height: 250px; /* Taller textarea */
-    padding: 1.2rem;
-    font-size: 1.2rem;
+    min-height: clamp(150px, 30vh, 250px);
+    padding: clamp(0.8rem, 2vw, 1.2rem);
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    background: var(--input-bg);
+    color: var(--text);
+    font-size: clamp(1rem, 2vw, 1.2rem);
     line-height: 1.6;
+    resize: vertical;
 }
 
+input:focus, 
+select:focus, 
+textarea:focus {
+    outline: none;
+    border-color: var(--input-focus);
+    box-shadow: 0 0 0 2px rgba(76, 161, 175, 0.2);
+}
+
+/* Submit button */
 .submit-btn {
-    padding: 1.2rem 3rem;
-    font-size: 1.3rem;
+    width: 100%;
+    padding: clamp(1rem, 3vw, 1.2rem);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    background: var(--submit-gradient);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-top: 1rem;
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 1200px) {
-    .feedback-container {
-        max-width: 900px;
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(76, 161, 175, 0.2);
+}
+
+/* Theme variables */
+:root {
+    --form-bg: #FFFFFF;
+    --input-bg: #F8FAFC;
+    --input-border: #E2E8F0;
+    --input-focus: #4CA1AF;
+    --submit-gradient: linear-gradient(145deg, #4CA1AF, #2C3E50);
+}
+
+[data-theme="dark"] {
+    --form-bg: #1E1E1E;
+    --input-bg: #2D3748;
+    --input-border: #4A5568;
+    --input-focus: #7FC7D2;
+    --submit-gradient: linear-gradient(145deg, #1F444B, #1A252F);
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+.form-wrapper {
+        padding: clamp(1rem, 3vw, 1.5rem);
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
     }
 }
 
-@media screen and (max-width: 768px) {
-    .feedback-container {
-        width: 95%;
-        padding: 0 0.25rem;
-    }
-    .form-wrapper {
-        padding: 1.5rem;
-    }
-    
-    input, select, textarea, label {
-        font-size: 1rem;
-        padding: 1rem;
+@media screen and (max-width: 480px) {
+    input, select, textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
     }
 }

@@ -1,80 +1,53 @@
-/* Theme Variables */
+/* Theme variables */
 :root {
-    /* Light theme */
     --about-bg: #F5F7FA;
     --about-text: #2C3E50;
+    --about-heading: #4CA1AF;
     --table-bg: #FFFFFF;
     --table-border: rgba(0, 0, 0, 0.1);
     --table-header: linear-gradient(145deg, #4CA1AF, #2C3E50);
-    --card-shadow: rgba(0, 0, 0, 0.1);
-    --btn-hover: rgba(255, 255, 255, 0.3);
 }
 
 [data-theme="dark"] {
-    /* Dark theme */
     --about-bg: #121212;
     --about-text: #E0E0E0;
+    --about-heading: #7FC7D2;
     --table-bg: #1E1E1E;
     --table-border: rgba(255, 255, 255, 0.1);
     --table-header: linear-gradient(145deg, #1F444B, #1A252F);
-    --card-shadow: rgba(255, 255, 255, 0.05);
-    --btn-hover: rgba(255, 255, 255, 0.2);
 }
 
-/* Base Container */
+/* Container styles */
 .about-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: var(--about-bg);
-    color: var(--about-text);
-    transition: all 0.3s ease;
+    width: min(90%, 1200px);
+    margin: 2rem auto;
+    padding: 0 clamp(0.5rem, 2vw, 2rem);
 }
 
-/* Audio Controls */
-.audio-controls {
-    text-align: center;
-    margin: 2rem 0;
-}
-
-.audio-btn {
-    background: var(--table-bg);
-    color: var(--about-text);
-    border: 1px solid var(--about-text);
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.audio-btn:hover {
-    background: var(--about-text);
-    color: var(--about-bg);
-    transform: translateY(-2px);
-}
-
-/* Content Typography */
+/* Typography */
 .about-content {
     line-height: 1.6;
-}
-
-.about-content h2,
-.about-content h3,
-.about-content h4 {
     color: var(--about-text);
-    transition: color 0.3s ease;
 }
 
-.about-content h2 { margin: 2rem 0 1rem; }
-.about-content h3 { margin-top: 2.5rem; margin-bottom: 1rem; }
-.about-content h4 { margin-top: 1.5rem; margin-bottom: 0.5rem; }
-.about-content p { margin-bottom: 1.5rem; }
+.about-content h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin: clamp(1.5rem, 4vw, 2rem) 0 clamp(1rem, 2vw, 1.5rem);
+    color: var(--about-heading);
+}
 
-/* Technique Details */
-.technique-details ul {
-    list-style-type: disc;
-    margin-left: 2rem;
-    margin-bottom: 1.5rem;
+.about-content h3 {
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    margin-top: clamp(2rem, 4vw, 2.5rem);
+    margin-bottom: clamp(0.75rem, 2vw, 1rem);
+    color: var(--about-heading);
+}
+
+.about-content h4 {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-top: clamp(1.25rem, 3vw, 1.5rem);
+    margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+    color: var(--about-heading);
 }
 
 /* Tables */
@@ -82,48 +55,63 @@
 .benefits-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1.5rem 0;
+    margin: clamp(1rem, 3vw, 1.5rem) 0;
     background: var(--table-bg);
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 10px 20px var(--card-shadow);
-    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px var(--shadow);
+}
+
+/* Make tables responsive */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: clamp(1rem, 3vw, 1.5rem) 0;
 }
 
 th {
     background: var(--table-header);
     color: white;
-    padding: 1.5rem;
+    padding: clamp(0.75rem, 2vw, 1.5rem);
     text-align: left;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    white-space: nowrap;
 }
 
 td {
-    padding: 1.2rem 1.5rem;
+    padding: clamp(0.75rem, 2vw, 1.2rem);
     border: 1px solid var(--table-border);
-    transition: border-color 0.3s ease;
+    font-size: clamp(0.875rem, 2vw, 1rem);
 }
 
-/* Important Notices */
-.important {
-    color: #ff6b6b;
-    font-weight: bold;
-    margin: 1.5rem 0;
+/* Lists */
+.technique-details ul {
+    list-style-type: disc;
+    margin-left: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+.technique-details li {
+    margin-bottom: clamp(0.5rem, 1vw, 0.75rem);
+    font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
     .about-container {
-        padding: 1rem;
-    }
-    
-    .guidelines-table,
-    .benefits-table {
-        display: block;
-        overflow-x: auto;
+        width: 95%;
+        padding: 0 1rem;
     }
 
-    .audio-btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
+    td {
+        min-width: 120px; /* Ensures minimum touch target size */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .about-container {
+        width: 100%;
+        padding: 0 0.5rem;
     }
 }
