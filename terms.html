@@ -6,6 +6,33 @@
     <title>Terms of Use - Simple Breathwork</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/legal.css">
+    
+
+<script>
+    // Initialize theme from localStorage
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        
+        const themeToggle = document.getElementById('theme-toggle');
+        
+        function updateThemeButton(theme) {
+            themeToggle.textContent = theme === 'light' ? '🌙 Night Mode' : '☀️ Day Mode';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButton(newTheme);
+        });
+
+        // Set initial button text
+        updateThemeButton(savedTheme);
+    });
+</script>
 </head>
 <body>
     <header>
@@ -67,10 +94,12 @@
                 <p>These terms are governed by the laws of England and Wales. Any disputes arising from these terms will be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
             </section>
 
-            <section id="contact">
+            <section id="contact" class="contact-section">
                 <h3>9. Contact Information</h3>
                 <p>For questions about these terms, please contact us at:</p>
-                <p>Email: info@simplebreathwork.com</p>
+                <div class="contact-details">
+                    <p>Email: info@simplebreathwork.com</p>
+                </div>
             </section>
         </div>
     </main>
