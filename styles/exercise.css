@@ -5,6 +5,8 @@
     --text-dark: #E0E0E0;
     --arrow-color-light: #2C3E50;
     --arrow-color-dark: #E0E0E0;
+    --animation-glow-inhale: rgba(76, 175, 80, 0.4);
+    --animation-glow-exhale: rgba(244, 67, 54, 0.4);
 }
 
 [data-theme="light"] {
@@ -66,6 +68,48 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    will-change: transform;
+    transform: scale(1);
+    transition: box-shadow 0.3s ease;
+}
+
+@keyframes expand {
+    0% { 
+        transform: scale(0.8);
+        box-shadow: 0 0 30px rgba(76, 175, 80, 0.2);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 40px var(--animation-glow-inhale);
+    }
+    100% { 
+        transform: scale(1.2);
+        box-shadow: 0 0 50px var(--animation-glow-inhale);
+    }
+}
+
+@keyframes contract {
+    0% { 
+        transform: scale(1.2);
+        box-shadow: 0 0 50px var(--animation-glow-exhale);
+    }
+    50% {
+        transform: scale(0.9);
+        box-shadow: 0 0 40px rgba(244, 67, 54, 0.3);
+    }
+    100% { 
+        transform: scale(0.8);
+        box-shadow: 0 0 30px rgba(244, 67, 54, 0.2);
+    }
+}
+
+@keyframes hold {
+    0% { transform: scale(1); }
+    50% { 
+        transform: scale(1.05);
+        box-shadow: 0 0 35px rgba(255, 193, 7, 0.3);
+    }
+    100% { transform: scale(1); }
 }
 
 .breathing-indicator {

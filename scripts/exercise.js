@@ -73,25 +73,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function updateBreathAnimation(phase, currentRound = null, currentSet = null) {
         const animations = {
-            'Deep Inhale': 'expand 4s ease-in-out forwards',
-            'Exhale': 'contract 4s ease-in-out forwards',
-            'Final Exhale': 'contract 2s ease-in-out forwards',
-            'Hold Empty': 'hold 2s ease-in-out infinite',
-            'Recovery Breath': 'expand 4s ease-in-out forwards',
-            'Recovery Hold': 'hold 2s ease-in-out infinite'
-        };
-        
-        circle.style.animation = animations[phase] || 'none';
-        
-        if (exerciseType === 'wim-hof' && currentRound !== null) {
-            breathingText.textContent = `${phase} ${currentRound}/30`;
-            if (currentSet !== null) {
-                setCounter.textContent = `Set ${currentSet}/3`;
-            }
-        } else {
-            breathingText.textContent = phase;
-        }
-    }
+              // Regular breathing patterns
+              'Inhale': 'expand 4s ease-in-out forwards',
+              'Exhale': phase === 'Exhale' && exerciseType === '48' ? 
+                       'contract 8s ease-in-out forwards' : 
+                       'contract 4s ease-in-out forwards',
+              'Hold': 'hold 2s ease-in-out infinite',
+              
+              // Wim Hof specific patterns
+              'Deep Inhale': 'expand 4s ease-in-out forwards',
+              'Final Exhale': 'contract 2s ease-in-out forwards',
+              'Hold Empty': 'hold 2s ease-in-out infinite',
+              'Recovery Breath': 'expand 4s ease-in-out forwards',
+              'Recovery Hold': 'hold 2s ease-in-out infinite'
+          };
+  
+          // Reset animation
+          circle.style.animation = 'none';
+          circle.offsetHeight; // Force reflow
+          circle.style.animation = animations[phase] || 'none';
+  
+          // Update text display
+          if (exerciseType === 'wim-hof' && currentRound !== null) {
+              breathingText.textContent = `${phase} ${currentRound}/30`;
+              if (currentSet !== null) {
+                  setCounter.textContent = `Set ${currentSet}/3`;
+              }
+          } else {
+              breathingText.textContent = phase;
+          }
+      }
 
     function startExercise() {
         if (exerciseType === 'wim-hof') {
