@@ -19,35 +19,38 @@
     </header>
 
     <main class="feedback-container">
-        <form id="feedbackForm" class="feedback-form">
-            <div class="form-group">
-                <label for="name">Name (optional)</label>
-                <input type="text" id="name" name="name">
-            </div>
+        <div class="form-wrapper">
+            <form id="feedbackForm" class="feedback-form">
+                <div class="form-group">
+                    <label for="name">Name (optional)</label>
+                    <input type="text" id="name" name="name" placeholder="Your name">
+                </div>
 
-            <div class="form-group">
-                <label for="email">Email (optional)</label>
-                <input type="email" id="email" name="email">
-            </div>
+                <div class="form-group">
+                    <label for="email">Email (optional)</label>
+                    <input type="email" id="email" name="email" placeholder="your@email.com">
+                </div>
 
-            <div class="form-group">
-                <label for="feedback-type">Type of Feedback</label>
-                <select id="feedback-type" name="feedbackType" required>
-                    <option value="">Select type...</option>
-                    <option value="general">General Feedback</option>
-                    <option value="bug">Report an Issue</option>
-                    <option value="feature">Feature Request</option>
-                    <option value="technique">Breathing Technique Feedback</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="feedback-type">Type of Feedback*</label>
+                    <select id="feedback-type" name="feedbackType" required>
+                        <option value="">Choose a category...</option>
+                        <option value="general">General Feedback</option>
+                        <option value="bug">Report an Issue</option>
+                        <option value="feature">Feature Request</option>
+                        <option value="technique">Breathing Technique Feedback</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="feedback">Your Feedback</label>
-                <textarea id="feedback" name="feedback" required></textarea>
-            </div>
+                <div class="form-group">
+                    <label for="feedback">Your Feedback*</label>
+                    <textarea id="feedback" name="feedback" required 
+                              placeholder="Please share your thoughts..."></textarea>
+                </div>
 
-            <button type="submit" class="submit-btn">Submit Feedback</button>
-        </form>
+                <button type="submit" class="submit-btn">Submit Feedback</button>
+            </form>
+        </div>
     </main>
 
     <footer>
@@ -59,6 +62,7 @@
         </div>
     </footer>
 
+    <script src="scripts/app.js"></script>
     <script src="scripts/feedback.js"></script>
 </body>
 </html>
