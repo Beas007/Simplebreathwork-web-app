@@ -52,17 +52,63 @@
             </form>
         </div>
     </main>
+    <div class="thank-you-message" id="thank-you-message" style="display: none;">
+        <h2>Thank You!</h2>
+        <p>Your feedback has been submitted successfully.</p>
 
+    <script src="scripts/main.js"></script>
+    <script src="scripts/feedback.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            
+            function updateTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                updateThemeButton(theme);
+            }
+
+            function updateThemeButton(theme) {
+                themeToggle.textContent = theme === 'light' ? '🌙 Night Mode' : '☀️ Day Mode';
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                updateTheme(newTheme);
+            });
+
+            // Initialize theme
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            updateTheme(savedTheme);
+
+            // Form handling
+            const feedbackForm = document.getElementById('feedbackForm');
+            feedbackForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const formData = new FormData(feedbackForm);
+                const feedback = Object.fromEntries(formData.entries());
+                
+                try {
+                    console.log('Feedback received:', feedback);
+                    alert('Thank you for your feedback! We appreciate your input.');
+                    feedbackForm.reset();
+                } catch (error) {
+                    console.error('Error submitting feedback:', error);
+                    alert('Sorry, there was an error submitting your feedback. Please try again.');
+                }
+            });
+        });
+    </script>
     <footer>
         <div class="links">
             <a href="index.html">Home</a>
             <a href="about.html">About Us</a>
             <a href="privacy.html">Privacy Policy</a>
             <a href="terms.html">Terms of Use</a>
+            <button onclick="window.location.href='feedback.html'">Share Feedback</button>
         </div>
     </footer>
-
-    <script src="scripts/app.js"></script>
-    <script src="scripts/feedback.js"></script>
 </body>
 </html>

@@ -107,17 +107,6 @@ html
             </section>
         </div>
     </main>
-
-    <footer>
-        <div class="links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About Us</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Use</a>
-            <button id="feedback-btn">Share Feedback</button>
-        </div>
-    </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const themeToggle = document.getElementById('theme-toggle');
@@ -145,5 +134,14 @@ html
             updateTheme(savedTheme);
         });
     </script>
+    <footer>
+        <div class="links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+            <button onclick="window.location.href='feedback.html'">Share Feedback</button>
+        </div>
+    </footer>
 </body>
 </html>
