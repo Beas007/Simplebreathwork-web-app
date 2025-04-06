@@ -27,15 +27,34 @@ body {
 .exercise-container {
     width: 100%;
     max-width: 600px;
-    padding: 2rem;
-    text-align: center;
+    padding: 1rem;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.breathing-guide {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
 }
 
 .breath-animation {
     position: relative;
-    width: min(300px, 90vw);
-    height: min(300px, 90vw);
-    margin: 2rem auto;
+    width: min(300px, 80vw);
+    height: min(300px, 80vw);
+    margin: 0 auto;
+}
+
+.breathing-text-container {
+    width: 90%;
+    max-width: 280px;
+    text-align: center;
 }
 
 .circle {
@@ -62,18 +81,18 @@ body {
 }
 
 .main-text {
-    font-size: clamp(1.4rem, 4vw, 1.8rem);
-    font-weight: bold;
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
     margin-bottom: 0.5rem;
-    color: var(--text);
 }
 
 .sub-text {
-    font-size: clamp(1rem, 3vw, 1.2rem);
-    color: var(--text);
-    opacity: 0.8;
-    white-space: pre-line;
+    font-size: clamp(0.9rem, 3vw, 1.2rem);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
+
 
 .timer {
     font-size: 2rem;
@@ -210,6 +229,28 @@ body {
 .exit-btn:hover {
     background: rgba(0, 0, 0, 0.2);
     transform: translateY(-2px);
+}
+
+@media screen and (max-width: 768px) {
+    .exercise-container {
+        padding: 0.5rem;
+    }
+
+    .breath-animation {
+        margin: 1rem auto;
+    }
+
+    .timer {
+        font-size: 1.5rem;
+        margin-top: 0.5rem;
+    }
+
+    .exit-btn {
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
 }
 
 @media screen and (max-width: 480px) {
