@@ -1,5 +1,9 @@
 :root {
-    --circle-bg: rgba(255, 255, 255, 0.8);
+        --animation-glow-inhale: rgba(76, 175, 80, 0.4);
+        --animation-glow-exhale: rgba(244, 67, 54, 0.4);
+        --animation-glow-hold: rgba(255, 193, 7, 0.3);
+        --background: #F5F7FA;
+        --circle-bg: rgba(255, 255, 255, 0.8);
     --text: #2C3E50;
     --animation-glow-inhale: rgba(76, 175, 80, 0.4);
     --animation-glow-hold: rgba(255, 193, 7, 0.3);
@@ -109,6 +113,51 @@ body {
     100% {
         transform: scale(1.2);
         box-shadow: 0 0 50px var(--animation-glow-inhale);
+    }
+}
+/* Add these with your other animations */
+.inhale {
+    animation: inhale 4s ease-in-out forwards;
+}
+
+.exhale {
+    animation: exhale 8s ease-in-out forwards;
+}
+
+.hold {
+    animation: hold 4s ease-in-out infinite;
+}
+
+@keyframes inhale {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 30px var(--animation-glow-inhale);
+    }
+    100% {
+        transform: scale(1.2);
+        box-shadow: 0 0 40px var(--animation-glow-inhale);
+    }
+}
+
+@keyframes exhale {
+    0% {
+        transform: scale(1.2);
+        box-shadow: 0 0 40px var(--animation-glow-exhale);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px var(--animation-glow-exhale);
+    }
+}
+
+@keyframes hold {
+    0%, 100% {
+        transform: scale(1.1);
+        box-shadow: 0 0 35px var(--animation-glow-hold);
+    }
+    50% {
+        transform: scale(1.15);
+        box-shadow: 0 0 40px var(--animation-glow-hold);
     }
 }
 

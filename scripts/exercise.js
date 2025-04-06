@@ -10,23 +10,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const exercises = {
         'box': {
-            sequence: ['Inhale', 'Hold', 'Exhale', 'Hold'],
-            durations: [4, 4, 4, 4],
-            rounds: 5,
-            background: {
-                light: '#E6F3FF',
-                dark: '#1a2432'
-            }
+        sequence: ['Inhale', 'Hold', 'Exhale', 'Hold'],
+        durations: [4, 4, 4, 4],
+        rounds: 5,
+        background: {
+            light: '#F5F7FA',
+            dark: '#121212'
         },
-        '48': {
-            sequence: ['Inhale', 'Exhale'],
-            durations: [4, 8],
-            rounds: 6,
-            background: {
-                light: '#E6FFE6',
-                dark: '#1a321a'
-            }
+        arrow: {
+            up: ['Inhale'],
+            none: ['Hold'],
+            down: ['Exhale']
+        }
+    },
+    '48': {
+        sequence: ['Inhale', 'Exhale'],
+        durations: [4, 8],
+        rounds: 6,
+        background: {
+            light: '#F5F7FA',
+            dark: '#121212'
         },
+        arrow: {
+            up: ['Inhale'],
+            down: ['Exhale']
+        }
+    },
+
         'wim-hof': {
             sequence: ['Quick Breath', 'Retention', 'Recovery'],
             durations: [2, 0, 15],
@@ -58,6 +68,24 @@ document.addEventListener('DOMContentLoaded', () => {
         void subText.offsetWidth;
         mainText.classList.add('fade-in');
         subText.classList.add('fade-in');
+    }
+    function updateBreathingIndicator(phase) {
+        const arrows = document.querySelector('.breathing-indicator');
+        const upArrow = arrows.querySelector('.arrow-up');
+        const downArrow = arrows.querySelector('.arrow-down');
+    
+        upArrow.style.opacity = '0';
+        downArrow.style.opacity = '0';
+    
+        if (exercise.arrow.up.includes(phase)) {
+            upArrow.style.opacity = '1';
+            circle.className = 'circle inhale';
+        } else if (exercise.arrow.down.includes(phase)) {
+            downArrow.style.opacity = '1';
+            circle.className = 'circle exhale';
+        } else {
+            circle.className = 'circle hold';
+        }
     }
 
     function startWimHofExercise() {
@@ -151,6 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         timer.textContent = timeLeft;
         updateBreathingText(exercise.sequence[0]);
+        updateBreathingIndicator(exercise.sequence[0]); // Add this line
 
         const intervalId = setInterval(() => {
             timeLeft--;
@@ -170,7 +199,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 timeLeft = exercise.durations[currentPhase];
                 updateBreathingText(exercise.sequence[currentPhase]);
-            }
+                updateBreathingIndicator(exercise.sequence[currentPhase]); // Add this line
+        }
         }, 1000);
     }
 
