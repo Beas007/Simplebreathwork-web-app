@@ -19,9 +19,10 @@
 
 /* Container styles */
 .about-container {
-    width: min(90%, 1200px);
-    margin: 2rem auto;
-    padding: 0 clamp(0.5rem, 2vw, 2rem);
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
 /* Typography */
@@ -54,12 +55,9 @@
 .guidelines-table,
 .benefits-table {
     width: 100%;
-    border-collapse: collapse;
-    margin: clamp(1rem, 3vw, 1.5rem) 0;
-    background: var(--table-bg);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px var(--shadow);
+    overflow-x: auto;
+    display: block;
+    margin: 1rem 0;
 }
 
 /* Make tables responsive */
@@ -100,12 +98,20 @@ td {
 /* Media queries */
 @media screen and (max-width: 768px) {
     .about-container {
-        width: 95%;
-        padding: 0 1rem;
+        padding: 0;
     }
 
-    td {
-        min-width: 120px; /* Ensures minimum touch target size */
+    table {
+        font-size: 0.9rem;
+    }
+
+    th, td {
+        padding: 0.5rem;
+    }
+
+    .guidelines-table,
+    .benefits-table {
+        max-width: calc(100vw - 2rem);
     }
 }
 
