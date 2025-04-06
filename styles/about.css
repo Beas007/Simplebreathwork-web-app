@@ -115,9 +115,18 @@ td {
     }
 }
 
+@media screen and (max-width: 768px) {
+    .about-container {
+        width: 95%;
+    }
+    
+    .about-content {
+        padding: clamp(1rem, 3vw, 1.5rem);
+    }
+}
+
 @media screen and (max-width: 480px) {
     .about-container {
-        width: 100%;
-        padding: 0 0.5rem;
+        margin: 1rem auto;
     }
 }
