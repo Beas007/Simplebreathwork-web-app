@@ -66,4 +66,5 @@ document.addEventListener('DOMContentLoaded', () => {
            }
        });
        // --- End of new card flipping code ---
+       document.getElementById('copyright-year').textContent = new Date().getFullYear();
 });
