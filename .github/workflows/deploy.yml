@@ -16,15 +16,6 @@ jobs:
     - name: Print FTP Host
       run: echo "FTP_Host:${{ secrets.FTP_HOST }}"
 
-    - name: Test DNS Resolution
-      run: |
-        echo "Testing DNS resolution for ${{ secrets.FTP_HOST }}"
-        nslookup ${{ secrets.FTP_HOST }} 8.8.8.8
-        if [ $? -ne 0 ]; then
-          echo "Retrying with Cloudflare DNS"
-          nslookup ${{ secrets.FTP_HOST }} 1.1.1.1
-        fi
-
     - name: Verify FTP Host Availability
       run: |
         echo "Pinging FTP Host ${{ secrets.FTP_HOST }}"
