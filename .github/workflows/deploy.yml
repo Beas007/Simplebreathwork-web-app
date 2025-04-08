@@ -12,7 +12,19 @@ jobs:
     steps:
     - name: Get latest code
       uses: actions/checkout@v2
-    
+
+    - name: Test DNS Resolution
+      run: nslookup ${{ secrets.FTP_HOST }} 8.8.8.8
+
+    - name: Test FTP Connectivity
+      run: |
+        echo "Open FTP connection to ${{ secrets.FTP_HOST }}"
+        # Install ftp command if not present
+        sudo apt-get update && sudo apt-get install -y ftp
+        ftp -inv ${{ secrets.FTP_HOST }} <<EOF
+        bye
+        EOF
+
     - name: Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
