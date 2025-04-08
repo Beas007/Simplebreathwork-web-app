@@ -86,7 +86,16 @@ a:hover {
     border: 1px solid var(--legal-border);
     margin-top: 2rem;
 }
+.email-link {
+    color: var(--legal-heading);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
 
+.email-link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
 /* Media queries */
 @media screen and (max-width: 768px) {
     .legal-container {
