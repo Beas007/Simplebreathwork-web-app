@@ -5,6 +5,15 @@ on:
     branches:
       - main
 
+on:
+  pull_request:
+    branches:
+    - main
+
+on:
+  schedule:
+  - cron: "0 2 * * 1-5"
+
 jobs:
   web-deploy:
     name: Deploy
@@ -17,12 +26,26 @@ jobs:
       run: echo "FTP_Host:${{ secrets.FTP_HOST }}"
 
     - name: Test DNS Resolution
-      run: nslookup ${{ secrets.FTP_HOST }} 8.8.8.8
+      run: |
+        echo "Testing DNS resolution for ${{ secrets.FTP_HOST }}"
+        nslookup ${{ secrets.FTP_HOST }} 8.8.8.8
+        if [ $? -ne 0 ]; then
+          echo "Retrying with Cloudflare DNS"
+          nslookup ${{ secrets.FTP_HOST }} 1.1.1.1
+        fi
+
+    - name: Verify FTP Host Availability
+      run: |
+        echo "Pinging FTP Host ${{ secrets.FTP_HOST }}"
+        ping -c 4 ${{ secrets.FTP_HOST }}
+        if [ $? -ne 0 ]; then
+          echo "FTP Host is not reachable"
+          exit 1
+        fi
 
     - name: Test FTP Connectivity
       run: |
         echo "Open FTP connection to ${{ secrets.FTP_HOST }}"
-        # Install ftp command if not present
         sudo apt-get update && sudo apt-get install -y ftp
         ftp -inv ${{ secrets.FTP_HOST }} <<EOF
         bye
