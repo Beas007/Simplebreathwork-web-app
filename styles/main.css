@@ -222,7 +222,7 @@ h2 {
     font-size: 0.9rem;
     /* Remove the border-top */
     padding: 1rem;
-    margin-top: 1rem; 
+    margin-top: 0.9rem; 
 }
 
 @media screen and (max-width: 768px) {
