@@ -20,3 +20,9 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /public_html/
+        # Add these lines for better deployment
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/node_modules/**
+        log-level: verbose
