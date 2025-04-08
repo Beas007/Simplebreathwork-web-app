@@ -11,27 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Get latest code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Print FTP Host
       run: echo "FTP_Host:${{ secrets.FTP_HOST }}"
-
-    - name: Verify FTP Host Availability
-      run: |
-        echo "Pinging FTP Host ${{ secrets.FTP_HOST }}"
-        ping -c 4 ${{ secrets.FTP_HOST }}
-        if [ $? -ne 0 ]; then
-          echo "FTP Host is not reachable"
-          exit 1
-        fi
-
-    - name: Test FTP Connectivity
-      run: |
-        echo "Open FTP connection to ${{ secrets.FTP_HOST }}"
-        sudo apt-get update && sudo apt-get install -y ftp
-        ftp -inv ${{ secrets.FTP_HOST }} <<EOF
-        bye
-        EOF
 
     - name: Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
@@ -40,5 +23,6 @@ jobs:
         username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASS }}
         server-dir: public_html/
-        log-level: verbose
-        dry-run: true
+        log-level: standard
+        dry-run: false
+        ftp-args: --delete
