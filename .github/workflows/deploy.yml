@@ -25,4 +25,4 @@ jobs:
         server-dir: domains/simplebreathwork.com/public_html/
         log-level: standard
         dry-run: false
-        ftp-args: --delete
+        
