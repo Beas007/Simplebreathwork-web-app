@@ -22,7 +22,7 @@ jobs:
         server: ${{ secrets.FTP_HOST }}
         username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASS }}
-        server-dir: public_html/
+        server-dir: domains/simplebreathwork.com/public_html/
         log-level: standard
         dry-run: false
         ftp-args: --delete
