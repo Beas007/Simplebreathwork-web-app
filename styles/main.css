@@ -7,11 +7,11 @@
     --footer-bg: #2C3E50;
 
     /* Light Theme Card Gradients */
-    --box-gradient: linear-gradient(145deg, #9D50BB, #6E48AA);
-    --48-gradient: linear-gradient(145deg, #FF6B6B, #FF8E53);
+    --box-gradient: linear-gradient(145deg, #bf73dd, #6E48AA);
+    --48-gradient: linear-gradient(145deg, #ff6b6b, #ffc04d);
     --wim-gradient: linear-gradient(145deg, #4CA1AF, #2C3E50);
     --box-back: linear-gradient(145deg, #BE8AD4, #9B7CC3);
-    --48-back: linear-gradient(145deg, #FFA5A5, #FFBB96);
+    --48-back: linear-gradient(145deg, #e95f5f, #dd8544);
     --wim-back: linear-gradient(145deg, #7FC7D2, #546E7A);
 }
 
