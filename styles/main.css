@@ -176,7 +176,7 @@ main {
     margin: 0 auto;
     padding: 2rem;
 }
-.
+
 
 @media screen and (max-width: 768px) {
     .hero-image {
@@ -260,6 +260,27 @@ card-image {
 .card-back {
     transform: rotateY(180deg);
     box-shadow: 0 10px 20px var(--shadow);
+}
+
+.card-back h2 {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+    .card-back h2 {
+        font-size: 1.2rem;
+        margin-bottom: 0.75rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .card-back h2 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+    }
 }
 
 .card[data-technique="box"] .card-back {
