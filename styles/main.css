@@ -59,23 +59,115 @@ html, body {
 }
 
 header {
-    padding: 2rem;
+    padding: 0.5rem;
     text-align: center;
-    margin-top: 2rem; 
-}
-
-h1 {
-    color: var(--text);
-    font-size: 2.5rem;
-    margin: 2rem 0; 
-    transition: color 0.3s ease;
+    margin-top: 0.5rem; 
 }
 
 main {
     flex: 1;
-    padding: 2rem;
+    padding: 1rem;
 }
 
+.hero {
+    max-width: 1200px;
+    margin: 1rem auto;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.hero h2 {
+    background: linear-gradient(145deg, #85e3f1, #537494);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.hero p {
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: justify;
+    font-size: 1.1rem;
+    padding: 0 2rem;  /* Add padding to match card container padding */
+
+}
+
+.box-text {
+    color: #6E48AA;
+    font-weight: bold;
+}
+
+.zen-text {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+.wim-text {
+    color: #4CA1AF;
+    font-weight: bold;
+}
+
+.free-text {
+    background: linear-gradient(145deg, #ffc04d, #ff9642);  /* Changed to yellow-orange gradient */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: bold;
+}
+
+[data-theme="dark"] .hero h2 {
+    background: linear-gradient(145deg, #7FC7D2, #546E7A);  /* Lighter purple gradient */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+[data-theme="dark"] .hero p {
+    color: #e6e6e6;  /* Lighter text color for better readability */
+}
+
+[data-theme="dark"] .box-text {
+    color: #8e94c4;  /* Lighter purple */
+}
+
+[data-theme="dark"] .zen-text {
+    color: #4c9ba9;  /* Lighter teal */
+}
+
+[data-theme="dark"] .wim-text {
+    color: #6d89a3;  /* Lighter blue-grey */
+}
+
+[data-theme="dark"] .free-text {
+    background: linear-gradient(145deg, #ffd070, #ffab58);  /* Keep existing yellow-orange */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+    .hero {
+        margin: 1rem auto;
+        padding: 1.5rem;
+    }
+
+    .hero h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        text-align:justify;
+        margin-bottom: 0.8rem;
+        padding: 0 1rem; 
+    }
+}
 .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
