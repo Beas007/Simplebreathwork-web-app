@@ -21,5 +21,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}  # Reference to your private SSH key stored in GitHub Secrets
         port: 65002  # Default SSH port; change if your server uses a custom port
         script: |
-          cd //home/u221328250/domains/simplebreathwork.com/public_html  # Navigate to the directory on the server
-          git pull origin main      # Pull the latest changes from the main branch
+          cd /home/u221328250/domains/simplebreathwork.com/public_html  # Navigate to the directory on the server
+          git reset --hard HEAD  # Discard any local changes
+          git clean -fd          # Remove untracked files and directories
+          git pull origin main   # Pull the latest changes from the main branch
