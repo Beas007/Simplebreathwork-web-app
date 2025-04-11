@@ -1,4 +1,4 @@
-name: Deploy to Hostinger
+name: Deploy to Hostinger via SSH
 
 on:
   push:
@@ -6,23 +6,20 @@ on:
       - main
 
 jobs:
-  web-deploy:
-    name: Deploy
+  deploy:
+    name: Deploy via SSH
     runs-on: ubuntu-latest
+
     steps:
-    - name: Get latest code
+    - name: Checkout Code
       uses: actions/checkout@v3
 
-    - name: Print FTP Host
-      run: echo "FTP_Host:${{ secrets.FTP_HOST }}" 
-
-    - name: Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.3.3
-      with:
-        server: ${{ secrets.FTP_HOST }}
-        username: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_PASS }}
-        server-dir: public_html/
-        log-level: standard
-        dry-run: false
-        
+    - name: Deploy to Hostinger via SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H "${{ secrets.HOSTINGER_HOST }}" >> ~/.ssh/known_hosts
+        rsync -avz --delete ./ public_html/ \
+          -e "ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa" \
+          ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }}:~/public_html/
