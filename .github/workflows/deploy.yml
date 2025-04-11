@@ -16,8 +16,8 @@ jobs:
     - name: Deploy via SSH
       uses: appleboy/ssh-action@v0.1.5
       with:
-        host: <145.223.89.134>
-        username: <u221328250>
+        host: 145.223.89.134
+        username: u221328250
         key: ${{ secrets.SSH_PRIVATE_KEY }}  # Reference to your private SSH key stored in GitHub Secrets
         port: 65002  # Default SSH port; change if your server uses a custom port
         script: |
