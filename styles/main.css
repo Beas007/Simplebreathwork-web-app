@@ -140,22 +140,29 @@ main {
 /* --- Read More / Read Less Functionality --- */
 .read-more-btn {
     display: none; /* Hidden by default, JS shows if needed */
-    background: none;
-    border: none;
-    padding: 0.5em 0 0 0;
-    margin: 0;
+    /* -- Button Styling -- */
+    background: transparent; /* No background fill */
+    border: 1px solid var(--text); /* Use theme text color for border */
+    color: var(--text); /* Use theme text color for text */
+    padding: 0.4em 0.9em; /* Adjust vertical and horizontal padding */
+    margin-top: 0.8em; /* Space above the button */
+    border-radius: 20px; /* Rounded corners like other buttons */
     font-family: inherit;
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* Slightly smaller font */
     font-weight: bold;
-    color: var(--text);
     cursor: pointer;
-    text-decoration: underline;
-    transition: opacity 0.2s ease;
-    opacity: 0.8;
+    text-decoration: none; /* Remove underline */
+    transition: all 0.2s ease-in-out; /* Smooth transition for hover */
+    opacity: 0.9; /* Slightly transparent */
+    display: inline-block; /* Allows margin-top and padding */
 }
 
 .read-more-btn:hover {
-    opacity: 1;
+    opacity: 1; /* Fully opaque on hover */
+    background: var(--text); /* Fill with text color */
+    color: var(--background); /* Change text to background color */
+    transform: translateY(-1px); /* Subtle lift effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
 }
 
 /* Apply truncation ONLY on smaller screens */
