@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Update HTML attribute
         html.setAttribute('data-theme', newTheme);
-        
+
         // Save preference to localStorage
         localStorage.setItem('theme', newTheme);
         
@@ -67,4 +67,100 @@ document.addEventListener('DOMContentLoaded', () => {
        });
        // --- End of new card flipping code ---
        document.getElementById('copyright-year').textContent = new Date().getFullYear();
+       // --- Add this code for Read More / Read Less ---
+       console.log("Initializing Read More script..."); // Debug: Script starts
+
+       const heroDescription = document.getElementById('hero-description');
+       const readMoreToggle = document.getElementById('read-more-toggle');
+
+       // Check if elements exist right away
+       if (!heroDescription) {
+           console.error("Read More Error: Element with ID 'hero-description' not found.");
+       }
+       if (!readMoreToggle) {
+           console.error("Read More Error: Element with ID 'read-more-toggle' not found.");
+       }
+
+       // Function to check if text is clamped and update button
+       const checkClampAndUpdateButton = () => {
+           // Only proceed if both elements were found
+           if (!heroDescription || !readMoreToggle) return;
+
+           console.log("checkClampAndUpdateButton function running..."); // Debug: Function called
+
+           const isSmallScreen = window.matchMedia('(max-width: 991px)').matches;
+           console.log(`Is small screen (<992px)? ${isSmallScreen}`); // Debug: Screen size check
+
+           if (isSmallScreen) {
+               // Determine if the element is currently visually clamped
+               let needsButton = false;
+               const originallyExpanded = heroDescription.classList.contains('expanded');
+
+               // Temporarily remove 'expanded' to measure natural clamp state if needed
+               if (originallyExpanded) {
+                    heroDescription.classList.remove('expanded');
+               }
+
+               // Calculate if clamping is happening (scrollHeight > clientHeight)
+               // Add a small tolerance (e.g., 1px)
+               const isClamped = heroDescription.scrollHeight > (heroDescription.clientHeight + 1);
+               console.log(`Scroll Height: ${heroDescription.scrollHeight}, Client Height: ${heroDescription.clientHeight}, Is Clamped? ${isClamped}`); // Debug: Height check
+
+               // Put 'expanded' back if it was there
+                if (originallyExpanded) {
+                    heroDescription.classList.add('expanded');
+               }
+
+               // Button needed if clamping occurs OR if it's already expanded
+               needsButton = isClamped || originallyExpanded;
+               console.log(`Button needed? ${needsButton}`); // Debug: Button visibility logic
+
+               if (needsButton) {
+                   readMoreToggle.style.display = 'inline'; // Show the button
+                   // Update button text and ARIA based on expansion state
+                   if (heroDescription.classList.contains('expanded')) {
+                       readMoreToggle.textContent = 'Read Less';
+                       readMoreToggle.setAttribute('aria-expanded', 'true');
+                   } else {
+                       readMoreToggle.textContent = 'Read More';
+                       readMoreToggle.setAttribute('aria-expanded', 'false');
+                   }
+               } else {
+                   // Hide button if no clamping occurs and it's not expanded
+                   readMoreToggle.style.display = 'none';
+               }
+           } else {
+               // On larger screens: ensure text isn't clamped, hide button
+               console.log("Large screen: Hiding button, ensuring text is not expanded."); // Debug
+               heroDescription.classList.remove('expanded'); // Remove expanded state
+               readMoreToggle.style.display = 'none'; // Hide button
+               // Reset button text/ARIA for consistency
+                readMoreToggle.textContent = 'Read More';
+                readMoreToggle.setAttribute('aria-expanded', 'false');
+           }
+       };
+
+       // Add event listener ONLY if elements exist
+       if (readMoreToggle && heroDescription) {
+           readMoreToggle.addEventListener('click', () => {
+               console.log("Read More/Less button clicked!"); // Debug: Click event
+               heroDescription.classList.toggle('expanded');
+               // Re-check state immediately after toggle to update button based on new state
+               checkClampAndUpdateButton(); // Call the check function AFTER toggling
+           });
+       }
+
+       // Check state on initial load
+       // Use setTimeout to slightly delay initial check, allowing browser rendering
+       setTimeout(checkClampAndUpdateButton, 50); // Delay slightly
+
+       // Check on window resize (debounced)
+       let resizeTimer;
+       window.addEventListener('resize', () => {
+           clearTimeout(resizeTimer);
+           resizeTimer = setTimeout(checkClampAndUpdateButton, 150);
+       });
+
+       // --- End of Read More / Read Less code ---
+       
 });
