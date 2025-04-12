@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                console.log(`Button needed? ${needsButton}`); // Debug: Button visibility logic
 
                if (needsButton) {
-                   readMoreToggle.style.display = 'inline'; // Show the button
+                   readMoreToggle.style.display = 'inline-block'; // Show the button
                    // Update button text and ARIA based on expansion state
                    if (heroDescription.classList.contains('expanded')) {
                        readMoreToggle.textContent = 'Read Less';
