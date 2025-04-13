@@ -276,7 +276,7 @@ main {
 .card-back {
     transform: rotateY(180deg);
     box-shadow: 0 10px 20px var(--shadow);
-    justify-content: space-around; /* Adjust vertical distribution if needed */
+    justify-content: space-between; /* Adjust vertical distribution if needed */
 }
 
 .card-back h2 {
@@ -320,6 +320,9 @@ main {
     font-size: 0.95rem; /* Slightly adjusted font size */
     transition: all 0.3s ease;
     margin-top: auto; /* Push button towards bottom */
+    align-self: center; /* Centers the button horizontally */
+    width: fit-content; /* Button takes only needed width */
+
 }
 
 .start-btn:hover {
