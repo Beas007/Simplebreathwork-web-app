@@ -13,7 +13,11 @@
     --box-back: linear-gradient(145deg, #BE8AD4, #9B7CC3);
     --48-back: linear-gradient(145deg, #e95f5f, #dd8544);
     --wim-back: linear-gradient(145deg, #7FC7D2, #546E7A);
-}
+    --belly-gradient: linear-gradient(145deg, #63e0c5, #4ef5a2);
+    --buteyko-gradient: linear-gradient(145deg, #1f5c9d, #a2b1c0);
+    --belly-back: linear-gradient(145deg, #63e0c5, #4ef5a2);
+    --buteyko-back: linear-gradient(145deg, #1f5c9d, #8ea0b2);
+    }
 
 [data-theme="dark"] {
     /* Dark Theme */
@@ -33,10 +37,14 @@
     /* Dark Theme Card Gradients - Sleep Friendly */
     --box-gradient: linear-gradient(145deg, #2d3250, #424874);
     --48-gradient: linear-gradient(145deg, #1a454e, #2c6975);
-    --wim-gradient: linear-gradient(145deg, #2c3e50, #34495e);
+    --wim-gradient: linear-gradient(145deg, #2b445d, #455565);
     --box-back: linear-gradient(145deg, #353b60, #4a5187);
     --48-back: linear-gradient(145deg, #1f5059, #347885);
-    --wim-back: linear-gradient(145deg, #34495e, #3d566e);
+    --wim-back: linear-gradient(145deg, #2b445d, #455565);
+    --belly-gradient: linear-gradient(145deg, #2e6e60, #45564e);
+    --buteyko-gradient: linear-gradient(145deg, #2c4268, #455a64);
+    --belly-back: linear-gradient(145deg, #2e6e60, #45564e);
+    --buteyko-back: linear-gradient(145deg, #2c4268, #37474f);
 
     /* Dark theme text colors */
     .hero h2 {
@@ -262,6 +270,8 @@ main {
 .card[data-technique="box"] .card-front { background: var(--box-gradient); color: white; }
 .card[data-technique="48"] .card-front { background: var(--48-gradient); color: white; }
 .card[data-technique="wim-hof"] .card-front { background: var(--wim-gradient); color: white; }
+.card[data-technique="belly"] .card-front { background: var(--belly-gradient); color: white; }
+.card[data-technique="buteyko"] .card-front { background: var(--buteyko-gradient); color: white; }
 
 .card-back {
     transform: rotateY(180deg);
@@ -286,6 +296,8 @@ main {
 .card[data-technique="box"] .card-back { background: var(--box-back); color: white; }
 .card[data-technique="48"] .card-back { background: var(--48-back); color: white; }
 .card[data-technique="wim-hof"] .card-back { background: var(--wim-back); color: white; }
+.card[data-technique="belly"] .card-back { background: var(--belly-back); color: white; }
+.card[data-technique="buteyko"] .card-back { background: var(--buteyko-back); color: white; }
 
 .card-front h2 { /* Ensure front heading is styled */
     font-size: 1.8rem;

@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             down: ['Exhale']
         }
     },
-    '48': {
+        '48': {
         sequence: ['Inhale', 'Exhale'],
         durations: [4, 8],
         rounds: 6,
@@ -45,6 +45,36 @@ document.addEventListener('DOMContentLoaded', () => {
             background: {
                 light: '#FFF3E6',
                 dark: '#32261a'
+            }
+    },
+
+        'belly': {
+            sequence: ['Belly Inhale', 'Exhale Slowly'],
+            durations: [4, 6], // 4 seconds inhale, 6 seconds exhale
+            rounds: 8, // Example: 8 rounds = 80 seconds
+            background: { // Define background colors
+                light: '#e8f5e9', // Light green background
+                dark: '#1b3d1e'  // Dark green background
+            },
+            arrow: { // Define arrow behavior
+                up: ['Belly Inhale'],
+                down: ['Exhale Slowly'],
+                none: [] // No hold phase
+            }
+    },
+        'buteyko': {
+            // Guiding a 'Reduced Breathing' pattern inspired by Buteyko
+            sequence: ['Gentle Inhale', 'Relaxed Exhale', 'Pause'],
+            durations: [3, 4, 2], // Short, gentle phases with a pause
+            rounds: 10, // Example: 10 rounds = 90 seconds
+            background: { // Define background colors
+                light: '#eceff1', // Light grey/blue background
+                dark: '#263238'  // Dark grey/blue background
+            },
+            arrow: { // Define arrow behavior
+                up: ['Gentle Inhale'],
+                down: ['Relaxed Exhale'],
+                none: ['Pause'] // Use 'none' for the hold/pause phase
             }
         }
     };
