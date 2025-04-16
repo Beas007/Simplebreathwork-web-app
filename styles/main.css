@@ -1,0 +1,180 @@
+* ==========================================================================
+   Base Variables
+   ========================================================================== */
+:root {
+    /* Colors */
+    --background: #F5F7FA;
+    --card-bg: #FFFFFF;
+    --text: #2C3E50;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --footer-bg: #2C3E50;
+
+    /* Card Gradients */
+    --box-gradient: linear-gradient(145deg, #bf73dd, #6E48AA);
+    --48-gradient: linear-gradient(145deg, #ff6b6b, #ffc04d);
+    --wim-gradient: linear-gradient(145deg, #4CA1AF, #2C3E50);
+    --belly-gradient: linear-gradient(145deg, #63e0c5, #4ef5a2);
+    --buteyko-gradient: linear-gradient(145deg, #1f5c9d, #a2b1c0);
+    
+    /* Card Back Gradients */
+    --box-back: linear-gradient(145deg, #BE8AD4, #9B7CC3);
+    --48-back: linear-gradient(145deg, #e95f5f, #dd8544);
+    --wim-back: linear-gradient(145deg, #7FC7D2, #546E7A);
+    --belly-back: linear-gradient(145deg, #63e0c5, #4ef5a2);
+    --buteyko-back: linear-gradient(145deg, #1f5c9d, #8ea0b2);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --background: #1a1a2e;
+    --card-bg: #162447;
+    --text: #e6e6e6;
+    --shadow: rgba(0, 0, 0, 0.2);
+    --footer-bg: #1f1f3a;
+}
+
+/* ==========================================================================
+   Core Layout
+   ========================================================================== */
+body {
+    background-color: var(--background);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Header & Navigation */
+header {
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.theme-toggle {
+    background: var(--card-bg);
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px var(--shadow);
+}
+
+/* Hero Section */
+.hero {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Card Layout */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    perspective: 1000px;
+    min-height: 300px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card-inner.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    padding: 2rem;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    box-shadow: 0 10px 20px var(--shadow);
+}
+
+/* Card Type-Specific Styles */
+.card[data-technique="box"] .card-front { background: var(--box-gradient); }
+.card[data-technique="48"] .card-front { background: var(--48-gradient); }
+.card[data-technique="wim-hof"] .card-front { background: var(--wim-gradient); }
+.card[data-technique="belly"] .card-front { background: var(--belly-gradient); }
+.card[data-technique="buteyko"] .card-front { background: var(--buteyko-gradient); }
+
+.card[data-technique="box"] .card-back { background: var(--box-back); }
+.card[data-technique="48"] .card-back { background: var(--48-back); }
+.card[data-technique="wim-hof"] .card-back { background: var(--wim-back); }
+.card[data-technique="belly"] .card-back { background: var(--belly-back); }
+.card[data-technique="buteyko"] .card-back { background: var(--buteyko-back); }
+
+/* Button Styles */
+.start-btn {
+    background: white;
+    color: var(--text);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+    margin-top: auto;
+}
+
+.start-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+    background: var(--footer-bg);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+/* Media Queries */
+@media (max-width: 991px) {
+    #hero-description {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        max-height: 4.8em;
+    }
+
+    #hero-description.expanded {
+        -webkit-line-clamp: unset;
+        line-clamp: unset;
+        max-height: none;
+    }
+
+    .card-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+}
