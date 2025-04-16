@@ -22,6 +22,22 @@
     --48-gradient: linear-gradient(145deg, #1a454e, #2c6975);
     --wim-gradient: linear-gradient(145deg, #2b445d, #455565);
 }
+.card[data-technique="box"] .card-front { background: var(--box-gradient); }
+.card[data-technique="48"] .card-front { background: var(--48-gradient); }
+.card[data-technique="wim-hof"] .card-front { background: var(--wim-gradient); }
+.card[data-technique="belly"] .card-front { background: var(--belly-gradient); }
+.card[data-technique="buteyko"] .card-front { background: var(--buteyko-gradient); }
+
+.card-front h2, .timing {
+    color: white;
+    margin: 1rem 0;
+}
+
+.card-image {
+    width: 150px;
+    height: 150px;
+    margin: 1rem 0;
+}
 
 .card-inner {
     transition: transform 0.6s;
