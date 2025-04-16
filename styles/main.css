@@ -191,17 +191,36 @@ main {
     #hero-description {
         overflow: hidden;
         display: -webkit-box;
-        -webkit-line-clamp: 3; /* Limit to 3 lines */
+        display: box;
+        -webkit-line-clamp: 3; /* Webkit browsers */
+        line-clamp: 3; /* Standard property */
         -webkit-box-orient: vertical;
+        box-orient: vertical;
+        
+        /* Fallback for browsers without line-clamp support */
+        max-height: 4.8em; /* Based on line-height 1.6 × 3 lines */
+        position: relative;
     }
 
     /* Style when expanded */
     #hero-description.expanded {
-        -webkit-line-clamp: none; /* Remove line limit */
-        display: block; /* Override -webkit-box */
+        -webkit-line-clamp: unset;
+        line-clamp: unset;
+        max-height: none;
+        display: block;
         overflow: visible;
     }
-    /* Button display is handled by JS based on clamping */
+    /* Optional: Add fade effect for truncated text */
+    #hero-description:not(.expanded)::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2em;
+        background: linear-gradient(transparent, var(--background));
+        pointer-events: none;
+    }
 }
 /* End Read More */
 
