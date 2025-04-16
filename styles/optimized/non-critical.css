@@ -1,10 +1,13 @@
+/* Theme Colors & Gradients */
 :root {
+    /* Card Front Gradients */
     --box-gradient: linear-gradient(145deg, #bf73dd, #6E48AA);
     --48-gradient: linear-gradient(145deg, #ff6b6b, #ffc04d);
     --wim-gradient: linear-gradient(145deg, #4CA1AF, #2C3E50);
     --belly-gradient: linear-gradient(145deg, #63e0c5, #4ef5a2);
     --buteyko-gradient: linear-gradient(145deg, #1f5c9d, #a2b1c0);
     
+    /* Card Back Gradients */
     --box-back: linear-gradient(145deg, #BE8AD4, #9B7CC3);
     --48-back: linear-gradient(145deg, #e95f5f, #dd8544);
     --wim-back: linear-gradient(145deg, #7FC7D2, #546E7A);
@@ -12,24 +15,37 @@
     --buteyko-back: linear-gradient(145deg, #1f5c9d, #8ea0b2);
 }
 
+/* Dark Theme Variables */
 [data-theme="dark"] {
     --background: #1a1a2e;
     --card-bg: #162447;
     --text: #e6e6e6;
     --shadow: rgba(0, 0, 0, 0.2);
     --footer-bg: #1f1f3a;
+    
+    /* Dark Theme Card Gradients */
+    --box-gradient: linear-gradient(145deg, #2d3250, #424874);
+    --48-gradient: linear-gradient(145deg, #1a454e, #2c6975);
+    --wim-gradient: linear-gradient(145deg, #2b445d, #455565);
+}
+
+/* Card Styles */
+.card-inner {
+    transition: transform 0.6s;
+    will-change: transform;
 }
 
 .card-inner.is-flipped {
     transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
+.card-front,
+.card-back {
     position: absolute;
     width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+            backface-visibility: hidden;
     padding: 2rem;
     border-radius: 15px;
     display: flex;
@@ -38,16 +54,12 @@
     color: white;
 }
 
-.card-front {
-    background: var(--card-bg);
-    box-shadow: 0 5px 15px var(--shadow);
-}
-
 .card-back {
     transform: rotateY(180deg);
     box-shadow: 0 10px 20px var(--shadow);
 }
 
+/* Card Type-Specific Styles */
 .card[data-technique="box"] .card-front { background: var(--box-gradient); }
 .card[data-technique="48"] .card-front { background: var(--48-gradient); }
 .card[data-technique="wim-hof"] .card-front { background: var(--wim-gradient); }
@@ -60,32 +72,24 @@
 .card[data-technique="belly"] .card-back { background: var(--belly-back); }
 .card[data-technique="buteyko"] .card-back { background: var(--buteyko-back); }
 
-.card-image {
-    width: 150px;
-    height: 150px;
-    margin: 1rem 0;
-}
-
-.timing {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 1rem 0;
-}
-
-.read-more-btn {
-    background: none;
-    border: none;
+/* Button Styles */
+.start-btn {
+    background: white;
     color: var(--text);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1rem;
     cursor: pointer;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    opacity: 0.8;
-    transition: opacity 0.3s;
+    transition: transform 0.3s;
+    margin-top: auto;
 }
 
-.read-more-btn:hover {
-    opacity: 1;
+.start-btn:hover {
+    transform: translateY(-2px);
 }
+
+/* Responsive Design */
 @media (max-width: 991px) {
     #hero-description {
         overflow: hidden;
@@ -94,6 +98,7 @@
         line-clamp: 3;
         -webkit-box-orient: vertical;
         max-height: 4.8em;
+        transition: max-height 0.3s ease;
     }
 
     #hero-description.expanded {
@@ -109,26 +114,11 @@
     }
 }
 
+/* Footer */
 footer {
     background: var(--footer-bg);
     color: white;
     padding: 1rem;
     text-align: center;
     margin-top: 2rem;
-}
-
-.start-btn {
-    background: white;
-    color: var(--text);
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: transform 0.3s;
-    margin-top: auto;
-}
-
-.start-btn:hover {
-    transform: translateY(-2px);
 }
