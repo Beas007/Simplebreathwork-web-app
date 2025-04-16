@@ -62,6 +62,7 @@ RewriteEngine On
 # ==============================================================================
 # CONTENT SECURITY POLICY (CSP)
 # ==============================================================================
+
 <IfModule mod_headers.c>
     Header set Content-Security-Policy "\
         default-src 'self'; \
@@ -70,6 +71,7 @@ RewriteEngine On
             https://*.googleapis.com \
             https://*.googlesyndication.com \
             https://*.google-analytics.com \
+            https://partner.googleadservices.com \
             https://*.doubleclick.net; \
         style-src 'self' 'unsafe-inline' \
             https://fonts.googleapis.com \
@@ -97,18 +99,7 @@ RewriteEngine On
         base-uri 'self'; \
         form-action 'self'; \
         frame-ancestors 'none'; \
-        upgrade-insecure-requests;"
-
-    # Security Headers
-    Header set X-Content-Type-Options "nosniff"
-    Header set X-Frame-Options "SAMEORIGIN"
-    Header set Referrer-Policy "strict-origin-when-cross-origin"
-    Header set X-XSS-Protection "1; mode=block"
-    Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=()"
-    
-    # HSTS (uncomment after testing HTTPS thoroughly)
-    # Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-</IfModule>
+        upgrade-insecure-requests;" </IfModule>
 
 # ==============================================================================
 # SECURITY
