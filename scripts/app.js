@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Lazy load non-critical JavaScript
+    const loadScript = (src) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.defer = true;
+        document.body.appendChild(script);
+    };
+
     // Theme Toggle Functionality
     const themeToggle = document.getElementById('theme-toggle');
     const html = document.documentElement;
@@ -131,4 +139,10 @@ document.addEventListener('DOMContentLoaded', () => {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(checkClampAndUpdateButton, RESIZE_DEBOUNCE);
     });
+     // Defer non-critical scripts
+     if (window.requestIdleCallback) {
+        requestIdleCallback(() => {
+            loadScript('/scripts/feedback.js');
+        });
+    }
 });

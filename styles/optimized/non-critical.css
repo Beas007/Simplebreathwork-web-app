@@ -1,0 +1,138 @@
+/* Theme Colors & Gradients */
+:root {
+    /* Card Gradients */
+    --box-gradient: linear-gradient(145deg, #bf73dd, #6E48AA);
+    --48-gradient: linear-gradient(145deg, #ff6b6b, #ffc04d);
+    --wim-gradient: linear-gradient(145deg, #4CA1AF, #2C3E50);
+    --belly-gradient: linear-gradient(145deg, #63e0c5, #4ef5a2);
+    --buteyko-gradient: linear-gradient(145deg, #1f5c9d, #a2b1c0);
+    
+    /* Card Back Gradients */
+    --box-back: linear-gradient(145deg, #BE8AD4, #9B7CC3);
+    --48-back: linear-gradient(145deg, #e95f5f, #dd8544);
+    --wim-back: linear-gradient(145deg, #7FC7D2, #546E7A);
+    --belly-back: linear-gradient(145deg, #63e0c5, #4ef5a2);
+    --buteyko-back: linear-gradient(145deg, #1f5c9d, #8ea0b2);
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --background: #1a1a2e;
+    --card-bg: #162447;
+    --text: #e6e6e6;
+    --shadow: rgba(0, 0, 0, 0.2);
+    --footer-bg: #1f1f3a;
+    
+    /* Dark Theme Card Gradients */
+    --box-gradient: linear-gradient(145deg, #2d3250, #424874);
+    --48-gradient: linear-gradient(145deg, #1a454e, #2c6975);
+    --wim-gradient: linear-gradient(145deg, #2b445d, #455565);
+}
+
+/* Card Styles */
+.card {
+    perspective: 1000px;
+    min-height: 300px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card-inner.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    padding: 2rem;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    box-shadow: 0 10px 20px var(--shadow);
+}
+
+/* Read More/Less Button */
+.read-more-btn {
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.read-more-btn:hover {
+    opacity: 1;
+}
+
+/* Media Queries */
+@media (max-width: 991px) {
+    #hero-description {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        max-height: 4.8em;
+    }
+
+    #hero-description.expanded {
+        -webkit-line-clamp: unset;
+        line-clamp: unset;
+        max-height: none;
+    }
+
+    .card-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+/* Animations */
+@media (prefers-reduced-motion: no-preference) {
+    .card-inner {
+        transition: transform 0.6s;
+        will-change: transform;
+    }
+
+    .fade-in {
+        animation: fadeIn 0.3s ease-in;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Footer */
+footer {
+    background: var(--footer-bg);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+}
