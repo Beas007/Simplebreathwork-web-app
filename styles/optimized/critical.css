@@ -1,5 +1,4 @@
 :root {
-    /* Critical Theme Variables */
     --background: #F5F7FA;
     --card-bg: #FFFFFF;
     --text: #2C3E50;
@@ -7,7 +6,6 @@
     --footer-bg: #2C3E50;
 }
 
-/* Critical Base Styles */
 body {
     background-color: var(--background);
     color: var(--text);
@@ -28,4 +26,16 @@ body {
     padding: 2rem;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.card {
+    perspective: 1000px;
+    min-height: 300px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
 }
