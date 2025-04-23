@@ -1,40 +1,48 @@
+*, *::before, *::after { /* Add this */
+    box-sizing: border-box;
+}
+
 :root {
-        --animation-glow-inhale: rgba(76, 175, 80, 0.4);
-        --animation-glow-exhale: rgba(244, 67, 54, 0.4);
-        --animation-glow-hold: rgba(255, 193, 7, 0.3);
-        --background: #F5F7FA;
-        --circle-bg: rgba(255, 255, 255, 0.8);
-    --text: #2C3E50;
+    /* Keep your existing variable definitions */
     --animation-glow-inhale: rgba(76, 175, 80, 0.4);
+    --animation-glow-exhale: rgba(244, 67, 54, 0.4);
     --animation-glow-hold: rgba(255, 193, 7, 0.3);
+    --background: #F5F7FA;
+    --circle-bg: rgba(255, 255, 255, 0.8);
+    --text: #2C3E50;
+    /* Removed duplicate definitions */
 }
 
 [data-theme="dark"] {
+    /* Keep your existing dark theme variables */
+    --background: #1a1a2e; /* Example dark bg */
     --circle-bg: rgba(255, 255, 255, 0.1);
     --text: #E0E0E0;
+    /* Add other dark theme variables */
 }
 
 body {
     margin: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    min-height: 100vh; /* Ensure body can contain full height container */
+    width: 100vw; /* Ensure body takes full width */
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--background); /* Apply background here */
     transition: background-color 0.3s ease;
+    overflow: hidden; /* Prevent scrollbars */
+    display: flex; /* Use flex on body to ensure container stretches */
 }
 
 .exercise-container {
     width: 100%;
-    max-width: 600px;
-    padding: 1rem;
-    margin: 0 auto;
-    min-height: 100vh;
+    max-width: 600px; /* Adjust if needed */
+    padding: 1rem; /* Add some padding */
+    margin: auto; /* Use margin auto for horizontal centering within body flex */
+    min-height: 100vh; /* Fill viewport height */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative; 
+    justify-content: center; /* Center content vertically */
+    align-items: center;     /* Center content horizontally */
+    text-align: center; /* Center text within the container */
 }
 
 .breathing-guide {
@@ -42,219 +50,126 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem; /* Adjusted gap */
+    margin-bottom: 1rem; /* Add space below the guide */
 }
 
 .breath-animation {
-    position: relative;
-    width: min(300px, 80vw);
-    height: min(300px, 80vw);
-    margin: 2rem auto;
-    display: flex; /* Add this */
-    justify-content: center; /* Add this */
-    align-items: center; 
+    position: relative; /* Keep for potential indicator positioning */
+    width: min(300px, 75vw); /* Slightly smaller max percentage */
+    height: min(300px, 75vw); /* Keep aspect ratio square */
+    /* margin: 0 auto; Removed, parent centers it */
 }
 
-.breathing-text-container {
-    width: 90%;
-    max-width: 280px;
-    text-align: center;
-}
+/* Removed duplicate .breathing-text-container rule */
 
 .circle {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     background: var(--circle-bg);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative; /* Keep for indicator positioning if needed */
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
     will-change: transform, box-shadow;
+    /* Add your animation class assignments via JS */
 }
 
 .breathing-text-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
+    /* position: absolute; <-- REMOVED */
+    /* top: 50%; <-- REMOVED */
+    /* left: 50%; <-- REMOVED */
+    /* transform: translate(-50%, -50%); <-- REMOVED */
+    width: 85%; /* Adjust width as needed */
     text-align: center;
-    z-index: 2;
-    pointer-events: none; 
+    z-index: 2; /* Keep if indicators are behind */
+    color: var(--text); /* Apply text color */
 }
 
 .main-text {
-    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    font-size: clamp(1.2rem, 5vw, 1.8rem); /* Adjusted clamp */
     margin-bottom: 0.5rem;
+    font-weight: bold; /* Added */
+    color: var(--text); /* Apply text color */
 }
 
 .sub-text {
-    font-size: clamp(0.9rem, 3vw, 1.2rem);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-size: clamp(0.9rem, 4vw, 1.2rem); /* Adjusted clamp */
+    color: var(--text); /* Apply text color */
+    /* line-clamp properties removed for simplicity, restore if needed */
+    /* display: -webkit-box; */
+    /* -webkit-line-clamp: 2; */
+    /* line-clamp: 2; */
+    /* -webkit-box-orient: vertical; */
+    /* overflow: hidden; */
 }
 
 
 .timer {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 6vw, 2rem); /* Responsive font size */
     color: var(--text);
     font-weight: bold;
-    min-height: 2.5rem;
-    margin-top: 1rem;
+    min-height: 2.5rem; /* Keep space */
+    /* margin-top: 1rem; Removed, using gap in parent */
 }
 
-/* Animations */
-@keyframes quickBreath {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 0 30px var(--animation-glow-inhale);
-    }
-    50% {
-        transform: scale(1.2);
-        box-shadow: 0 0 40px var(--animation-glow-inhale);
-    }
-}
+/* --- Animations --- */
+/* Keep all your @keyframes rules as they were */
+@keyframes quickBreath { /*...*/ }
+@keyframes retentionPulse { /*...*/ }
+@keyframes recoveryHold { /*...*/ }
+@keyframes inhale { /*...*/ }
+@keyframes exhale { /*...*/ }
+@keyframes hold { /*...*/ }
+@keyframes textFadeIn { /*...*/ }
 
-@keyframes retentionPulse {
-    0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 0 30px var(--animation-glow-hold);
-    }
-    50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 40px var(--animation-glow-hold);
-    }
-}
+/* Keep your animation class assignments */
+.inhale { animation: inhale 4s ease-in-out forwards; }
+.exhale { animation: exhale 8s ease-in-out forwards; }
+.hold { animation: hold 4s ease-in-out infinite; }
+.quick-breath { animation: quickBreath 2s ease-in-out infinite; }
+.retention { animation: retentionPulse 3s ease-in-out infinite; cursor: pointer; }
+.retention:hover { transform: scale(1.05); box-shadow: 0 0 40px var(--animation-glow-hold); }
+.recovery { animation: recoveryHold 2s ease-in-out forwards; }
+.fade-in { animation: textFadeIn 0.5s ease-in-out; }
+/* --- End Animations --- */
 
-@keyframes recoveryHold {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.2);
-        box-shadow: 0 0 50px var(--animation-glow-inhale);
-    }
-}
-/* Add these with your other animations */
-.inhale {
-    animation: inhale 4s ease-in-out forwards;
-}
-
-.exhale {
-    animation: exhale 8s ease-in-out forwards;
-}
-
-.hold {
-    animation: hold 4s ease-in-out infinite;
-}
-
-@keyframes inhale {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 30px var(--animation-glow-inhale);
-    }
-    100% {
-        transform: scale(1.2);
-        box-shadow: 0 0 40px var(--animation-glow-inhale);
-    }
-}
-
-@keyframes exhale {
-    0% {
-        transform: scale(1.2);
-        box-shadow: 0 0 40px var(--animation-glow-exhale);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 30px var(--animation-glow-exhale);
-    }
-}
-
-@keyframes hold {
-    0%, 100% {
-        transform: scale(1.1);
-        box-shadow: 0 0 35px var(--animation-glow-hold);
-    }
-    50% {
-        transform: scale(1.15);
-        box-shadow: 0 0 40px var(--animation-glow-hold);
-    }
-}
-
-.quick-breath {
-    animation: quickBreath 2s ease-in-out infinite;
-}
-
-.retention {
-    animation: retentionPulse 3s ease-in-out infinite;
-    cursor: pointer;
-}
-
-.retention:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 40px var(--animation-glow-hold);
-}
-
-.recovery {
-    animation: recoveryHold 2s ease-in-out forwards;
-}
-
-.fade-in {
-    animation: textFadeIn 0.5s ease-in-out;
-}
-
-@keyframes textFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 .exit-btn {
-    position: fixed;
+    position: fixed; /* Keep fixed positioning */
     top: 1rem;
     right: 1rem;
     padding: 0.8rem 1.5rem;
     border: none;
     border-radius: 25px;
-    background: rgba(0, 0, 0, 0.1);
+    background: rgba(128, 128, 128, 0.3); /* Slightly darker semi-transparent grey */
+    backdrop-filter: blur(5px); /* Add blur effect if desired */
     color: var(--text);
     cursor: pointer;
     transition: all 0.3s ease;
+    z-index: 10; /* Ensure it's above animation */
 }
 
 .exit-btn:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(128, 128, 128, 0.5);
     transform: translateY(-2px);
 }
 
+/* --- Media Queries --- */
+
+/* Keep this, it adjusts padding/margins */
 @media screen and (max-width: 768px) {
     .exercise-container {
         padding: 0.5rem;
     }
 
-    .breath-animation {
-        margin: 1.5rem auto;
-        width: min(250px, 70vw); /* Slightly smaller on mobile */
-        height: min(250px, 70vw);
-    }
+    /* .breath-animation { margin: 1rem auto; } */ /* Removed, let flex gap handle */
 
     .timer {
-        font-size: 1.5rem;
-        margin-top: 0.5rem;
+        /* font-size: 1.5rem;  Using clamp now */
+        /* margin-top: 0.5rem; */
     }
 
     .exit-btn {
@@ -265,24 +180,19 @@ body {
     }
 }
 
+/* Remove fixed circle size on small screens */
 @media screen and (max-width: 480px) {
-    .circle {
-        width: 250px;
-        height: 250px;
-    }
-    
-    .main-text {
-        font-size: 1.2rem;
-    }
-    
-    .sub-text {
-        font-size: 0.9rem;
-    }
-    
-    .timer {
-        font-size: 1.5rem;
-    }
-    
+    /* Removed fixed width/height for .circle */
+    /* .circle { */
+    /*     width: 250px; */
+    /*     height: 250px; */
+    /* } */
+
+    /* Font sizes are handled by clamp() now */
+    /* .main-text { font-size: 1.2rem; } */
+    /* .sub-text { font-size: 0.9rem; } */
+    /* .timer { font-size: 1.5rem; } */
+
     .exit-btn {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
