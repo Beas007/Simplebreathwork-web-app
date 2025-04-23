@@ -1,128 +1,155 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    let exerciseType = null; // Variable to hold the technique type
+
+    // === Parse URL, Set Technique Attribute, and Get Exercise Type ONCE ===
+    try {
+        const urlParams = new URLSearchParams(window.location.search);
+        exerciseType = urlParams.get('type'); // Get 'box', '48', 'wim-hof', etc.
+
+        if (exerciseType) {
+            // Apply the technique type as a data attribute to the body for CSS styling
+            document.body.dataset.currentTechnique = exerciseType;
+            console.log(`Set technique to: ${exerciseType}`); // For debugging
+        } else {
+            // If no type is found, redirect back to the index page immediately
+            console.warn('Technique type not found in URL parameters. Redirecting.');
+            window.location.href = 'index.html';
+            return; // Stop script execution if type is missing
+        }
+    } catch (e) {
+        // If there's an error processing URL, redirect back too
+        console.error('Error processing URL parameters:', e);
+        window.location.href = 'index.html';
+        return; // Stop script execution on error
+    }
+    // === END URL PARSING AND TECHNIQUE SETTING ===
+
+    // --- Get DOM Elements (Check for existence) ---
     const circle = document.querySelector('.circle');
     const timer = document.querySelector('.timer');
-    const breathingIndicator = document.querySelector('.breathing-indicator');
+    // const breathingIndicator = document.querySelector('.breathing-indicator'); // Currently unused?
     const mainText = document.querySelector('.main-text');
     const subText = document.querySelector('.sub-text');
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    const exerciseType = urlParams.get('type');
 
+    // Basic check if essential elements are missing
+    if (!circle || !timer || !mainText || !subText) {
+        console.error('Essential DOM elements for exercise not found. Aborting.');
+        return; // Stop if main elements aren't present
+    }
+
+    // --- Exercise Definitions ---
     const exercises = {
         'box': {
-        sequence: ['Inhale', 'Hold', 'Exhale', 'Hold'],
-        durations: [4, 4, 4, 4],
-        rounds: 5,
-        background: {
-            light: '#F5F7FA',
-            dark: '#121212'
+            sequence: ['Inhale', 'Hold', 'Exhale', 'Hold'],
+            durations: [4, 4, 4, 4],
+            rounds: 5, // Example rounds
+            background: { light: '#F5F7FA', dark: '#12121f' },
+            arrow: { up: ['Inhale'], none: ['Hold'], down: ['Exhale'] }
         },
-        arrow: {
-            up: ['Inhale'],
-            none: ['Hold'],
-            down: ['Exhale']
-        }
-    },
         '48': {
-        sequence: ['Inhale', 'Exhale'],
-        durations: [4, 8],
-        rounds: 6,
-        background: {
-            light: '#F5F7FA',
-            dark: '#121212'
+            sequence: ['Inhale', 'Exhale'],
+            durations: [4, 8],
+            rounds: 10, // Example rounds
+            background: { light: '#F5F7FA', dark: '#12121f' },
+            arrow: { up: ['Inhale'], down: ['Exhale'], none: [] }
         },
-        arrow: {
-            up: ['Inhale'],
-            down: ['Exhale']
-        }
-    },
-
         'wim-hof': {
             sequence: ['Quick Breath', 'Retention', 'Recovery'],
-            durations: [2, 0, 15],
-            totalBreaths: 30,
-            sets: 3,
-            background: {
-                light: '#FFF3E6',
-                dark: '#32261a'
-            }
-    },
-
+            durations: [2, 0, 15], // Duration for Quick Breath, Retention (handled differently), Recovery Hold
+            totalBreaths: 30, // Breaths per set
+            sets: 3, // Number of sets
+            background: { light: '#FFF3E6', dark: '#32261a' }, // Example colors
+            arrow: {} // Wim Hof doesn't use simple up/down in the same way
+        },
         'belly': {
             sequence: ['Belly Inhale', 'Exhale Slowly'],
-            durations: [4, 6], // 4 seconds inhale, 6 seconds exhale
-            rounds: 8, // Example: 8 rounds = 80 seconds
-            background: { // Define background colors
-                light: '#e8f5e9', // Light green background
-                dark: '#1b3d1e'  // Dark green background
-            },
-            arrow: { // Define arrow behavior
-                up: ['Belly Inhale'],
-                down: ['Exhale Slowly'],
-                none: [] // No hold phase
-            }
-    },
+            durations: [4, 6],
+            rounds: 10, // Example rounds
+            background: { light: '#e8f5e9', dark: '#1b3d1e' },
+            arrow: { up: ['Belly Inhale'], down: ['Exhale Slowly'], none: [] }
+        },
         'buteyko': {
-            // Guiding a 'Reduced Breathing' pattern inspired by Buteyko
             sequence: ['Gentle Inhale', 'Relaxed Exhale', 'Pause'],
-            durations: [3, 4, 2], // Short, gentle phases with a pause
-            rounds: 10, // Example: 10 rounds = 90 seconds
-            background: { // Define background colors
-                light: '#eceff1', // Light grey/blue background
-                dark: '#263238'  // Dark grey/blue background
-            },
-            arrow: { // Define arrow behavior
-                up: ['Gentle Inhale'],
-                down: ['Relaxed Exhale'],
-                none: ['Pause'] // Use 'none' for the hold/pause phase
-            }
+            durations: [3, 4, 2],
+            rounds: 10, // Example rounds
+            background: { light: '#eceff1', dark: '#263238' },
+            arrow: { up: ['Gentle Inhale'], down: ['Relaxed Exhale'], none: ['Pause'] }
         }
     };
 
-    const exercise = exercises[exerciseType];
+    // --- Get Current Exercise Data ---
+    const exercise = exercises[exerciseType]; // Use exerciseType determined earlier
+
+    // Safeguard check (should have been caught earlier, but good practice)
     if (!exercise) {
+        console.error(`Exercise data for type "${exerciseType}" not found! Redirecting.`);
         window.location.href = 'index.html';
         return;
     }
 
-    // Set background color based on theme
+    // --- Set Initial Background Color (Consider moving this to CSS variable if possible) ---
+    // Note: You might prefer setting the background via CSS using the data-attribute too
+    // Example CSS: body[data-current-technique="box"] { background-color: #someBlue; }
+    // For now, keeping the JS background setting:
     const theme = document.documentElement.getAttribute('data-theme') || 'light';
-    document.body.style.backgroundColor = exercise.background[theme];
-
-    function updateBreathingText(main, sub = '') {
-        mainText.textContent = main;
-        subText.textContent = sub;
-        mainText.classList.remove('fade-in');
-        subText.classList.remove('fade-in');
-        void mainText.offsetWidth;
-        void subText.offsetWidth;
-        mainText.classList.add('fade-in');
-        subText.classList.add('fade-in');
+    if (exercise.background && exercise.background[theme]) {
+        document.body.style.backgroundColor = exercise.background[theme];
+    } else {
+        console.warn(`Background color not defined for technique ${exerciseType} and theme ${theme}`);
     }
-    function updateBreathingIndicator(phase) {
-        const arrows = document.querySelector('.breathing-indicator');
-        const upArrow = arrows.querySelector('.arrow-up');
-        const downArrow = arrows.querySelector('.arrow-down');
-    
-        upArrow.style.opacity = '0';
-        downArrow.style.opacity = '0';
-    
-        if (exercise.arrow.up.includes(phase)) {
-            upArrow.style.opacity = '1';
-            circle.className = 'circle inhale';
-        } else if (exercise.arrow.down.includes(phase)) {
-            downArrow.style.opacity = '1';
-            circle.className = 'circle exhale';
-        } else {
-            circle.className = 'circle hold';
+
+    // --- Helper Functions ---
+    function updateBreathingText(main, sub = '') {
+        if (mainText && subText) {
+            mainText.textContent = main;
+            subText.textContent = sub;
+            // Force reflow to restart animation
+            mainText.classList.remove('fade-in');
+            subText.classList.remove('fade-in');
+            void mainText.offsetWidth; // Trigger reflow
+            void subText.offsetWidth; // Trigger reflow
+            mainText.classList.add('fade-in');
+            subText.classList.add('fade-in');
         }
     }
 
+    function updateBreathingIndicator(phase) {
+        const indicatorContainer = document.querySelector('.breathing-indicator');
+        if (!indicatorContainer || !exercise.arrow) return; // Exit if no indicator or arrow data
+
+        const upArrow = indicatorContainer.querySelector('.arrow-up');
+        const downArrow = indicatorContainer.querySelector('.arrow-down');
+
+        if (!upArrow || !downArrow) return; // Exit if arrows not found
+
+        // Default: hide both
+        upArrow.style.opacity = '0';
+        downArrow.style.opacity = '0';
+        // Default animation state if needed (e.g., 'hold')
+        let animationClass = 'hold'; // Assume hold/none if not up/down
+
+        if (exercise.arrow.up && exercise.arrow.up.includes(phase)) {
+            upArrow.style.opacity = '1';
+            animationClass = 'inhale';
+        } else if (exercise.arrow.down && exercise.arrow.down.includes(phase)) {
+            downArrow.style.opacity = '1';
+            animationClass = 'exhale';
+        }
+        // Apply animation class to circle
+        if (circle) {
+           circle.className = `circle ${animationClass}`; // Ensure base class + animation
+        }
+    }
+
+    // --- Exercise Logic ---
+
+    // Wim Hof Specific Logic
     function startWimHofExercise() {
         let currentSet = 1;
         let breathCount = 0;
-        let retentionTimer = 0;
-        let timerInterval;
+        let retentionStartTime = 0;
+        let timerInterval = null; // Initialize to null
 
         function startBreathingPhase() {
             breathCount++;
@@ -131,122 +158,158 @@ document.addEventListener('DOMContentLoaded', () => {
                     `Set ${currentSet} of ${exercise.sets}`,
                     `Quick breath ${breathCount}/${exercise.totalBreaths}`
                 );
-                
-                circle.className = 'circle quick-breath';
-                
+                if (circle) circle.className = 'circle quick-breath';
+
+                // Timeout for the duration of one quick breath cycle
                 setTimeout(() => {
                     if (breathCount < exercise.totalBreaths) {
-                        startBreathingPhase();
+                        startBreathingPhase(); // Next breath
                     } else {
-                        startRetentionPhase();
+                        startRetentionPhase(); // Move to retention after last breath
                     }
-                }, 2000);
+                }, exercise.durations[0] * 1000); // Use duration[0] for quick breath time
             }
         }
 
         function startRetentionPhase() {
-            circle.className = 'circle retention';
+            if (timerInterval) clearInterval(timerInterval); // Clear any previous interval
+            timer.textContent = '0'; // Reset timer display
+            if (circle) {
+                circle.className = 'circle retention';
+                circle.style.cursor = 'pointer'; // Make clickable
+            }
             updateBreathingText(
-                'Exhale fully and hold',
-                'Click when you need to breathe'
+                `Set ${currentSet} - Exhale & Hold`,
+                'Click circle when you inhale'
             );
-            
-            circle.style.cursor = 'pointer';
-            retentionTimer = 0;
-            
-            if (timerInterval) clearInterval(timerInterval);
+            retentionStartTime = Date.now(); // Record start time
+
+            // Update timer display every second
             timerInterval = setInterval(() => {
-                retentionTimer++;
-                timer.textContent = Math.floor(retentionTimer);
+                const elapsedSeconds = Math.floor((Date.now() - retentionStartTime) / 1000);
+                timer.textContent = elapsedSeconds;
             }, 1000);
 
-            circle.onclick = () => {
-                clearInterval(timerInterval);
-                startRecoveryHold();
-            };
+            // Listener to end retention
+            if (circle) {
+               circle.onclick = () => {
+                    if (timerInterval) clearInterval(timerInterval); // Stop timer
+                    circle.onclick = null; // Remove listener
+                    circle.style.cursor = 'default';
+                    console.log(`Retention Set ${currentSet}: ${timer.textContent}s`); // Log retention time
+                    startRecoveryHold();
+                };
+            }
         }
 
         function startRecoveryHold() {
-            circle.onclick = null;
-            circle.style.cursor = 'default';
-            circle.className = 'circle recovery';
-            
+            if (timerInterval) clearInterval(timerInterval); // Clear retention timer interval
+            let recoveryTime = exercise.durations[2]; // Get recovery hold duration
+            if (circle) circle.className = 'circle recovery';
             updateBreathingText(
-                'Deep breath in',
-                'Hold for 15 seconds'
+                `Set ${currentSet} - Recovery Hold`,
+                'Deep breath in & hold'
             );
+            timer.textContent = recoveryTime; // Show initial recovery time
 
-            let recoveryTime = exercise.durations[2];
-            timer.textContent = recoveryTime;
-
-            if (timerInterval) clearInterval(timerInterval);
             timerInterval = setInterval(() => {
                 recoveryTime--;
-                timer.textContent = recoveryTime;
+                if (recoveryTime >= 0) {
+                    timer.textContent = recoveryTime;
+                }
 
                 if (recoveryTime < 0) {
                     clearInterval(timerInterval);
                     if (currentSet < exercise.sets) {
+                        // Prepare for next set
                         currentSet++;
                         breathCount = 0;
                         timer.textContent = '';
-                        setTimeout(startBreathingPhase, 1000);
+                        console.log("Starting next Wim Hof set...");
+                        setTimeout(startBreathingPhase, 1000); // Delay before next set
                     } else {
-                        completeExercise();
+                        completeExercise(); // All sets finished
                     }
                 }
             }, 1000);
         }
 
+        // Initial setup for Wim Hof
         timer.textContent = '';
         startBreathingPhase();
     }
 
+    // Regular Exercise Logic (Box, 4-8, Belly, Buteyko)
     function startRegularExercise() {
         let currentRound = 1;
-        let currentPhase = 0;
-        let timeLeft = exercise.durations[0];
+        let currentPhaseIndex = 0;
+        let timeLeft = exercise.durations[currentPhaseIndex];
+        let intervalId = null; // Initialize intervalId
 
-        timer.textContent = timeLeft;
-        updateBreathingText(exercise.sequence[0]);
-        updateBreathingIndicator(exercise.sequence[0]); // Add this line
+        function runPhase() {
+            const currentPhaseName = exercise.sequence[currentPhaseIndex];
+            timeLeft = exercise.durations[currentPhaseIndex];
 
-        const intervalId = setInterval(() => {
-            timeLeft--;
+            // Initial display for the phase
             timer.textContent = timeLeft;
+            updateBreathingText(currentPhaseName, `Round ${currentRound}/${exercise.rounds}`);
+            updateBreathingIndicator(currentPhaseName); // Update animation/indicator
 
-            if (timeLeft === 0) {
-                currentPhase = (currentPhase + 1) % exercise.sequence.length;
-                
-                if (currentPhase === 0) {
-                    currentRound++;
-                    if (currentRound > exercise.rounds) {
-                        clearInterval(intervalId);
-                        completeExercise();
-                        return;
-                    }
+            // Clear previous interval if exists
+            if (intervalId) clearInterval(intervalId);
+
+            // Start new interval
+            intervalId = setInterval(() => {
+                timeLeft--;
+                if (timeLeft >= 0) {
+                    timer.textContent = timeLeft;
                 }
 
-                timeLeft = exercise.durations[currentPhase];
-                updateBreathingText(exercise.sequence[currentPhase]);
-                updateBreathingIndicator(exercise.sequence[currentPhase]); // Add this line
+                if (timeLeft < 0) {
+                    clearInterval(intervalId); // Stop current phase timer
+
+                    // Move to next phase
+                    currentPhaseIndex = (currentPhaseIndex + 1) % exercise.sequence.length;
+
+                    // Check if a new round starts
+                    if (currentPhaseIndex === 0) {
+                        currentRound++;
+                        if (currentRound > exercise.rounds) {
+                            completeExercise(); // End exercise if max rounds reached
+                            return;
+                        }
+                    }
+                    // Start the next phase
+                    runPhase();
+                }
+            }, 1000);
         }
-        }, 1000);
+
+        // Start the first phase
+        runPhase();
     }
 
+    // Completion Logic
     function completeExercise() {
-        circle.className = 'circle';
+        if (circle) circle.className = 'circle'; // Reset circle class
         updateBreathingText('Exercise Complete!', 'Well done!');
-        timer.textContent = '';
+        timer.textContent = ''; // Clear timer
+        console.log("Exercise Complete. Redirecting...");
+        // Redirect back to index after a delay
         setTimeout(() => {
             window.location.href = 'index.html';
-        }, 3000);
+        }, 3000); // 3-second delay
     }
 
-    // Start appropriate exercise
+    // --- Start the Correct Exercise ---
     if (exerciseType === 'wim-hof') {
         startWimHofExercise();
-    } else {
+    } else if (exercise && exercise.sequence && exercise.durations) {
         startRegularExercise();
+    } else {
+        // Fallback if something went wrong (should have been caught earlier)
+        console.error('Cannot start exercise - invalid exercise data.');
+        window.location.href = 'index.html';
     }
-});
+
+}); // End of DOMContentLoaded

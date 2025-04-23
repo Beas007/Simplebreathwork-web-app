@@ -4,21 +4,86 @@
 }
 
 /* Define CSS Variables */
-:root {
-    --animation-glow-inhale: rgba(76, 175, 80, 0.4);
-    --animation-glow-exhale: rgba(244, 67, 54, 0.4);
-    --animation-glow-hold: rgba(255, 193, 7, 0.3);
-    --background: #F5F7FA;
-    --circle-bg: rgba(255, 255, 255, 0.8);
-    --text: #2C3E50;
+:root {--animation-glow-inhale: rgba(176, 190, 197, 0.5);
+--animation-glow-hold:   rgba(207, 216, 220, 0.4);
+--animation-glow-exhale: rgba(144, 164, 174, 0.5);
+
+/* Base Theme Colors */
+--background: #F5F7FA;
+--circle-bg: rgba(255, 255, 255, 0.9);
+--text: #2C3E50;
 }
 
-/* Dark Theme Variables */
+/* --- Light Theme Technique Overrides --- */
+[data-current-technique="box"] {
+--animation-glow-inhale: rgba(179, 157, 219, 0.5);  /* Lavender */
+--animation-glow-hold:   var(--animation-glow-exhale); /* Use exhale during hold */
+--animation-glow-exhale: rgba(149, 117, 205, 0.5);  /* Deeper Purple */
+}
+[data-current-technique="48"] {
+--animation-glow-inhale: rgba(228, 134, 90, 0.859);
+--animation-glow-hold:   rgba(240, 181, 86, 0.868);
+--animation-glow-exhale: rgba(232, 147, 147, 0.734);
+}
+[data-current-technique="wim-hof"] {
+--animation-glow-inhale: rgba(128, 234, 225, 0.5);  /* Cyan/Icy Blue */
+--animation-glow-hold:   rgba(179, 229, 252, 0.4);  /* Very Light Blue */
+--animation-glow-exhale: rgba(77, 208, 225, 0.5);   /* Slightly Deeper Cyan */
+}
+[data-current-technique="belly"] {
+--animation-glow-inhale: rgba(165, 214, 167, 0.55); /* Soft Green */
+--animation-glow-hold:   var(--animation-glow-inhale); /* Use inhale during hold */
+--animation-glow-exhale: rgba(129, 199, 132, 0.5);  /* Slightly Deeper Green */
+}
+[data-current-technique="buteyko"] {
+--animation-glow-inhale: rgba(100, 181, 246, 0.5);  /* Light Blue */
+--animation-glow-hold:   rgba(144, 202, 249, 0.45); /* Lighter Blue */
+--animation-glow-exhale: rgba(66, 165, 245, 0.5);   /* Slightly Deeper Blue */
+}
+
+
+/* --- Base Dark Theme (Defaults & Base Colors) --- */
 [data-theme="dark"] {
-    --background: #1a1a2e; /* Example dark bg */
-    --circle-bg: rgba(255, 255, 255, 0.1);
-    --text: #E0E0E0;
-    /* Ensure all needed dark variables are here */
+/* Base Dark Theme Colors */
+--background: #12121f;
+--circle-bg: rgba(50, 50, 70, 0.25);
+--text: #c5c5dd;
+
+/* Default Dark Glows (Muted Grey - Fallback) */
+--animation-glow-inhale: rgba(144, 164, 174, 0.4);
+--animation-glow-hold:   rgba(176, 190, 197, 0.35);
+--animation-glow-exhale: rgba(120, 135, 150, 0.4);
+}
+
+/* --- Dark Theme Technique Overrides --- */
+[data-theme="dark"] [data-current-technique="box"] {
+--animation-glow-inhale: rgba(66, 165, 245, 0.45);   /* Medium Blue */
+--animation-glow-hold:   rgba(100, 181, 246, 0.4);   /* Lighter Blue */
+--animation-glow-exhale: rgba(30, 136, 229, 0.45);   /* Deeper Blue */
+}
+[data-theme="dark"] [data-current-technique="48"] {
+--animation-glow-inhale: rgba(149, 117, 205, 0.45);  /* Purple */
+--animation-glow-hold:   var(--animation-glow-exhale); /* Use exhale during hold */
+--animation-glow-exhale: rgba(126, 87, 194, 0.45);   /* Deeper Purple */
+}
+[data-theme="dark"] [data-current-technique="wim-hof"] {
+--animation-glow-inhale: rgba(77, 208, 225, 0.45);   /* Cyan */
+--animation-glow-hold:   rgba(129, 212, 250, 0.4);   /* Lighter Cyan */
+--animation-glow-exhale: rgba(38, 198, 218, 0.45);   /* Deeper Cyan */
+}
+[data-theme="dark"] [data-current-technique="belly"] {
+--animation-glow-inhale: rgba(129, 199, 132, 0.5);   /* Green */
+--animation-glow-hold:   var(--animation-glow-inhale); /* Use inhale during hold */
+--animation-glow-exhale: rgba(102, 187, 106, 0.45);  /* Deeper Green */
+}
+[data-theme="dark"] [data-current-technique="buteyko"] {
+--animation-glow-inhale: rgba(144, 164, 174, 0.45);  /* Blue-Grey */
+--animation-glow-hold:   rgba(176, 190, 197, 0.4);   /* Lighter Grey */
+--animation-glow-exhale: rgba(120, 135, 150, 0.45);  /* Grey */
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 /* Body Styling */
