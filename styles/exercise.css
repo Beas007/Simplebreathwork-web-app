@@ -34,6 +34,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative; 
 }
 
 .breathing-guide {
@@ -48,7 +49,10 @@ body {
     position: relative;
     width: min(300px, 80vw);
     height: min(300px, 80vw);
-    margin: 0 auto;
+    margin: 2rem auto;
+    display: flex; /* Add this */
+    justify-content: center; /* Add this */
+    align-items: center; 
 }
 
 .breathing-text-container {
@@ -62,7 +66,10 @@ body {
     height: 100%;
     border-radius: 50%;
     background: var(--circle-bg);
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -78,6 +85,7 @@ body {
     width: 80%;
     text-align: center;
     z-index: 2;
+    pointer-events: none; 
 }
 
 .main-text {
@@ -239,7 +247,9 @@ body {
     }
 
     .breath-animation {
-        margin: 1rem auto;
+        margin: 1.5rem auto;
+        width: min(250px, 70vw); /* Slightly smaller on mobile */
+        height: min(250px, 70vw);
     }
 
     .timer {
