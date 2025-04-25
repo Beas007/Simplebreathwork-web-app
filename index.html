@@ -33,11 +33,26 @@
     </head>
 <body>
     <header>
-        <nav>
-            <button id="theme-toggle" class="theme-toggle" aria-label="Switch theme">
-                🌙 Night Mode
-            </button>
-            </nav>
+        <nav class="navbar">
+            <div class="nav-container">
+                <a href="#" class="logo">Simple Breathwork</a>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Use</a></li>
+                    <li><button onclick="window.location.href='feedback.html'">Share Feedback</button></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Switch theme">
+                    🌙 Night Mode
+                </button>
+            </div>
+        </nav>
     </header>
         <main>
             <div class="hero">
@@ -133,6 +148,27 @@
                             </div>
                         </div>
         </div>
+        <!-- Replace the existing blog container section -->
+        <section class="blog-container">
+    <h2 class="section-title">Latest Articles</h2>
+    <div class="articles-grid">
+        <!-- Article Card -->
+        <article class="article-card">
+            <div class="article-image-container">
+                <img src="images/belly-breathing.jpg" alt="Person practicing belly breathing" class="article-image">
+            </div>
+            <div class="article-content">
+                <span class="article-category">Breathing Technique</span>
+                <h3 class="article-title">Understanding Belly Breathing</h3>
+                <p class="article-excerpt">
+                    Learn the fundamentals of belly breathing and discover how this simple technique can reduce stress and improve your overall well-being...
+                </p>
+                <a href="#" class="article-link">Read More →</a>
+            </div>
+        </article>
+        <!-- Add more article cards as needed -->
+    </div>
+        </section>
     </main>
 
 <footer>

@@ -1,40 +1,94 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Lazy load non-critical JavaScript
-    const loadScript = (src) => {
-        const script = document.createElement('script');
-        script.src = src;
-        script.defer = true;
-        document.body.appendChild(script);
-    };
-
-    // Theme Toggle Functionality
+    // Navigation functionality
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const body = document.body;
     const themeToggle = document.getElementById('theme-toggle');
-    const html = document.documentElement;
     
-    // Check if user has previously selected a theme
-    const currentTheme = (() => {
-        try {
-            return localStorage.getItem('theme') || 'light';
-        } catch (e) {
-            console.warn('localStorage not available:', e);
-            return 'light';
+    // Initialize Navigation
+    function initializeNavigation() {
+        if (!hamburger || !navMenu) {
+            console.error('Navigation elements not found');
+            return;
         }
-    })();
 
-    html.setAttribute('data-theme', currentTheme);
-    updateThemeToggleButton(currentTheme);
+        // Toggle menu
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
 
-    themeToggle.addEventListener('click', () => {
-        const newTheme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        html.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeToggleButton(newTheme);
-    });
+        // Close menu when clicking menu items
+        navMenu.querySelectorAll('a, button').forEach(item => {
+            item.addEventListener('click', () => {
+                closeMenu();
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && 
+                !navMenu.contains(e.target) && 
+                !themeToggle.contains(e.target) && 
+                navMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    }
+
+    function closeMenu() {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        body.classList.remove('menu-open');
+    }
+
+    // Initialize Navigation
+    initializeNavigation();
+
+    // Theme functionality
+    function initializeTheme() {
+        const html = document.documentElement;
+        
+        // Get saved theme
+        const savedTheme = (() => {
+            try {
+                return localStorage.getItem('theme') || 'light';
+            } catch (e) {
+                console.warn('localStorage not available:', e);
+                return 'light';
+            }
+        })();
+
+        // Set initial theme
+        html.setAttribute('data-theme', savedTheme);
+        updateThemeToggleButton(savedTheme);
+
+        // Theme toggle handler
+        themeToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeToggleButton(newTheme);
+        });
+    }
 
     function updateThemeToggleButton(theme) {
         themeToggle.textContent = theme === 'light' ? '🌙 Night Mode' : '☀️ Day Mode';
         themeToggle.setAttribute('aria-label', `Switch to ${theme === 'light' ? 'dark' : 'light'} mode`);
     }
+
+    // Initialize Theme
+    initializeTheme();
+
+    // ...existing card flipping code...
+    // ...existing copyright year code...
+    // ...existing read more functionality...
+    // ...existing script loading code...
 
     // Card Flipping Functionality
     const cards = document.querySelectorAll('.card');
