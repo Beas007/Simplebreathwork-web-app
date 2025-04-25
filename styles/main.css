@@ -332,7 +332,24 @@ main {
     transform: translateY(-1px); /* Subtle lift effect */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
 }
+/* Hero Styles */
+.page-hero {
+    text-align: center;
+    padding: 4rem 1rem;
+    background: var(--box-gradient);
+    color: white;
+    margin-bottom: 2rem;
+}
 
+.page-hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+}
+
+.page-hero p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    opacity: 0.9;
+}
 /* Apply truncation ONLY on smaller screens */
 @media (max-width: 991px) {
     .hero { /* Adjust hero padding on smaller screens */
