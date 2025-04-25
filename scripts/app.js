@@ -1,53 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize core functionalities
-    initializeNavigation();
-    initializeTheme();
-    initializeCardFlipping();
-    initializeReadMore();
-    updateCopyrightYear();
-    loadDeferredScripts();
-
-    // Navigation functionality
-    function initializeNavigation() {
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        const body = document.body;
-
-        if (!hamburger || !navMenu) {
-            console.error('Navigation elements not found');
-            return;
-        }
-
-        // Toggle menu
-        hamburger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            body.classList.toggle('menu-open');
-        });
-
-        // Close menu when clicking menu items
-        navMenu.querySelectorAll('a, button').forEach(item => {
-            item.addEventListener('click', closeMenu);
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && 
-                !navMenu.contains(e.target) && 
-                navMenu.classList.contains('active')) {
-                closeMenu();
+    // Wait for template loader to complete before initializing
+    const templateLoader = new Promise((resolve) => {
+        const checkComponents = setInterval(() => {
+            const header = document.querySelector('.navbar');
+            const themeToggle = document.getElementById('theme-toggle');
+            
+            if (header && themeToggle) {
+                clearInterval(checkComponents);
+                resolve();
             }
-        });
+        }, 100);
 
-        function closeMenu() {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            body.classList.remove('menu-open');
-        }
-    }
+        // Timeout after 5 seconds
+        setTimeout(() => {
+            clearInterval(checkComponents);
+            console.error('Timeout waiting for components to load');
+            resolve();
+        }, 5000);
+    });
 
-    // Theme functionality
+    // Initialize after components are loaded
+    templateLoader.then(() => {
+        initializeTheme();
+        initializeNavigation();
+        initializeCardFlipping();
+        initializeReadMore();
+        updateCopyrightYear();
+    });
+
     function initializeTheme() {
         const themeToggle = document.getElementById('theme-toggle');
         const themeIcon = themeToggle?.querySelector('.theme-icon');
@@ -57,12 +37,11 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Check saved theme or system preference
+        // Set initial theme
         const savedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
-
-        // Set initial theme
+        
         document.documentElement.setAttribute('data-theme', initialTheme);
         updateThemeIcon(initialTheme);
 
@@ -81,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             themeToggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
         }
     }
+
 
     // Card Flipping functionality
     function initializeCardFlipping() {
