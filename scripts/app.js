@@ -1,32 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Wait for template loader to complete before initializing
+    // Wait for template loader to complete
     const templateLoader = new Promise((resolve) => {
         const checkComponents = setInterval(() => {
             const header = document.querySelector('.navbar');
-            const themeToggle = document.getElementById('theme-toggle');
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
             
-            if (header && themeToggle) {
+            if (header && hamburger && navMenu) {
                 clearInterval(checkComponents);
                 resolve();
             }
         }, 100);
 
-        // Timeout after 5 seconds
         setTimeout(() => {
             clearInterval(checkComponents);
-            console.error('Timeout waiting for components to load');
+            console.error('Timeout waiting for components');
             resolve();
         }, 5000);
     });
 
     // Initialize after components are loaded
     templateLoader.then(() => {
-        initializeTheme();
         initializeNavigation();
+        initializeTheme();
         initializeCardFlipping();
         initializeReadMore();
         updateCopyrightYear();
     });
+
 
     function initializeTheme() {
         const themeToggle = document.getElementById('theme-toggle');
@@ -60,7 +61,47 @@ document.addEventListener('DOMContentLoaded', () => {
             themeToggle.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
         }
     }
+    function initializeNavigation() {
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const body = document.body;
 
+        if (!hamburger || !navMenu) {
+            console.error('Navigation elements not found');
+            return;
+        }
+
+        // Toggle menu
+        hamburger.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
+
+        // Close menu when clicking menu items
+        navMenu.querySelectorAll('a, button').forEach(item => {
+            item.addEventListener('click', () => {
+                closeMenu();
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('active') && 
+                !hamburger.contains(e.target) && 
+                !navMenu.contains(e.target)) {
+                closeMenu();
+            }
+        });
+
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            body.classList.remove('menu-open');
+        }
+    }
 
     // Card Flipping functionality
     function initializeCardFlipping() {
