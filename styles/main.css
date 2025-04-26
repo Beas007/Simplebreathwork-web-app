@@ -370,7 +370,20 @@ main {
     font-size: clamp(1rem, 2vw, 1.2rem);
     opacity: 0.9;
 }
-
+/* Explicitly ensure full display on larger screens */
+@media (min-width: 992px) {
+    #hero-description {
+        display: block !important;
+        overflow: visible !important;
+        max-height: none !important;
+        -webkit-line-clamp: unset !important;
+        line-clamp: unset !important;
+    }
+    
+    .read-more-btn {
+        display: none !important;
+    }
+}
 /* Apply truncation ONLY on smaller screens */
 @media (max-width: 991px) {
     .hero { /* Adjust hero padding on smaller screens */
