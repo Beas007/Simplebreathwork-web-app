@@ -178,9 +178,7 @@ header {
 
 /* Hamburger Menu */
 .hamburger {
-    display: block;
-    cursor: pointer;
-    z-index: 1001;
+    margin-bottom: 0.5rem;
 }
 
 .hamburger span {
@@ -212,33 +210,33 @@ header {
 body.menu-open {
     overflow: hidden;
 }
-
+.nav-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+}
 /* Theme Toggle Button */
 .theme-toggle {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
     background: var(--card-bg);
     border: none;
-    box-shadow: 0 2px 5px var(--shadow);
-    cursor: pointer;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 5px var(--shadow);
 }
 
 .theme-toggle:hover {
     transform: scale(1.1);
 }
 
-.theme-toggle .theme-icon {
-    font-size: 1.5rem;
-    transition: opacity 0.3s ease;
+.theme-icon {
+    font-size: 1.2rem;
 }
 
 [data-theme="dark"] .theme-toggle .theme-icon {
@@ -247,15 +245,17 @@ body.menu-open {
 
 /* Ensure button doesn't overlap with content on mobile */
 @media (max-width: 768px) {
-    .theme-toggle {
-        bottom: 1rem;
-        right: 1rem;
-        width: 2.5rem;
-        height: 2.5rem;
+    .nav-controls {
+        gap: 0.75rem;
     }
-    
-    .theme-toggle .theme-icon {
-        font-size: 1.2rem;
+
+    .theme-toggle {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .theme-icon {
+        font-size: 1rem;
     }
 }
 

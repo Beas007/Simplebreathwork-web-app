@@ -3,67 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Simple Breathwork Blog - Latest articles and insights about breathing techniques">
-    <title>Simple Breathwork Blog</title>
+    <meta name="description" content="Breathwork articles and guides">
+    <title>Blog - Simple Breathwork</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/blog.css">
 </head>
 <body>
     <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <a href="#" class="logo">Simple Breathwork</a>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="blog.html">Blog</a></li> 
-                    <li><a href="exercise.html">Breathwork</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Use</a></li>
-                    <li><button onclick="window.location.href='feedback.html'">Share Feedback</button></li>
-                </ul>
-                <button id="theme-toggle" class="theme-toggle" aria-label="Switch theme">
-                    🌙 Night Mode
-                </button>
-            </div>
-        </nav>
+        <div id="header-placeholder"></div>
     </header>
-    <main>
-        <div class="blog-hero">
-            <h1>Latest Articles</h1>
-            <p>Discover insights and guides about breathing techniques</p>
+    
+    <main class="blog-page">
+        <div class="blog-header">
+            <h1>Breathwork Insights</h1>
+            <p>Discover the science and benefits of conscious breathing</p>
         </div>
-
-        <section class="blog-container">
-            <div id="recent-articles" class="articles-grid">
-                <!-- Articles will be dynamically inserted here -->
-            </div>
-        </section>
+        
+        <div class="blog-grid" id="blog-posts-container">
+            <!-- Posts will be loaded dynamically -->
+        </div>
     </main>
 
     <footer>
-        <!-- ...existing footer code... -->
-        <div class="links">
-            <a href="index.html">Home</a>
-            <a href="blog.html">Blog</a>
-        <a href="exercise.html">Breathwork</a>
-            <a href="about.html">About Us</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Use</a>
-            <button onclick="window.location.href='feedback.html'">Share Feedback</button>
-        </div>
-        <div class="copyright">
-        © <span id="copyright-year">2024</span> simplebreathwork.com All Rights Reserved.
-       </div>
+        <div id="footer-placeholder"></div>
     </footer>
 
-    <script src="scripts/app.js"></script>
-    <script src="scripts/blog.js"></script>
-   
+    <script src="scripts/template-loader.js"></script>
+    <script type="module" src="scripts/blog-loader.js"></script>
 </body>
 </html>
