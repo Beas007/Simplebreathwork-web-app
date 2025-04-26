@@ -1,0 +1,181 @@
+/* Layout */
+.blog-post-layout {
+    display: flex;
+    gap: 2rem; /* Space between TOC and content */
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Table of Contents (TOC) */
+.toc {
+    width: 250px; /* Adjust width as needed */
+    position: sticky;
+    top: 8rem; /* Adjust top spacing (consider navbar height) */
+    align-self: flex-start; /* Align to the top of the flex container */
+    height: calc(100vh - 10rem); /* Limit height and enable scrolling if needed */
+    overflow-y: auto;
+    padding-right: 1rem; /* Space between TOC and scrollbar */
+}
+
+.toc h4 {
+    margin-bottom: 1rem;
+    color: var(--text);
+    font-size: 1.1rem;
+    border-bottom: 1px solid var(--shadow);
+    padding-bottom: 0.5rem;
+}
+
+.toc ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.toc li a {
+    display: block;
+    padding: 0.4rem 0;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.9rem;
+    opacity: 0.8;
+    transition: opacity 0.2s ease, padding-left 0.2s ease;
+    border-left: 3px solid transparent; /* For active state indicator */
+    padding-left: 0.5rem;
+}
+
+.toc li a:hover {
+    opacity: 1;
+}
+
+.toc li a.active {
+    font-weight: 600;
+    opacity: 1;
+    border-left-color: var(--box-gradient); /* Use a theme color */
+    /* If --box-gradient is a gradient, use a solid color fallback or adjust */
+    border-left-color: #6E48AA; /* Example solid color */
+}
+
+.toc .subheading a {
+    padding-left: 1.5rem; /* Indent subheadings */
+    font-size: 0.85rem;
+}
+
+.toc .subheading a.active {
+     border-left-color: #85e3f1; /* Example different color for subheadings */
+}
+
+
+/* Article Content */
+.article-content {
+    flex: 1; /* Take remaining space */
+    max-width: 800px; /* Optimal reading width */
+    color: var(--text); /* Consistent text color */
+    text-align: left; /* Ensure left alignment */
+    line-height: 1.7;
+}
+
+.article-content h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+    /* Optional: Use a gradient like homepage titles */
+    /* background: var(--box-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; */
+}
+
+.article-content h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--shadow);
+}
+
+.article-content h3 {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-top: 2rem;
+    margin-bottom: 0.8rem;
+}
+
+.article-content p {
+    margin-bottom: 1.2rem;
+}
+
+.article-content ul,
+.article-content ol {
+    margin-bottom: 1.2rem;
+    padding-left: 1.5rem; /* Standard indentation */
+}
+
+.article-content li {
+    margin-bottom: 0.5rem;
+}
+
+.article-content strong {
+    font-weight: 600;
+}
+
+/* Interaction Section */
+.article-interactions {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--shadow);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.share-buttons span {
+    margin-right: 0.5rem;
+    font-weight: 500;
+}
+
+.share-buttons a,
+.feedback-buttons button {
+    color: var(--text);
+    background: none;
+    border: 1px solid var(--shadow);
+    border-radius: 50%; /* Circular buttons */
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin: 0 0.2rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.feedback-buttons button {
+     border-radius: 20px; /* Rounded rectangle for like/comment */
+     width: auto;
+     padding: 0.4rem 0.8rem;
+     gap: 0.4rem;
+}
+
+
+.share-buttons a:hover,
+.feedback-buttons button:hover {
+    background-color: var(--card-bg); /* Use card background on hover */
+    color: var(--box-gradient); /* Use a theme color */
+     color: #6E48AA; /* Example solid color */
+}
+
+/* Responsive: Hide TOC on smaller screens */
+@media (max-width: 1024px) {
+    .blog-post-layout {
+        flex-direction: column;
+    }
+    .toc {
+        display: none; /* Hide TOC */
+    }
+    .article-content {
+        max-width: 100%; /* Allow content to take full width */
+    }
+}
