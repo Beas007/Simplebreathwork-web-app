@@ -35,7 +35,8 @@
     --box-gradient: linear-gradient(145deg, #2d3250, #424874);
     --48-gradient: linear-gradient(145deg, #1a454e, #2c6975);
     --wim-gradient: linear-gradient(145deg, #2b445d, #455565);
-    /* ... rest of your dark theme gradients ... */
+    --belly-gradient: linear-gradient(145deg, #2e6e60, #45564e);
+    --buteyko-gradient: linear-gradient(145deg, #2c4268, #455a64);
 
     /* Dark theme text colors */
     .hero h2 {
@@ -44,7 +45,9 @@
         background-clip: text;
         color: transparent;
     }
-    /* ... rest of your dark theme text styles ... */
+    .box-text { color: #8e94c4; }
+    .zen-text { color: #55adbd; }
+    .wim-text { color: #4CA1AF; }
 }
 
 /* 3. Base Styles */
@@ -93,6 +96,14 @@ header {
     padding: 0 1rem;
 }
 
+.nav-controls {
+    display: flex;
+    flex-direction: row; /* Change from column to row */
+    align-items: center; /* Center items vertically */
+    gap: 1rem; /* Space between hamburger and theme toggle */
+    z-index: 1001;
+}
+
 .logo {
     display: flex;
     align-items: center;
@@ -118,17 +129,7 @@ header {
     height: 32px;
     display: block;
 }
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .logo {
-        font-size: 1.3rem;
-    }
-    
-    .logo-icon {
-        width: 24px;
-        height: 24px;
-    }
-}
+
 .nav-menu {
     position: fixed;
     top: 0;
@@ -178,7 +179,13 @@ header {
 
 /* Hamburger Menu */
 .hamburger {
-    margin-bottom: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    z-index: 1002;
 }
 
 .hamburger span {
@@ -186,8 +193,44 @@ header {
     width: 25px;
     height: 3px;
     background-color: var(--text);
-    margin: 5px 0;
+    margin: 2px 0;
     transition: all 0.3s ease;
+}
+
+/* Theme Toggle Container - NEW */
+.theme-toggle-container {
+    position: relative;
+    height: 0; /* No height to avoid layout disruption */
+    z-index: 1010;
+}
+
+/* Theme Toggle - UPDATED */
+.theme-toggle {
+    position: sticky;
+    top: 6rem; /* Distance from top when sticky */
+    right: 0;
+    margin-right: 2rem; /* Space from right edge */
+    float: right; /* Float to the right */
+    background: var(--card-bg);
+    border: none;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 2px 5px var(--shadow);
+}
+
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.theme-icon {
+    font-size: 1.2rem;
 }
 
 /* Active States */
@@ -210,48 +253,27 @@ header {
 body.menu-open {
     overflow: hidden;
 }
-.nav-controls {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 1rem;
-}
-/* Theme Toggle Button */
-.theme-toggle {
-    background: var(--card-bg);
-    border: none;
-    border-radius: 50%;
-    width: 2.5rem;
-    height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-    box-shadow: 0 2px 5px var(--shadow);
-}
 
-.theme-toggle:hover {
-    transform: scale(1.1);
-}
-
-.theme-icon {
-    font-size: 1.2rem;
-}
-
-[data-theme="dark"] .theme-toggle .theme-icon {
-    content: "☀️";
-}
-
-/* Ensure button doesn't overlap with content on mobile */
+/* Mobile Responsive */
 @media (max-width: 768px) {
+    .logo {
+        font-size: 1.3rem;
+    }
+    
+    .logo-icon {
+        width: 24px;
+        height: 24px;
+    }
+    
     .nav-controls {
         gap: 0.75rem;
     }
 
     .theme-toggle {
-        width: 2rem;
-        height: 2rem;
+        top: 5rem;
+        margin-right: 1.5rem;
+        width: 2.25rem;
+        height: 2.25rem;
     }
 
     .theme-icon {
@@ -259,7 +281,6 @@ body.menu-open {
     }
 }
 
-/* Remove the media query for hamburger display */
 main {
     flex: 1;
     padding: 1rem;
@@ -330,6 +351,7 @@ main {
     transform: translateY(-1px); /* Subtle lift effect */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow */
 }
+
 /* Hero Styles */
 .page-hero {
     text-align: center;
@@ -348,6 +370,7 @@ main {
     font-size: clamp(1rem, 2vw, 1.2rem);
     opacity: 0.9;
 }
+
 /* Apply truncation ONLY on smaller screens */
 @media (max-width: 991px) {
     .hero { /* Adjust hero padding on smaller screens */
@@ -398,8 +421,6 @@ main {
     }
 }
 /* End Read More */
-
-
 /* Card Section */
 .card-container {
     display: grid;
@@ -516,33 +537,10 @@ main {
     margin-top: auto; /* Push button towards bottom */
     align-self: center; /* Centers the button horizontally */
     width: fit-content; /* Button takes only needed width */
-
 }
 
 .start-btn:hover {
     background: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-}
-
-
-/* Theme Toggle Button */
-.theme-toggle {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    padding: 0.8rem 1.5rem;
-    background: var(--card-bg);
-    color: var(--text);
-    border: 1px solid var(--text);
-    border-radius: 25px;
-    cursor: pointer;
-    z-index: 1000;
-    transition: all 0.3s ease;
-}
-
-.theme-toggle:hover {
-    background: var(--text);
-    color: var(--background);
     transform: translateY(-2px);
 }
 
@@ -606,17 +604,6 @@ main {
     text-decoration: none;
 }
 
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .blog-container {
-        margin: 2rem auto;
-    }
-    
-    .articles-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* Footer */
 footer {
     width: 100%;
@@ -661,6 +648,17 @@ footer a:hover, footer button:hover {
     padding-top: 0.5rem; /* Space above copyright */
     margin-top: 0; /* Removed margin-top as .links has margin-bottom */
     width: 100%; /* Ensure it takes full width for centering */
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .blog-container {
+        margin: 2rem auto;
+    }
+    
+    .articles-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Specific Responsive adjustments */
