@@ -1,156 +1,201 @@
+/// This script should ONLY be loaded on individual blog post pages.
+
 document.addEventListener('DOMContentLoaded', () => {
-    generateTOC();
-    setupScrollSpy();
-    setupInteractions(); // Placeholder for like/comment/share logic
+    console.log("Blog Post Script: Initializing");
+    setupTocToggle(); // Setup the dropdown toggle first
+    generateTOC(); // Generate TOC content
+    // setupScrollSpy(); // Scroll spy is less practical with a dropdown, disabled for now
+    setupInteractions(); // Setup like/share buttons
 });
 
+function setupTocToggle() {
+    const toggleButton = document.getElementById('toc-toggle-button');
+    const tocDropdown = document.getElementById('toc-dropdown-menu');
+
+    if (!toggleButton || !tocDropdown) {
+        console.warn("TOC toggle button or dropdown menu not found.");
+        return;
+    }
+
+    // Function to open/close TOC
+    const toggleToc = (show) => {
+        // Determine the desired state (open or closed)
+        const isOpen = show !== undefined ? show : !tocDropdown.classList.contains('is-open');
+
+        // Apply the class and update ARIA attribute
+        tocDropdown.classList.toggle('is-open', isOpen);
+        toggleButton.setAttribute('aria-expanded', isOpen);
+
+        console.log(`TOC Toggled: ${isOpen ? 'Open' : 'Closed'}`);
+    };
+
+    // Toggle on button click
+    toggleButton.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent click from immediately closing via document listener
+        toggleToc(); // Toggle based on current state
+    });
+
+    // Close when clicking a TOC link
+    tocDropdown.addEventListener('click', (e) => {
+        // Check if the clicked element is an anchor link within the TOC
+        if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+            const targetId = e.target.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+
+            // Smooth scroll to the target section if it exists
+            if (targetElement) {
+                e.preventDefault(); // Prevent the default anchor jump
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // Close the TOC dropdown after clicking a link
+            toggleToc(false);
+        }
+    });
+
+    // Close when clicking anywhere outside the dropdown or the toggle button
+    document.addEventListener('click', (e) => {
+        if (tocDropdown.classList.contains('is-open') &&
+            !tocDropdown.contains(e.target) && // Click was outside the dropdown content
+            e.target !== toggleButton && // Click was not the toggle button itself
+            !toggleButton.contains(e.target)) { // Click was not inside the toggle button (e.g., icon)
+            toggleToc(false); // Close the dropdown
+        }
+    });
+
+    // Close on Escape key press for accessibility
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && tocDropdown.classList.contains('is-open')) {
+            toggleToc(false); // Close the dropdown
+        }
+    });
+
+    console.log("TOC Toggle Initialized");
+}
+
+
 function generateTOC() {
-    const tocMenu = document.getElementById('toc-menu')?.querySelector('ul');
-    const articleContent = document.querySelector('.article-content');
-    if (!tocMenu || !articleContent) return;
+    // Find the UL element inside the dropdown container
+    const tocMenu = document.getElementById('toc-dropdown-menu')?.querySelector('ul');
+    const articleContent = document.querySelector('.article-content'); // Main content area
 
-    const headings = articleContent.querySelectorAll('h2[id], h3[id]'); // Select h2 and h3 with IDs
+    if (!tocMenu || !articleContent) {
+        console.warn("TOC menu UL (#toc-dropdown-menu ul) or article content container (.article-content) not found for TOC generation.");
+        return;
+    }
 
+    // Find all H2 and H3 headings within the article content that have an ID
+    const headings = articleContent.querySelectorAll('h2[id], h3[id]');
+    console.log(`Found ${headings.length} headings for TOC.`);
+
+    tocMenu.innerHTML = ''; // Clear any existing items (like placeholders)
+
+    if (headings.length === 0) {
+        // Provide feedback if no headings with IDs are found
+        tocMenu.innerHTML = '<li>No sections found in this article.</li>';
+        return;
+    }
+
+    // Create list items and links for each heading
     headings.forEach(heading => {
         const listItem = document.createElement('li');
         const link = document.createElement('a');
 
-        link.href = `#${heading.id}`;
-        link.textContent = heading.textContent.replace(/^\d+\.?\s*/, ''); // Remove leading numbers like "1. " or "3.1 "
+        link.href = `#${heading.id}`; // Link to the heading's ID
+        // Get heading text, remove leading numbers/spaces for cleaner TOC text
+        link.textContent = (heading.textContent || '').replace(/^\d+\.?\s*/, '').trim();
 
+        // Add a class for styling subheadings differently if needed
         if (heading.tagName === 'H3') {
-            listItem.classList.add('subheading'); // Add class for styling subheadings
+            listItem.classList.add('subheading');
         }
 
         listItem.appendChild(link);
         tocMenu.appendChild(listItem);
     });
+    console.log("TOC Generated");
 }
 
+// Scroll Spy is disabled for dropdown TOC as it's less practical when hidden.
+/*
 function setupScrollSpy() {
-    const tocLinks = document.querySelectorAll('.toc a');
-    const headings = Array.from(document.querySelectorAll('.article-content h2[id], .article-content h3[id]'));
-
-    if (!tocLinks.length || !headings.length) return;
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            const id = entry.target.getAttribute('id');
-            const correspondingLink = document.querySelector(`.toc a[href="#${id}"]`);
-
-            if (entry.isIntersecting && entry.intersectionRatio >= 0.5) { // Adjust threshold as needed
-                 tocLinks.forEach(link => link.classList.remove('active'));
-                 if(correspondingLink) {
-                    correspondingLink.classList.add('active');
-                 }
-            }
-            // Optional: remove active class when scrolling out, but can be jumpy
-            // else {
-            //     if(correspondingLink) {
-            //        correspondingLink.classList.remove('active');
-            //     }
-            // }
-        });
-    }, {
-        rootMargin: '-50% 0px -50% 0px', // Trigger when heading is near vertical center
-        threshold: 0 // Trigger as soon as it enters/leaves the margin
-    });
-
-     // Fallback for initial load or when no intersection is detected initially
-    let currentActiveFound = false;
-    window.addEventListener('scroll', () => {
-        let currentSectionId = '';
-        headings.forEach(heading => {
-            const rect = heading.getBoundingClientRect();
-            // Check if the top of the heading is above the middle of the viewport
-            if (rect.top < window.innerHeight / 2) {
-                currentSectionId = heading.id;
-            }
-        });
-
-        if (currentSectionId) {
-             tocLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSectionId}`) {
-                    link.classList.add('active');
-                    currentActiveFound = true;
-                }
-            });
-        } else if (!currentActiveFound && tocLinks.length > 0) {
-             // If scrolled to top and no section is active, activate the first one
-             tocLinks.forEach(link => link.classList.remove('active'));
-             tocLinks[0].classList.add('active');
-        }
-    }, { passive: true });
-
-
-    headings.forEach(heading => observer.observe(heading));
-
-     // Initial check on load
-     setTimeout(() => window.dispatchEvent(new Event('scroll')), 100);
+    // ... (Original scroll spy code can be kept here, commented out) ...
+    console.log("ScrollSpy Disabled for Dropdown TOC");
 }
-
+*/
 
 function setupInteractions() {
-    // Placeholder for like button functionality
+    // --- Interaction logic for like, comment, share buttons ---
+    console.log("Setting up interactions...");
+
+    // Like button
     const likeButton = document.querySelector('.like-button');
     if (likeButton) {
         likeButton.addEventListener('click', () => {
-            // Add logic to toggle like state, update count (requires backend/storage)
             likeButton.classList.toggle('liked');
             const icon = likeButton.querySelector('i');
             if (icon) {
-                icon.classList.toggle('far'); // Toggle empty heart
-                icon.classList.toggle('fas'); // Toggle solid heart
+                // Toggle between Font Awesome 'regular' (far) and 'solid' (fas) styles
+                icon.classList.toggle('far');
+                icon.classList.toggle('fas');
             }
-            console.log('Like button clicked');
+            console.log('Like button toggled');
+            // Future: Add actual like logic (e.g., API call) here
         });
-    }
+    } else { console.warn("Like button not found."); }
 
-    // Placeholder for comment button functionality
+    // Comment button (Example: scroll to comments)
     const commentButton = document.querySelector('.comment-button');
     if (commentButton) {
         commentButton.addEventListener('click', () => {
-            // Add logic to scroll to comment section or open a modal
             console.log('Comment button clicked');
-            // Example: document.getElementById('comment-section').scrollIntoView();
+            // Example: Scroll to a potential comment section
+            // document.getElementById('comment-section')?.scrollIntoView({ behavior: 'smooth' });
         });
-    }
+    } else { console.warn("Comment button not found."); }
 
-     // Add copy link functionality
+    // Copy link button
     const copyLinkButton = document.querySelector('.share-buttons a[aria-label="Copy link"]');
     if (copyLinkButton) {
         copyLinkButton.addEventListener('click', (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Prevent default link navigation
             navigator.clipboard.writeText(window.location.href).then(() => {
-                // Optional: Show a temporary confirmation message
-                const originalIcon = copyLinkButton.innerHTML;
+                const originalIconHTML = copyLinkButton.innerHTML; // Store original icon
                 copyLinkButton.innerHTML = '<i class="fas fa-check"></i>'; // Show checkmark
+                copyLinkButton.disabled = true; // Briefly disable button
+                // Revert after a short delay
                 setTimeout(() => {
-                    copyLinkButton.innerHTML = originalIcon; // Revert icon
+                    copyLinkButton.innerHTML = originalIconHTML;
+                    copyLinkButton.disabled = false;
                 }, 1500);
             }).catch(err => {
                 console.error('Failed to copy link: ', err);
+                // Optional: Provide user feedback on failure
             });
         });
+    } else { console.warn("Copy link button not found."); }
+
+    // Setup other share buttons (construct URLs dynamically)
+    const pageUrl = encodeURIComponent(window.location.href);
+    const pageTitle = encodeURIComponent(document.title);
+    setupShareButton('.share-buttons a[aria-label="Share on Twitter"]', `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`);
+    setupShareButton('.share-buttons a[aria-label="Share on Facebook"]', `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`);
+    setupShareButton('.share-buttons a[aria-label="Share on LinkedIn"]', `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`);
+
+    console.log("Interactions Initialized");
+}
+
+// Helper function to set up share button URLs and attributes
+function setupShareButton(selector, url) {
+    const button = document.querySelector(selector);
+    if (button) {
+        button.href = url;
+        button.target = '_blank'; // Open in a new tab
+        button.rel = 'noopener noreferrer'; // Security best practice
+    } else {
+        console.warn(`Share button not found: ${selector}`);
     }
-
-    // Add logic for actual Facebook, Twitter, LinkedIn sharing
-    // You'll need to construct the correct share URLs
-    // Example for Twitter:
-    // const twitterButton = document.querySelector('.share-buttons a[aria-label="Share on Twitter"]');
-    // if (twitterButton) {
-    //     const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(document.title)}`;
-    //     twitterButton.href = shareUrl;
-    // }
 }
 
-// Add basic style for liked state (can be enhanced)
-const style = document.createElement('style');
-style.textContent = `
-.like-button.liked {
-    color: red; /* Or your theme's accent color */
-    border-color: red;
-}
-`;
-document.head.appendChild(style);
+// Note: Inline style injection for the like button was removed.
+// It's better to handle the .liked state styles purely in blog-post.css.
