@@ -3,7 +3,6 @@ const articlesData = [
     {
         title: "Wim Hof Breathing: Unlock Your Inner Superhuman",
         url: "/blog/wim-hof-breathing.html", // Absolute path from root
-        image: "/images/blog/wim-hof-preview.jpg", // Absolute path from root
         excerpt: "Discover the science and practice behind the Wim Hof Method, a powerful technique to boost immunity, energy, and resilience.",
         date: "2025-04-27", // Use YYYY-MM-DD format for sorting
         category: "Breathing Technique"
@@ -11,7 +10,6 @@ const articlesData = [
     {
         title: "Understanding Box Breathing",
         url: "/blog/box-breathing.html", // Absolute path
-        image: "/images/blog/box-breathing.jpg", // Absolute path
         excerpt: "Learn the simple yet effective box breathing technique to manage stress and improve concentration in minutes.",
         date: "2024-04-25",
         category: "Breathing Technique"
