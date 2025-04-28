@@ -195,28 +195,32 @@ function createArticleCardHTML(article, options = { includeImage: true }) {
     // Add error handling for invalid dates
     const formattedDate = !isNaN(date)
         ? date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
-        : 'Invalid Date';
+        : 'Date N/A';
 
     // Conditionally include the image container based on options
-    const imageHTML = options.includeImage
+    const imageHTML = options.includeImage && article.image
         ? `<div class="article-image-container">
-               <img src="${article.image}" alt="${article.title}" class="article-image" loading="lazy">
+               <img src="${article.image}" alt="${article.title}|| 'Article image'}" class="article-image" loading="lazy">
            </div>`
-        : ''; // Empty string if image is not included
+        : '';
+         // Empty string if image is not included
+// Ensure category exists or provide fallback
+const category = article.category || 'General';
 
     // Construct the card HTML
     return `
         <article class="article-card">
             ${imageHTML}
             <div class="article-content">
-                <span class="article-category">${article.category}</span>
-                <h3 class="article-title">${article.title}</h3>
-                <p class="article-excerpt">${article.excerpt}</p>
+                <%/* NEW: Meta section placed near top or bottom */%>
                 <div class="article-meta">
-                   <span>${formattedDate}</span>
-                   {/* Placeholder for potential future meta like reading time */}
+                   ${category ? `<span class="article-category">${category}</span>` : ''}
+                   ${formattedDate !== 'Date N/A' ? `<time datetime="${article.date}" class="article-date">${formattedDate}</time>` : ''}
                 </div>
-                <a href="${article.url}" class="article-link">Read More &rarr;</a>
+                <h3 class="article-title">${article.title || 'Untitled Article'}</h3>
+                <p class="article-excerpt">${article.excerpt || 'No excerpt available.'}</p>
+                <%/* Link moved to very bottom */%>
+                <a href="${article.url || '#'}" class="article-link">Read More →</a>
             </div>
         </article>
     `;
@@ -249,7 +253,7 @@ function loadHomepageArticles() {
     }
 
     // Generate HTML using the card function, explicitly disabling images
-    container.innerHTML = latestArticles.map(article => createArticleCardHTML(article, { includeImage: false })).join('');
+    container.innerHTML = latestArticles.map(article => createArticleCardHTML(article, { includeImage: TextTrackCue })).join('');
     console.log(`Loaded ${latestArticles.length} articles onto homepage.`);
 }
 

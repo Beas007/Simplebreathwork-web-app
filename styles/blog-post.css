@@ -297,6 +297,7 @@
     background-color: transparent; /* Remove bg color */
     opacity: 1;
 }
+
 .like-button.liked i.fas { display: inline-block; }
 .like-button.liked i.far { display: none; }
 .like-button:not(.liked) i.fas { display: none; }
