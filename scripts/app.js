@@ -241,18 +241,44 @@ function loadHomepageArticles() {
         return;
     }
 
-    // Sort articles by date, newest first
-    const sortedArticles = [...articlesData].sort((a, b) => new Date(b.date) - new Date(a.date));
-    const latestArticles = sortedArticles.slice(0, 3); // Get top 3
+    // --- MODIFIED LOGIC ---
+    // 1. Find the specific Wim Hof article by its URL (WITH leading slash)
+    const wimHofArticle = articlesData.find(article => article.url === '/blog/wim-hof-breathing.html'); // <-- CORRECTED URL
 
-    if (latestArticles.length === 0) {
+    // 2. Get other articles, sorted by date, excluding the Wim Hof one (WITH leading slash)
+    const sortedOtherArticles = [...articlesData]
+        .filter(article => article.url !== '/blog/wim-hof-breathing.html') // <-- CORRECTED URL
+        .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    // 3. Determine the articles to display (Wim Hof + up to 2 others)
+    let homepageArticles = [];
+    if (wimHofArticle) {
+        homepageArticles.push(wimHofArticle); // Add Wim Hof first if found
+        console.log("Found Wim Hof article:", wimHofArticle); // Add log to confirm
+    } else {
+        console.warn("Wim Hof article not found with URL '/blog/wim-hof-breathing.html'"); // Add warning if not found
+    }
+    // Add the next latest articles (up to 2) to fill the remaining spots
+    homepageArticles = homepageArticles.concat(sortedOtherArticles.slice(0, 3 - homepageArticles.length));
+
+    // --- END MODIFIED LOGIC ---
+
+
+    if (homepageArticles.length === 0) {
         container.innerHTML = '<p>No articles available yet.</p>';
         return;
     }
+    console.log("Wim Hof Article Found:", wimHofArticle); // See if it was found
+console.log("Other Articles Sorted:", sortedOtherArticles); // See the other articles
+console.log("Final Homepage Articles Array:", homepageArticles); // See the final list being used
 
     // Generate HTML using the card function, explicitly disabling images
-    container.innerHTML = latestArticles.map(article => createArticleCardHTML(article, { includeImage: TextTrackCue })).join('');
-    console.log(`Loaded ${latestArticles.length} articles onto homepage.`);
+    // CORRECTED: Use 'false', not 'TextTrackCue'
+    container.innerHTML = homepageArticles.map(article =>
+        createArticleCardHTML(article, { includeImage: false })
+    ).join('');
+
+    console.log(`Loaded ${homepageArticles.length} articles onto homepage.`);
 }
 
 // Function to load ALL articles onto the BLOG INDEX page (with images)

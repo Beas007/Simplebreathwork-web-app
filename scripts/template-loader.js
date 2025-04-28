@@ -64,6 +64,56 @@ async function loadComponent(placeholderId, componentPath) {
     }
 }
 
+async function loadArticleData() {
+    try {
+        const response = await fetch('/data/articles.json'); // Fetch article data
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        window.articlesData = data; // Assign data to global scope
+        console.log("Article data loaded successfully:", window.articlesData);
+
+        // --- ADD THIS SECTION ---
+        // Call functions that depend on articlesData AFTER it's loaded
+        if (typeof loadHomepageArticles === 'function') {
+            loadHomepageArticles(); // Call function to load articles on homepage
+        }
+        if (typeof loadAllBlogArticles === 'function') {
+            loadAllBlogArticles(); // Call function to load articles on blog index page
+        }
+        // --- END ADDED SECTION ---
+
+    } catch (error) {
+        console.error("Could not load article data:", error);
+        const articleContainer = document.getElementById('homepage-articles-grid') || document.getElementById('blog-posts-container');
+        if (articleContainer) {
+            articleContainer.innerHTML = '<p class="error-message">Sorry, could not load articles at this time.</p>';
+        }
+        window.articlesData = []; // Set to empty array on error
+    }
+}
+
+// Main execution block (ensure loadArticleData is called)
+document.addEventListener('DOMContentLoaded', async () => {
+    // Use Promise.all to load components concurrently
+    await Promise.all([
+        loadComponent('header', '/_header.html'),
+        loadComponent('footer', '/_footer.html')
+    ]);
+
+    // Load article data AFTER components are likely rendered (or adjust if independent)
+    await loadArticleData();
+
+    // Initialize theme switcher and other global UI elements
+    if (typeof initializeTheme === 'function') {
+        initializeTheme();
+    }
+    // ... any other initializations ...
+    console.log("Template loader finished initialization.");
+});
+
+
 function loadScript(src) {
     // Prevent duplicate loading
     if (document.querySelector(`script[src="${src}"]`)) {
