@@ -316,3 +316,32 @@
     .feedback-buttons button { padding: 0.3rem 0.8rem; font-size: 0.9rem; }
     .share-buttons a { width: 32px; height: 32px; font-size: 0.9rem; }
 }
+/* --- Back Link --- */
+.back-link-container {
+    margin-bottom: 1.5rem; /* Space below the back link */
+    padding-top: 1rem; /* Add some space above if needed */
+}
+
+.back-link {
+    color: var(--text-muted, var(--text));
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-block; /* Allows padding/margin */
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.back-link:hover {
+    color: var(--accent-color, #6E48AA);
+    background-color: var(--card-bg-hover, #eee);
+}
+
+/* --- TOC Controls (Dropdown Style) --- */
+.toc-controls {
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--shadow-light, #eee);
+}

@@ -13,47 +13,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <header>
-        <!-- Header component loaded by template-loader.js -->
-        <nav class="navbar">
-            <div class="container navbar-content">
-                <a href="/" class="navbar-brand"> <!-- Changed to / -->
-                    <img src="/images/logo.png" alt="Simple Breathwork Logo" class="logo"> <!-- Changed to /images... -->
-                    <span>Simple Breathwork</span>
-                </a>
-                <button class="navbar-toggler" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbar-menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="navbar-menu" id="navbar-menu">
-                    <ul class="navbar-nav">
-                        <li><a href="/">Home</a></li> <!-- Changed to / -->
-                        <li><a href="/blog.html">Blog</a></li> <!-- Changed to /blog.html -->
-                        <li><a href="/app.html">Breathwork</a></li> <!-- Changed to /app.html -->
-                        <li><a href="/about.html">About Us</a></li> <!-- Changed to /about.html -->
-                        <!-- Add other links as needed, using root-relative paths -->
-                    </ul>
-                    <button class="navbar-close" aria-label="Close navigation">
-                        <i class="fas fa-times"></i>
-                    </button>
-                    <!-- Optional: Theme toggle or other elements -->
-                    <div class="theme-switcher">
-                        <button id="theme-toggle-button" aria-label="Toggle theme">
-                            <i class="fas fa-sun"></i> <!-- Sun icon for light -->
-                            <i class="fas fa-moon" style="display: none;"></i> <!-- Moon icon for dark -->
-                        </button>
-                    </div>
-                     <a href="/feedback.html" class="btn btn-primary btn-small feedback-button-header">Share Feedback</a> <!-- Changed to /feedback.html -->
-                </div>
-            </div>
-        </nav>
-    </header>
 
     <!-- Standard page container for consistent width and padding -->
     <main class="container">
 
         <!-- Main article content area -->
         <article class="article-content">
-
+             <!-- Back Link -->
+        <div class="back-link-container">
+            <a href="/blog.html" class="back-link">&larr; Back to Blog</a>
+        </div>
             <!-- TOC Toggle Button and Dropdown Container -->
             <div class="toc-controls">
                 <button id="toc-toggle-button" class="toc-toggle-button" aria-expanded="false" aria-controls="toc-dropdown-menu">
@@ -336,28 +305,10 @@
         </article>
     </main>
 
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-links">
-                <a href="/about.html">About Us</a> | <!-- Changed to /about.html -->
-                <a href="/privacy.html">Privacy Policy</a> | <!-- Changed to /privacy.html -->
-                <a href="/terms.html">Terms of Use</a> | <!-- Changed to /terms.html -->
-                <a href="/blog.html">Blog</a> <!-- Changed to /blog.html -->
-                <!-- Add other links as needed -->
-            </div>
-            <div class="footer-social">
-                <!-- Add social media links if desired -->
-                <!-- Example: <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a> -->
-            </div>
-            <div class="footer-copyright">
-                &copy; 2025 Simple Breathwork. All rights reserved.
-            </div>
-        </div>
-    </footer>
 
     <!-- Load main template script (loads header/footer, app.js) -->
-    <script src="../scripts/template-loader.js"></script>
+    <script src="/scripts/template-loader.js"></script>
     <!-- Load script specific to blog post functionality (TOC, interactions) -->
-    <script src="../scripts/blog-post.js"></script>
+    <script src="/scripts/blog-post.js"></script>
 </body>
 </html>
