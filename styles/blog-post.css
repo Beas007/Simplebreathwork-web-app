@@ -82,13 +82,22 @@
 /* --- Article Content Area --- */
 .article-content {
     color: var(--text);
-    line-height: 1.6; /* Reverted line height */
-    /* max-width: 800px; */ /* Removed max-width constraint */
+    line-height: 1.7; /* Increase for better readability */
+    font-size: 1.05rem; /* Slightly larger base font for posts */
+    /* Consider slightly wider max-width for better line length on large screens */
+    max-width: 850px; 
     margin-left: auto;
     margin-right: auto;
 }
 
 /* --- Headings --- */
+.article-content h1,
+.article-content h2,
+.article-content h3 {
+     line-height: 1.3; /* Tighter line height for headings */
+     font-weight: 600; /* Ensure sufficient weight */
+}
+
 .article-content h1 {
     font-size: clamp(2rem, 5vw, 2.5rem); /* Reverted font size */
     margin-bottom: 1.5rem; /* Reverted margin */
@@ -97,16 +106,16 @@
 }
 .article-content h2 {
     font-size: clamp(1.5rem, 4vw, 2rem); /* Reverted font size */
-    margin-top: 2.5rem; /* Reverted margin */
+    margin-top: 3rem; /* Reverted margin */
     margin-bottom: 1rem; /* Reverted margin */
-    padding-bottom: 0.3rem; /* Reverted padding */
-    border-bottom: 1px solid var(--shadow, #ddd);
+    padding-bottom: 0.5rem; /* Reverted padding */
+    border-bottom: 1px solid var(--shadow-light, #eee);
     color: var(--text);
 }
 .article-content h3 {
     font-size: clamp(1.2rem, 3vw, 1.5rem); /* Reverted font size */
     margin-top: 2rem; /* Reverted margin */
-    margin-bottom: 0.8rem; /* Reverted margin */
+    margin-bottom: 1rem; /* Reverted margin */
     color: var(--text);
 }
 
@@ -114,7 +123,7 @@
 .article-content p,
 .article-content ul,
 .article-content ol {
-    margin-bottom: 1rem; /* Reverted margin */
+    margin-bottom: 1.25rem; /* Reverted margin */
     font-size: 1rem; /* Standard font size */
 }
 .article-content ul,
@@ -122,11 +131,46 @@
     padding-left: 1.5rem; /* Reverted indent */
 }
 .article-content li {
-    margin-bottom: 0.5rem; /* Reverted margin */
-    padding-left: 0.3rem; /* Reverted indent */
+    margin-bottom: 0.6rem; /* Reverted margin */
+    padding-left: 0.5rem; /* Reverted indent */
 }
 .article-content ul { list-style-type: disc; }
 .article-content ol { list-style-type: decimal; }
+
+/* --- Blockquotes --- */
+.article-content blockquote {
+    /* More modern blockquote style */
+    border-left: 3px solid var(--wim-text); /* Use accent color */
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background-color: var(--card-bg); /* Match card background */
+    border-radius: 0 8px 8px 0; /* Slightly larger radius */
+    font-style: normal; /* Often preferred over italic */
+    font-size: 1rem;
+    color: var(--text);
+    opacity: 0.9;
+}
+.article-content blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Call to Action Button --- */
+.article-content a.cta-button {
+    /* Make buttons more distinct */
+    display: inline-block;
+    padding: 0.8rem 1.8rem; /* Adjust padding */
+    margin: 1.5rem 0; /* Adjust margin */
+    border-radius: 25px; /* Pill shape */
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0, 0.1);
+    /* Ensure the Wim Hof specific styles override */
+}
+.article-content a.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0, 0.15);
+}
 
 /* --- Links within article --- */
 .article-content a:not(.cta-button):not(.btn) {
@@ -172,18 +216,6 @@
      font-size: 0.9em;
 }
 
-/* --- Blockquotes --- */
-.article-content blockquote {
-    margin: 1.5rem 0; /* Reverted margin */
-    padding: 1rem 1.5rem; /* Reverted padding */
-    border-left: 4px solid var(--accent-color, #6E48AA); /* Reverted border */
-    background-color: var(--card-bg, #f9f9f9);
-    color: var(--text-muted, var(--text));
-    font-style: italic;
-    font-size: 1rem; /* Reverted font size */
-    border-radius: 0 6px 6px 0; /* Reverted radius */
-}
-.article-content blockquote p { margin-bottom: 0; }
 
 /* --- Call to Action Button Styling (for App Links) --- */
 /* Style specifically for Wim Hof links within the article */
@@ -214,20 +246,15 @@
 .article-interactions {
     margin-top: 3rem; /* Reverted margin */
     padding-top: 1.5rem; /* Reverted padding */
-    border-top: 1px solid var(--shadow, #ddd);
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem; /* Reverted gap */
+    border-top: 1px solid var(--shadow-light, #eee);
 }
 
-.share-buttons span,
-.feedback-buttons span {
-    margin-right: 0.5rem;
-    font-weight: 500;
-    color: var(--text-muted, var(--text));
-    font-size: 0.9rem;
+.share-buttons a,
+.feedback-buttons button {
+    border: 1px solid var(--shadow-light, #ccc); /* Lighter border */
+    color: var(--text);
+    opacity: 0.8;
+    transition: all 0.2s ease;
 }
 
 .share-buttons a,
@@ -257,16 +284,18 @@
 
 .share-buttons a:hover,
 .feedback-buttons button:hover {
-    background-color: var(--card-bg-hover, var(--card-bg, #eee));
-    color: var(--accent-color, #6E48AA);
-    border-color: var(--accent-color, #6E48AA);
+    opacity: 1;
+    border-color: var(--text);
+    background-color: var(--card-bg); /* Subtle background on hover */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
 }
 
 /* Liked state */
 .like-button.liked {
-    color: var(--accent-color, #e1306c); /* Use accent color for liked state */
-    border-color: var(--accent-color, #e1306c);
-    background-color: var(--accent-color-light-bg, rgba(110, 72, 170, 0.1)); /* Use light accent bg */
+    border-color: var(--wim-text); /* Use accent color */
+    color: var(--wim-text);
+    background-color: transparent; /* Remove bg color */
+    opacity: 1;
 }
 .like-button.liked i.fas { display: inline-block; }
 .like-button.liked i.far { display: none; }
