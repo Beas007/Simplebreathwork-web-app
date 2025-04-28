@@ -212,14 +212,12 @@ const category = article.category || 'General';
         <article class="article-card">
             ${imageHTML}
             <div class="article-content">
-                <%/* NEW: Meta section placed near top or bottom */%>
                 <div class="article-meta">
                    ${category ? `<span class="article-category">${category}</span>` : ''}
                    ${formattedDate !== 'Date N/A' ? `<time datetime="${article.date}" class="article-date">${formattedDate}</time>` : ''}
                 </div>
                 <h3 class="article-title">${article.title || 'Untitled Article'}</h3>
                 <p class="article-excerpt">${article.excerpt || 'No excerpt available.'}</p>
-                <%/* Link moved to very bottom */%>
                 <a href="${article.url || '#'}" class="article-link">Read More →</a>
             </div>
         </article>
