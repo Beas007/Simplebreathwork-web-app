@@ -1,0 +1,80 @@
+<h1>Contributing Guidelines</h1>
+<h2>Project Setup</h2>
+<h3>File Structure</h3>
+<pre><code class="language-bash">simplebreathwork-web-app/
+├── scripts/
+│   ├── app.js          # Core application logic
+│   ├── page.js         # Page-specific functionality
+│   └── template-loader.js  # Component loading system
+├── styles/
+│   └── main.css        # Global styles
+└── components/
+    ├── header.html     # Navigation component
+    └── footer.html     # Footer component
+</code></pre>
+<h3>Code Style Guide</h3>
+<h4>JavaScript</h4>
+<ul>
+<li>Use <code>const</code> and <code>let</code> (avoid <code>var</code>)</li>
+<li>Follow camelCase naming convention</li>
+<li>Add JSDoc comments for functions</li>
+<li>Use 2 spaces for indentation</li>
+<li>Keep functions small and focused</li>
+</ul>
+<pre><code class="language-javascript">// Good example
+const initializeTheme = () =&gt; {
+  const themeToggle = document.getElementById('theme-toggle');
+  // ...rest of code
+};
+
+// Bad example
+var init = function() {
+    // Too generic name, inconsistent spacing
+}
+</code></pre>
+<h4>CSS</h4>
+<ul>
+<li>Use CSS variables for theming</li>
+<li>Follow BEM naming convention</li>
+<li>Group related properties</li>
+<li>Add comments for complex selectors</li>
+</ul>
+<h4>HTML</h4>
+<ul>
+<li>Use semantic elements</li>
+<li>Include proper ARIA attributes</li>
+<li>Keep components modular</li>
+<li>Validate accessibility</li>
+</ul>
+<h3>VS Code Setup</h3>
+<h4>Required Extensions</h4>
+<ul>
+<li>ESLint</li>
+<li>Prettier</li>
+<li>Live Server</li>
+</ul>
+<h4>Workspace Settings</h4>
+<pre><code class="language-json">{
+  &quot;editor.formatOnSave&quot;: true,
+  &quot;editor.tabSize&quot;: 2,
+  &quot;files.encoding&quot;: &quot;utf8&quot;
+}
+</code></pre>
+<h4>Mac Shortcuts</h4>
+<ul>
+<li>Save: ⌘ + S</li>
+<li>Format: ⌘ + Shift + F</li>
+<li>Terminal: ⌘ + `</li>
+<li>Quick Open: ⌘ + P</li>
+</ul>
+<h3>Git Workflow</h3>
+<pre><code class="language-bash"># Start new feature
+git checkout -b feature/name
+
+# Commit changes
+git add .
+git commit -m &quot;feat: description&quot;
+
+# Push changes
+git push origin feature/name
+</code></pre>

@@ -1,0 +1,87 @@
+
+---
+layout: base.html
+title: Share Feedback - Simple Breathwork
+description: Have feedback for Simple Breathwork? Use our quick form to share your thoughts, report issues, or suggest new features for our free breathwork exercises.
+additional_head_content: '<link rel="stylesheet" href="/styles/feedback.css">'
+additional_scripts: '<script src="/scripts/feedback.js"></script>'
+--- 
+  
+    <main>
+        <!-- Add after navbar -->
+<div class="page-hero">
+    <h1>Share Your Feedback</h1>
+    <p>Help us improve your breathing experience</p>
+</div>
+        <div class="feedback-container">
+            <div class="form-wrapper">
+                <form id="feedbackForm" class="feedback-form">
+                    <div class="form-group">
+                        <label for="name">Name (optional)</label>
+                        <input type="text" id="name" name="name" placeholder="Your name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email (optional)</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feedback-type">Type of Feedback*</label>
+                        <select id="feedback-type" name="feedbackType" required>
+                            <option value="">Choose a category...</option>
+                            <option value="general">General Feedback</option>
+                            <option value="bug">Report an Issue</option>
+                            <option value="feature">Feature Request</option>
+                            <option value="technique">Breathing Technique Feedback</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feedback">Your Feedback*</label>
+                        <textarea id="feedback" name="feedback" required 
+                                placeholder="Please share your thoughts..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Feedback</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Theme handling
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('theme-toggle');
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeButton(savedTheme);
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeButton(newTheme);
+            });
+            
+            function updateThemeButton(theme) {
+                themeToggle.textContent = theme === 'light' ? '🌙 Night Mode' : '☀️ Day Mode';
+            }
+            
+            // Form handling
+            const feedbackForm = document.getElementById('feedbackForm');
+            feedbackForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your feedback! We appreciate your input.');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            });
+        });
+    </script>
+   
+    <!-- Add before closing body tag in about.html, privacy.html, terms.html, feedback.html, and blog.html -->
+<script src="scripts/page.js"></script>
+</body>
+</html>
