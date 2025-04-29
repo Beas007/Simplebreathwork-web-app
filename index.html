@@ -104,25 +104,18 @@ additional_scripts: '' # No page-specific scripts identified for index
     <section class="blog-container">
         <h2 class="section-title">Latest Articles</h2>
         <div class="articles-grid">
-            {# Start the loop here. It will iterate through each item (post) in the 'post' collection #}
             {% for post in collections.post %}
-                {# This <article> block and its content will be generated for *each* post #}
                 <article class="article-card">
                     <div class="article-content">
-                        {# You can keep this static, or if category is in front matter (e.g., category: "Breathing Technique"), use {{ post.data.category }} #}
                         <span class="article-category">Breathing Technique</span>
-                        {# Use {{ post.data.title }} to get the title from the post's front matter #}
                         <h3 class="article-title">{{ post.data.title }}</h3>
-                        {# Use {{ post.data.description }} (or an 'excerpt' variable if you add one to front matter) #}
                         <p class="article-excerpt">
                             {{ post.data.description }}
                         </p>
-                        {# Use {{ post.url }} to get the URL Eleventy generated for the post #}
                         <a href="{{ post.url }}" class="article-link">Read More →</a>
                     </div>
                 </article>
-            {% endfor %} {# End the loop #}
-            {# You can remove the "Add more article cards as needed" comment now #}
+            {% endfor %}
         </div>
             </section>
         </main>

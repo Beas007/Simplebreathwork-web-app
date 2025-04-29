@@ -135,25 +135,7 @@
     <section class="blog-container">
         <h2 class="section-title">Latest Articles</h2>
         <div class="articles-grid">
-            {# Start the loop here. It will iterate through each item (post) in the 'post' collection #}
             
-                {# This <article> block and its content will be generated for *each* post #}
-                <article class="article-card">
-                    <div class="article-content">
-                        {# You can keep this static, or if category is in front matter (e.g., category: "Breathing Technique"), use  #}
-                        <span class="article-category">Breathing Technique</span>
-                        {# Use Wim Hof Breathing- Unlock Your Inner Superhuman to get the title from the post's front matter #}
-                        <h3 class="article-title">Wim Hof Breathing- Unlock Your Inner Superhuman</h3>
-                        {# Use Learn the science, benefits, and step-by-step technique of Wim Hof breathing. (or an 'excerpt' variable if you add one to front matter) #}
-                        <p class="article-excerpt">
-                            Learn the science, benefits, and step-by-step technique of Wim Hof breathing.
-                        </p>
-                        {# Use /posts/2025-4-29-wim-hof-breathing/ to get the URL Eleventy generated for the post #}
-                        <a href="/posts/2025-4-29-wim-hof-breathing/" class="article-link">Read More →</a>
-                    </div>
-                </article>
-             {# End the loop #}
-            {# You can remove the "Add more article cards as needed" comment now #}
         </div>
             </section>
         </main>
