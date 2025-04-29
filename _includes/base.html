@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Default Description (can be overridden) -->
-    <meta name="description" content="{{ page_description | default('Learn simple breathwork techniques for relaxation, focus, and well-being.') }}">
+    <meta name="description" content="{{ page_description | default: 'Learn simple breathwork techniques for relaxation, focus, and well-being.' }}">
     <!-- Dynamic Page Title -->
-    <title>{{ page_title | default('Simple Breathwork') }}</title>
+    <title>{{ page_title | default: 'Simple Breathwork' }}</title>
 
     <!-- Common Stylesheets -->
     <link rel="stylesheet" href="/styles/main.css">
