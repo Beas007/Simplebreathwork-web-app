@@ -1,17 +1,17 @@
 ---
 layout: article.html
-title: Wim Hof Breathing: Unlock Your Inner Superhuman
+title: Wim Hof Breathing- Unlock Your Inner Superhuman
 date: 2023-10-27
 description: Learn the science, benefits, and step-by-step technique of Wim Hof breathing.
-# author: Your Name
-# tags:
-#   - wim hof
+# author: Your Name # Example of a commented-out line
+# tags: # Example of a list key
+#   - wim hof # List items are indented
 #   - breathing
 #   - cold exposure
 #   - science
 ---
 
-# Wim Hof Breathing: Unlock Your Inner Superhuman
+
 
 ## 1. Executive Summary
 
