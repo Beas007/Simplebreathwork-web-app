@@ -6,14 +6,7 @@ const articlesData = [
         excerpt: "Discover the science and practice behind the Wim Hof Method, a powerful technique to boost immunity, energy, and resilience.",
         date: "2025-04-27", // Use YYYY-MM-DD format for sorting
         category: "Breathing Technique"
-    },
-    {
-        title: "Understanding Box Breathing",
-        url: "/blog/box-breathing.html", // Absolute path
-        excerpt: "Learn the simple yet effective box breathing technique to manage stress and improve concentration in minutes.",
-        date: "2024-04-25",
-        category: "Breathing Technique"
-    },
+    }
     // --- Add future articles below ---
     // {
     //     title: "Understanding Belly Breathing (Diaphragmatic Breathing)",
