@@ -6,10 +6,11 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("components");// if you have an images folder
     // Optional: Add collection for blog posts if needed (as suggested earlier)
     eleventyConfig.addCollection("post", function(collectionApi) {
+        return collectionApi.getFilteredByGlob("post/*.md"); // <-- Corrected path
+      });
       // Make sure the glob pattern matches your post file location (e.g., posts/*.md or content/blog/*.md)
       // Based on your error message, it seems like your posts are in ./posts/
-      return collectionApi.getFilteredByGlob("posts/*.md");
-    });
+     
   
     // Add date filters
     eleventyConfig.addFilter("htmlDateString", (dateObj) => {
