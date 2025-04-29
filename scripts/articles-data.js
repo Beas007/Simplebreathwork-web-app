@@ -20,3 +20,4 @@ const articlesData = [
 
 // No export needed if loaded globally via <script> by template-loader.js
 // No other functions should be in this file.
+
