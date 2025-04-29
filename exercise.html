@@ -1,50 +1,34 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E6Q283JEH"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-6E6Q283JEH');
-    </script>
-    <meta charset="UTF-8">
+---
+layout: base.html
+title: Breathing Exercise
+description: Start your FREE guided breathwork session. Follow the simple visual guide and timer to practice techniques like Box Breathing or Wim Hof. Find calm now!
+# Add specific CSS for this page
+additional_head_content: |
+    <link rel="stylesheet" href="/styles/exercise.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Start your FREE guided breathwork session. Follow the simple visual guide and timer to practice techniques like Box Breathing or Wim Hof. Find calm now!">
-    <title>Breathing Exercise</title>
+# Add specific JS for this page
+additional_scripts: '<script src="/scripts/exercise.js"></script>'
+# Note: Google Analytics, Favicons, Manifest assumed to be moved to base.html
+---
 
-    <!-- Standard favicon links -->
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <!-- Assuming you have a manifest file -->
-    <link rel="manifest" href="/site.webmanifest">
-
-    <link rel="stylesheet" href="styles/exercise.css">
-</head>
-<body>
-    <div class="exercise-container">
-        <div class="breathing-guide">
-            <div class="breath-animation">
-                <div class="circle">
-                    <div class="breathing-text-container">
-                        <div class="main-text"></div>
-                        <div class="sub-text"></div>
-                    </div>
-                    <!-- Ensure your indicators are here if needed -->
-                        <div class="breathing-indicator"> 
-                        <div class="arrow-up"></div>
-                        <div class="arrow-down"></div> 
-                     </div> 
+<!-- Unique page content starts here -->
+<div class="exercise-container">
+    <div class="breathing-guide">
+        <div class="breath-animation">
+            <div class="circle">
+                <div class="breathing-text-container">
+                    <div class="main-text"></div>
+                    <div class="sub-text"></div>
                 </div>
+                <div class="breathing-indicator">
+                    <div class="arrow-up"></div>
+                    <div class="arrow-down"></div>
+                 </div>
             </div>
-            <div class="timer"></div>
         </div>
-        <!-- Keeping original onclick for now - address later if CSP requires removal -->
-        <button class="exit-btn" onclick="window.location.href='index.html'">Exit</button>
+        <div class="timer"></div>
     </div>
-    <script src="scripts/exercise.js"></script>
-</body>
-</html>
+    <!-- Consider replacing onclick with an event listener in exercise.js for better CSP -->
+    <button class="exit-btn" onclick="window.location.href='/index.html'">Exit</button>
+</div>
+<!-- Unique page content ends here -->

@@ -1,0 +1,14 @@
+---
+layout: base.html
+---
+<article>
+    <h1>{{ title }}</h1>
+    <p>Published: <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time></p>
+    <!-- You might add author, tags here -->
+
+    <div>
+        {{ content }} <!-- This is where the article's markdown content goes -->
+    </div>
+
+    <!-- Maybe add a comments section placeholder or navigation to other posts -->
+</article>
