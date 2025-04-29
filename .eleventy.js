@@ -2,7 +2,8 @@ module.exports = function(eleventyConfig) {
     // Copy static assets (CSS, JS, images, etc.) to the output directory
     eleventyConfig.addPassthroughCopy("styles");
     eleventyConfig.addPassthroughCopy("scripts");
-    eleventyConfig.addPassthroughCopy("images"); // if you have an images folder
+    eleventyConfig.addPassthroughCopy("images"); 
+    eleventyConfig.addPassthroughCopy("components");// if you have an images folder
     // Optional: Add collection for blog posts if needed (as suggested earlier)
     eleventyConfig.addCollection("post", function(collectionApi) {
       // Make sure the glob pattern matches your post file location (e.g., posts/*.md or content/blog/*.md)
