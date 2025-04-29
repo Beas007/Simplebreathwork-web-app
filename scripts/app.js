@@ -200,7 +200,7 @@ function createArticleCardHTML(article, options = { includeImage: true }) {
     // Conditionally include the image container based on options
     const imageHTML = options.includeImage && article.image
         ? `<div class="article-image-container">
-               <img src="${article.image}" alt="${article.title}|| 'Article image'}" class="article-image" loading="lazy">
+                 <img src="${article.image}" alt="${article.title || 'Article image'}" class="article-image" loading="lazy">
            </div>`
         : '';
          // Empty string if image is not included
