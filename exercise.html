@@ -2,14 +2,12 @@
 layout: base.html
 title: Breathing Exercise
 description: Start your FREE guided breathwork session. Follow the simple visual guide and timer to practice techniques like Box Breathing or Wim Hof. Find calm now!
-# Add specific CSS for this page
 additional_head_content: |
     <link rel="stylesheet" href="/styles/exercise.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-# Add specific JS for this page
 additional_scripts: '<script src="/scripts/exercise.js"></script>'
-# Note: Google Analytics, Favicons, Manifest assumed to be moved to base.html
 ---
+
 
 <!-- Unique page content starts here -->
 <div class="exercise-container">
@@ -29,6 +27,6 @@ additional_scripts: '<script src="/scripts/exercise.js"></script>'
         <div class="timer"></div>
     </div>
     <!-- Consider replacing onclick with an event listener in exercise.js for better CSP -->
-    <button class="exit-btn" onclick="window.location.href='/index.html'">Exit</button>
+    <button class="exit-btn" id="exit-exercise-btn">Exit</button> <!-- Added ID for JS hook -->
 </div>
 <!-- Unique page content ends here -->

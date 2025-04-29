@@ -1,67 +1,18 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
-<head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6E6Q283JEH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+---
+layout: base.html
+title: About Us - Simple Breathwork
+description: Learn more about the mission and team behind Simple Breathwork, dedicated to making breathwork accessible.
+additional_head_content: '<link rel="stylesheet" href="/styles/about.css">' # Assuming specific styles exist
+additional_scripts: ''
+---
 
-  gtag('config', 'G-6E6Q283JEH');
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Learn about Simple Breathwork. Our mission is to provide FREE, accessible, science-backed breathwork exercises. Explore the benefits & practice guides.">
-    <title>About Us - Simple Breathwork</title>
-    <!-- Standard favicon links -->
-  <link rel="icon" href="/favicon.ico" sizes="any"> <!-- Fallback ICO -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-  
-  <!-- iOS specific -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-  
-  <!-- Optional: Android/Web App Manifest -->
-  <link rel="manifest" href="/site.webmanifest"> 
-  <!-- <meta name="theme-color" content="#ffffff"> -->
+{% extends "-includes/base.html" %}
 
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/about.css">
-    <script>
-        // Initialize theme from localStorage
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-    </script>
-</head>
-<body>
-    <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <a href="#" class="logo">Simple Breathwork</a>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <ul class="nav-menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="blog.html">Blog</a></li> 
-                    <li><a href="exercise.html">Breathwork</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Use</a></li>
-                    <li><button onclick="window.location.href='feedback.html'">Share Feedback</button></li>
-                </ul>
-                <button id="theme-toggle" class="theme-toggle" aria-label="Switch theme">
-                    🌙 Night Mode
-                </button>
-            </div>
-        </nav>
-    </header>
+{% block title %}About Us{% endblock %}
 
-    <main>
-        <!-- Add after navbar -->
+{% block content %}
+<main>
+    <!-- Add after navbar -->
 <div class="page-hero">
     <h1>About Us</h1>
     <p>Learn more about Simple Breathwork and our mission</p>
@@ -189,24 +140,5 @@
             <!-- Technique cards with expandable details -->
         </div>
         </div>  
-    </main>
-    <script src="scripts/main.js"></script>
-    <script src="scripts/about.js"></script>
-    <footer>
-        <div class="links">
-            <a href="index.html">Home</a>
-            <a href="blog.html">Blog</a>
-        <a href="exercise.html">Breathwork</a>
-            <a href="about.html">About Us</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Use</a>
-            <button onclick="window.location.href='feedback.html'">Share Feedback</button>
-        </div>
-        <div class="copyright">
-            © <span id="copyright-year">2024</span> simplebreathwork.com All Rights Reserved.
-        </div>
-    </footer>
-    <!-- Add before closing body tag in about.html, privacy.html, terms.html, feedback.html, and blog.html -->
-<script src="scripts/page.js"></script>
-</body>
-</html>
+</main>
+{% endblock %}
