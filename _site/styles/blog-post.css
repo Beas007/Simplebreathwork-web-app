@@ -1,19 +1,108 @@
-/* --- TOC Controls --- */
-.toc-controls {
-    position: relative;
-    margin-bottom: 1.5rem; /* Reverted margin */
-    padding-bottom: 1rem; /* Reverted padding */
+/* --- Article Content Area --- */
+.article-content {
+    color: var(--text);
+    line-height: 1.7; /* Increase for better readability */
+    font-size: 1.05rem; /* Slightly larger base font for posts */
+    /* Consider slightly wider max-width for better line length on large screens */
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem; /* Add some padding for spacing */
+}
+
+/* --- Headings --- */
+.article-content h1,
+.article-content h2,
+.article-content h3 {
+     line-height: 1.3; /* Tighter line height for headings */
+     font-weight: 600; /* Ensure sufficient weight */
+}
+
+.article-content h1 {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    margin-bottom: 1rem; /* Adjusted margin */
+    line-height: 1.2;
+    color: var(--text);
+    text-align: center; /* Center main title */
+}
+
+/* Publish Date Styling */
+.publish-date {
+    color: var(--color-text-muted, #666);
+    font-size: 0.9rem;
+    text-align: center; /* Center date below title */
+    margin-bottom: 1.5rem; /* Space below date */
+}
+
+.article-content h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--shadow-light, #eee);
+    color: var(--text);
+}
+.article-content h3 {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+/* --- Back Link --- */
+.back-link-container {
+    text-align: center; /* Center the link */
+    margin-bottom: 1.5rem; /* Space below the link */
+    /* padding-top: 1rem; */ /* Removed, handled by article padding */
+}
+
+.back-link {
+    display: inline-block; /* Allows padding/margin */
+    padding: 0.5rem 1rem; /* Use consistent padding */
+    background-color: var(--color-background-alt, #f0f0f0); /* Use theme variable or fallback */
+    color: var(--color-text, #333);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 500; /* Added from original style */
+}
+
+.back-link:hover,
+.back-link:focus {
+    background-color: var(--color-primary, #007bff); /* Use theme variable or fallback */
+    color: var(--color-background, #fff);
+    /* Keep hover style consistent */
+}
+
+
+/* --- Sticky Table of Contents Container --- */
+.toc-container {
+    position: sticky;
+    top: 10px; /* Adjust this value based on your header height or desired spacing */
+    z-index: 100; /* Ensure it stays above other content */
+    margin-bottom: 1.5rem; /* Space below TOC */
+    background-color: var(--background, #fff); /* Give it a background to avoid content showing through */
+    padding: 5px 0; /* Optional padding */
+    border-bottom: 1px solid var(--shadow-light, #eee); /* Optional separator */
+}
+
+/* --- TOC Controls (Dropdown Style) --- */
+.toc-controls {
+    position: relative; /* Needed for dropdown positioning */
+    /* Centering can be done via parent (.toc-container) if needed, or keep left */
+    /* max-width: var(--container-width); */
+    /* margin: 0 auto; */
 }
 
 .toc-toggle-button {
     background-color: var(--card-bg, #f9f9f9);
     color: var(--text);
     border: 1px solid var(--shadow, #ddd);
-    padding: 0.5rem 1rem; /* Reverted padding */
+    padding: 0.5rem 1rem;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 0.9rem; /* Reverted font size */
+    font-size: 0.9rem;
     font-weight: 500;
     display: inline-flex;
     align-items: center;
@@ -37,12 +126,12 @@
     border: 1px solid var(--shadow, #ddd);
     border-radius: 8px;
     box-shadow: 0 5px 15px var(--shadow-light, rgba(0, 0, 0, 0.1));
-    z-index: 100;
-    padding: 0.8rem; /* Adjusted padding */
+    z-index: 101; /* Above sticky container */
+    padding: 0.8rem;
     margin-top: 0.5rem;
-    min-width: 280px; /* Adjusted width */
+    min-width: 280px;
     max-width: 90vw;
-    max-height: 60vh; /* Adjusted height */
+    max-height: 60vh;
     overflow-y: auto;
     opacity: 0;
     visibility: hidden;
@@ -60,191 +149,125 @@
 .toc ul { list-style: none; padding-left: 0; margin: 0; }
 .toc li a {
     display: block;
-    padding: 0.5rem 0.3rem; /* Reverted padding */
+    padding: 0.5rem 0.3rem;
     color: var(--text-muted, var(--text));
     text-decoration: none;
-    font-size: 0.85rem; /* Reverted font size */
+    font-size: 0.85rem;
     border-left: 3px solid transparent;
     transition: background-color 0.2s ease, color 0.2s ease, border-left-color 0.2s ease;
     border-radius: 4px;
-    line-height: 1.3; /* Reverted line height */
+    line-height: 1.3;
 }
 .toc li a:hover {
     background-color: var(--card-bg-hover, #eee);
     color: var(--text);
 }
 .toc .subheading a {
-    padding-left: 1.2rem; /* Reverted indent */
-    font-size: 0.8rem; /* Reverted font size */
+    padding-left: 1.2rem;
+    font-size: 0.8rem;
     opacity: 0.9;
 }
 
-/* --- Article Content Area --- */
-.article-content {
-    color: var(--text);
-    line-height: 1.7; /* Increase for better readability */
-    font-size: 1.05rem; /* Slightly larger base font for posts */
-    /* Consider slightly wider max-width for better line length on large screens */
-    max-width: 850px; 
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* --- Headings --- */
-.article-content h1,
-.article-content h2,
-.article-content h3 {
-     line-height: 1.3; /* Tighter line height for headings */
-     font-weight: 600; /* Ensure sufficient weight */
-}
-
-.article-content h1 {
-    font-size: clamp(2rem, 5vw, 2.5rem); /* Reverted font size */
-    margin-bottom: 1.5rem; /* Reverted margin */
-    line-height: 1.2;
-    color: var(--text);
-}
-.article-content h2 {
-    font-size: clamp(1.5rem, 4vw, 2rem); /* Reverted font size */
-    margin-top: 3rem; /* Reverted margin */
-    margin-bottom: 1rem; /* Reverted margin */
-    padding-bottom: 0.5rem; /* Reverted padding */
-    border-bottom: 1px solid var(--shadow-light, #eee);
-    color: var(--text);
-}
-.article-content h3 {
-    font-size: clamp(1.2rem, 3vw, 1.5rem); /* Reverted font size */
-    margin-top: 2rem; /* Reverted margin */
-    margin-bottom: 1rem; /* Reverted margin */
-    color: var(--text);
+/* --- Main Article Body --- */
+.article-body {
+    padding-top: 1rem; /* Add some padding if the sticky TOC overlaps */
 }
 
 /* --- Paragraphs and Lists --- */
-.article-content p,
-.article-content ul,
-.article-content ol {
-    margin-bottom: 1.25rem; /* Reverted margin */
-    font-size: 1rem; /* Standard font size */
+.article-body p,
+.article-body ul,
+.article-body ol {
+    margin-bottom: 1.25rem;
+    font-size: 1rem; /* Standard font size within article body */
 }
-.article-content ul,
-.article-content ol {
-    padding-left: 1.5rem; /* Reverted indent */
+.article-body ul,
+.article-body ol {
+    padding-left: 1.5rem;
 }
-.article-content li {
-    margin-bottom: 0.6rem; /* Reverted margin */
-    padding-left: 0.5rem; /* Reverted indent */
+.article-body li {
+    margin-bottom: 0.6rem;
+    padding-left: 0.5rem;
 }
-.article-content ul { list-style-type: disc; }
-.article-content ol { list-style-type: decimal; }
+.article-body ul { list-style-type: disc; }
+.article-body ol { list-style-type: decimal; }
 
 /* --- Blockquotes --- */
-.article-content blockquote {
-    /* More modern blockquote style */
+.article-body blockquote {
     border-left: 3px solid var(--wim-text); /* Use accent color */
     padding: 1rem 1.5rem;
     margin: 2rem 0;
     background-color: var(--card-bg); /* Match card background */
-    border-radius: 0 8px 8px 0; /* Slightly larger radius */
-    font-style: normal; /* Often preferred over italic */
+    border-radius: 0 8px 8px 0;
+    font-style: normal;
     font-size: 1rem;
     color: var(--text);
     opacity: 0.9;
 }
-.article-content blockquote p:last-child {
+.article-body blockquote p:last-child {
     margin-bottom: 0;
 }
 
-/* --- Call to Action Button --- */
-.article-content a.cta-button {
-    /* Make buttons more distinct */
-    display: inline-block;
-    padding: 0.8rem 1.8rem; /* Adjust padding */
-    margin: 1.5rem 0; /* Adjust margin */
-    border-radius: 25px; /* Pill shape */
-    font-weight: 600;
-    text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 3px 8px rgba(0,0,0, 0.1);
-    /* Ensure the Wim Hof specific styles override */
-}
-.article-content a.cta-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 12px rgba(0,0,0, 0.15);
-}
-
-/* --- Links within article --- */
-.article-content a:not(.cta-button):not(.btn) {
-    color: var(--accent-color, #6E48AA); /* Kept accent color for links */
+/* --- Links within article body --- */
+.article-body a:not(.cta-button):not(.btn):not([href*="exercise.html?type="]) { /* Exclude exercise links */
+    color: var(--accent-color, #6E48AA);
     text-decoration: underline;
     text-decoration-thickness: 1px;
-    text-underline-offset: 2px; /* Reverted offset */
+    text-underline-offset: 2px;
     transition: opacity 0.2s ease;
 }
-.article-content a:not(.cta-button):not(.btn):hover {
+.article-body a:not(.cta-button):not(.btn):not([href*="exercise.html?type="]):hover {
     opacity: 0.7;
 }
 
+/* Style for specific exercise links within the article body */
+.article-body a[href*="exercise.html?type="] {
+    background-color: var(--color-secondary, #6c757d); /* Example: Different background */
+    color: #fff;
+    padding: 0.3em 0.6em;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    display: inline-block; /* Ensure padding applies correctly */
+    margin: 0.2em 0; /* Add slight vertical margin */
+}
+
+.article-body a[href*="exercise.html?type="]:hover,
+.article-body a[href*="exercise.html?type="]:focus {
+    background-color: var(--color-secondary-dark, #5a6268); /* Example: Darker hover */
+}
+
+
 /* --- Emphasis --- */
-.article-content strong { font-weight: 600; }
-.article-content em { font-style: italic; }
+.article-body strong { font-weight: 600; }
+.article-body em { font-style: italic; }
 
 /* --- Code Blocks --- */
-.article-content pre {
+.article-body pre {
     background-color: var(--code-bg, var(--card-bg, #f5f5f5));
-    padding: 1rem; /* Reverted padding */
-    border-radius: 6px; /* Reverted radius */
+    padding: 1rem;
+    border-radius: 6px;
     overflow-x: auto;
-    font-size: 0.85rem; /* Reverted font size */
-    line-height: 1.5; /* Reverted line height */
+    font-size: 0.85rem;
+    line-height: 1.5;
     color: var(--code-text, var(--text));
-    margin: 1.5rem 0; /* Reverted margin */
+    margin: 1.5rem 0;
 }
-.article-content code { /* Inline code */
+.article-body code { /* Inline code */
      background-color: var(--code-bg-inline, rgba(0,0,0,0.05));
      padding: 0.2em 0.4em;
      border-radius: 4px;
      font-size: 0.9em;
 }
 
-
-/* --- Call to Action Button Styling (for App Links) --- */
-/* Style specifically for Wim Hof links within the article */
-.article-content a.cta-button[href*="wim-hof"] { /* Target links containing 'wim-hof' */
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    margin: 1rem 0 1.5rem;
-    /* Use Wim Hof specific variables - DEFINE THESE IN main.css */
-    background-color: var(--wim-hof-bg, #87CEEB); /* Fallback to sky blue */
-    color: var(--wim-hof-text, #000); /* Fallback to black text */
-    text-decoration: none;
-    border: none;
-    border-radius: 6px;
-    font-weight: 600;
-    text-align: center;
-    transition: background-color 0.2s ease, transform 0.2s ease;
-    cursor: pointer;
-}
-
-.article-content a.cta-button[href*="wim-hof"]:hover {
-    /* Use a darker shade variable for hover - DEFINE THIS IN main.css */
-    background-color: var(--wim-hof-bg-dark, #76b6d4); /* Darker sky blue fallback */
-    transform: translateY(-2px);
-    color: var(--wim-hof-text, #000); /* Ensure text color remains on hover */
-}
-
 /* --- Interaction Section --- */
 .article-interactions {
-    margin-top: 3rem; /* Reverted margin */
-    padding-top: 1.5rem; /* Reverted padding */
+    margin-top: 3rem;
+    padding-top: 1.5rem;
     border-top: 1px solid var(--shadow-light, #eee);
-}
-
-.share-buttons a,
-.feedback-buttons button {
-    border: 1px solid var(--shadow-light, #ccc); /* Lighter border */
-    color: var(--text);
-    opacity: 0.8;
-    transition: all 0.2s ease;
+    /* display: flex; */ /* Consider flex for alignment */
+    /* justify-content: space-between; */ /* Example alignment */
+    /* align-items: center; */
 }
 
 .share-buttons a,
@@ -260,7 +283,7 @@
     justify-content: center;
     text-decoration: none;
     margin: 0 0.2rem;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     font-size: 1rem;
     cursor: pointer;
 }
@@ -296,52 +319,22 @@
 
 /* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
-    /* Reverted heading sizes for mobile */
     .article-content h1 { font-size: clamp(1.8rem, 5vw, 2.2rem); }
     .article-content h2 { font-size: clamp(1.4rem, 4vw, 1.7rem); margin-top: 2rem; }
     .article-content h3 { font-size: clamp(1.1rem, 3.5vw, 1.4rem); margin-top: 1.5rem; }
-    .article-interactions { flex-direction: column; align-items: flex-start; }
-    .article-content { line-height: 1.6; } /* Reverted line height */
+    .article-interactions { flex-direction: column; align-items: flex-start; } /* If using flex */
+    .article-content { line-height: 1.6; }
 }
 @media (max-width: 480px) {
     .toc-dropdown { min-width: 90vw; }
-    .article-content p, .article-content li { font-size: 0.9rem; } /* Reverted font size */
-    .article-content blockquote { padding: 0.8rem 1.2rem; } /* Reverted padding */
-    /* Make CTA buttons full width on small screens */
-    .article-content .cta-button {
+    .article-body p, .article-body li { font-size: 0.95rem; } /* Slightly larger on mobile */
+    .article-body blockquote { padding: 0.8rem 1.2rem; }
+    /* Make exercise links full width on small screens if desired */
+    /* .article-body a[href*="exercise.html?type="] {
         width: 100%;
         text-align: center;
-        box-sizing: border-box; /* Include padding in width */
-    }
+        box-sizing: border-box;
+    } */
     .feedback-buttons button { padding: 0.3rem 0.8rem; font-size: 0.9rem; }
     .share-buttons a { width: 32px; height: 32px; font-size: 0.9rem; }
-}
-/* --- Back Link --- */
-.back-link-container {
-    margin-bottom: 1.5rem; /* Space below the back link */
-    padding-top: 1rem; /* Add some space above if needed */
-}
-
-.back-link {
-    color: var(--text-muted, var(--text));
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    display: inline-block; /* Allows padding/margin */
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.back-link:hover {
-    color: var(--accent-color, #6E48AA);
-    background-color: var(--card-bg-hover, #eee);
-}
-
-/* --- TOC Controls (Dropdown Style) --- */
-.toc-controls {
-    position: relative;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--shadow-light, #eee);
 }
