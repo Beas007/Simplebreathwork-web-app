@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // 1. Load HTML Components (Header/Footer)
         // Use the *actual* generated paths from the _site folder
         // Assuming Eleventy creates components/header/index.html and components/footer/index.html
-        await loadComponent('header-placeholder', '/components/header/index.html');
-        await loadComponent('footer-placeholder', '/components/footer/index.html');
+        await loadComponent('header-placeholder', '/components/header.html'); // Changed path
+        await loadComponent('footer-placeholder', '/components/footer.html'); // Changed path
         console.log("Template Loader: Components loaded"); // Debug log
 
         // 2. Load Required Scripts SEQUENTIALLY
