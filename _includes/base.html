@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Placeholder for additional page-specific CSS -->
-    {{ additional_head_content | safe }}
+    {{ additional_head_content }}
 
     <!-- Favicon Links (Example - uncomment and replace paths if you have these) -->
     <!-- <link rel="icon" href="/favicon.ico" sizes="any"> -->
@@ -36,7 +36,7 @@
 
     <!-- Main Content Area -->
     <main>
-      {{ content | safe }} <!-- Page-specific content is inserted here -->
+      {{ content }} <!-- Page-specific content is inserted here -->
     </main>
 
     {% include "components/footer.html" %} <!-- Eleventy includes the footer content -->
@@ -45,7 +45,7 @@
     <script src="/scripts/app.js"></script> <!-- For theme toggling, mobile menu, etc. -->
 
     <!-- Placeholder for additional page-specific JS -->
-    {{ additional_scripts | safe }}
+    {{ additional_scripts }}
 
 </body>
 </html>
