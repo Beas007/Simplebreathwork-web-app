@@ -104,7 +104,8 @@ additional_scripts: '' # No page-specific scripts identified for index
     <section class="blog-container">
         <h2 class="section-title">Latest Articles</h2>
         <div class="articles-grid">
-            {% assign latestPosts = collections.post | limit: 3 %}
+            <!-- Reverse the collection first (latest first), then limit to 3 -->
+            {% assign latestPosts = collections.post | reverse | limit: 3 %}
             {% for post in latestPosts %}
                 <article class="article-card">
                     <div class="article-content">
@@ -117,7 +118,7 @@ additional_scripts: '' # No page-specific scripts identified for index
                     </div>
                 </article>
             {% else %}
-                <p>No articles found yet.</p> 
+                <p>No articles found yet.</p>
             {% endfor %}
         </div>
     </section>
