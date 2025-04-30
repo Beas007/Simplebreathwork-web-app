@@ -42,16 +42,11 @@ additional_head_content: '<link rel="stylesheet" href="/styles/blog.css">'
                             <a href="{{ post.url }}" class="article-link">Read More →</a>
                         </div>
                     </article>
-                    <!-- --- End Article Card HTML --- -->
-                {% endfor %}
-            {% else %} {# If the collection is empty #}
-                <p>No articles found yet.</p> 
-            {% endif %}
-            <!-- --- End Liquid Loop --- #}-->
-
-        </div>
-
-    </main>
-
-
+                    {% for post in allPosts %}
+                {# ... article card HTML ... #}
+            {% endfor %} <!--{# This is the line closing the loop #}-->
+        {% else %}
+            <p>No articles found yet.</p>
+        {% endif %}
+        {# --- End Liquid Loop --- #}
 </html>
