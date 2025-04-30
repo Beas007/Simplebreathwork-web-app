@@ -282,31 +282,28 @@ console.log("Final Homepage Articles Array:", homepageArticles); // See the fina
 }
 
 // Function to load ALL articles onto the BLOG INDEX page (with images)
-function loadAllBlogArticles() {
-    const container = document.getElementById('blog-posts-container'); // Target specific ID
-    if (!container) return; // Exit if container not found on the current page
+// function loadAllBlogArticles() {
+    // const container = document.getElementById('blog-posts-container'); // Target specific ID
+    // if (!container) return; // Exit if container not found on the current page
 
-    console.log("Attempting to load all blog articles...");
+    // console.log("Attempting to load all blog articles...");
 
     // Verify articlesData exists and is an array
-    if (typeof articlesData === 'undefined' || !Array.isArray(articlesData)) {
-        container.innerHTML = '<p>Error: Articles data is not available.</p>';
-        console.error("articlesData is missing or not an array when loading all blog articles.");
-        return;
-    }
+    // if (typeof articlesData === 'undefined' || !Array.isArray(articlesData)) {
+       // container.innerHTML = '<p>Error: Articles data is not available.</p>';
+       // console.error("articlesData is missing or not an array when loading all blog articles.");
+       // return;}
 
     // Sort articles by date, newest first
-    const sortedArticles = [...articlesData].sort((a, b) => new Date(b.date) - new Date(a.date));
+    // const sortedArticles = [...articlesData].sort((a, b) => new Date(b.date) - new Date(a.date));
 
-    if (sortedArticles.length === 0) {
-        container.innerHTML = '<p>No articles available yet. Check back soon!</p>';
-        return;
-    }
+    // if (sortedArticles.length === 0) {
+       // container.innerHTML = '<p>No articles available yet. Check back soon!</p>';
+       // return;}
 
     // Generate HTML using the card function with default options (images included)
-    container.innerHTML = sortedArticles.map(article => createArticleCardHTML(article)).join('');
-    console.log(`Loaded ${sortedArticles.length} articles onto blog index page.`);
-}
+    // container.innerHTML = sortedArticles.map(article => createArticleCardHTML(article)).join('');
+    //console.log(`Loaded ${sortedArticles.length} articles onto blog index page.`);}
 
 // --- Potentially Deferred or Idle Functions ---
 // Example: Load feedback script only when browser is idle
