@@ -37,13 +37,10 @@ additional_scripts: ''
             </article> <!-- Close article-card -->
             <!-- End Article Card HTML -->
 
-        {% endfor %} <!-- End the loop -->
-
         <!-- This block executes ONLY if the loop above ran zero times -->
         {% else %}
-            <p>No articles found yet.</p>
-
-        <!-- Removed the unnecessary {% endif %} that was here -->
+        <p>No articles found yet.</p>
+        {% endfor %} <!-- End the loop -->
 
     </div> <!-- Close blog-grid -->
 
