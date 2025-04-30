@@ -1,4 +1,29 @@
 /* Styles specific to the blog index page content */
+/* Blog Header Styling - Target elements directly */
+.blog-page h1 { /* Target h1 within .blog-page or main */
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin-bottom: 0.5rem;
+    color: var(--text);
+    margin-top: 1rem; /* Add some top margin */
+}
+
+.blog-page .blog-intro { /* Target the specific intro paragraph */
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-muted, var(--text));
+    opacity: 0.8;
+    max-width: 600px;
+    margin: 0 auto 3rem auto; /* Center tagline and add bottom margin */
+}
+
+/* Blog Grid Layout */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    /* margin-top: 2rem; */ /* Removed, handled by .blog-intro margin */
+}
 
 /* Blog Header Styling */
 .blog-header {
