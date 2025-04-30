@@ -1,38 +1,55 @@
 ---
-layout: base.html
+# filepath: _includes/article.html
+layout: base.html # Specifies that this layout uses base.html
 additional_head_content: |
   <link rel="stylesheet" href="/styles/blog-post.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 additional_scripts: |
   <script src="/scripts/blog-post.js"></script>
-body_class: blog-post-page-body-class # Define a variable for the body class
+body_class: blog-post-page-body-class # Optional class for body styling
 ---
 
-
+<!-- This is the main structure for an article page -->
 <article class="article-content">
     <h1>{{ title }}</h1>
     <p class="publish-date">Published: <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time></p>
-    <!-- You might add author, tags here -->
 
-    <!-- Back Link (Moved Up & Centered via CSS) -->
+    <!-- Back Link -->
     <div class="back-link-container">
-        <a href="/blog/" class="back-link">&larr; Back to Blog</a>
+        <a href="/blog.html" class="back-link">&larr; Back to Blog</a>
     </div>
 
-    <!-- TOC Controls (Moved Up & Sticky via CSS) -->
-    <div class="toc-container"> <!-- Added a wrapper for sticky positioning -->
-
+    <!-- TOC Controls -->
+    <div class="toc-container">
         <div class="toc-controls">
             <button id="toc-toggle-button" class="toc-toggle-button" aria-expanded="false" aria-controls="toc-dropdown-menu">
                 <i class="fas fa-list-ul"></i> Contents
             </button>
-            <!-- Dropdown menu for Table of Contents -->
             <div id="toc-dropdown-menu" class="toc-dropdown" role="navigation" aria-labelledby="toc-toggle-button">
                 <nav class="toc">
-
-                        <li>Loading...</li>
+                    <ul>
+                        <li>Loading...</li> <!-- JS will replace this -->
                     </ul>
                 </nav>
             </div>
         </div>
     </div>
 
+    <!-- Main Article Content from Markdown -->
+    <div class="article-body">
+        {{ content }} {# -- CRITICAL: This inserts the processed Markdown content #}
+    </div>
+
+    <!-- Article Interactions (Sharing, Feedback) -->
+    <section class="article-interactions">
+        <!-- ... sharing/feedback buttons ... -->
+         <div class="share-buttons">
+            <span>Share:</span>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absoluteUrl(metadata.url) }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/intent/tweet?url={{ page.url | absoluteUrl(metadata.url) }}&text={{ title }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absoluteUrl(metadata.url) }}&title={{ title }}&summary={{ description }}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+             <a href="mailto:?subject={{ title }}&body=Check out this article: {{ page.url | absoluteUrl(metadata.url) }}" aria-label="Share via Email"><i class="fas fa-envelope"></i></a>
+        </div>
+    </section>
+
+</article>

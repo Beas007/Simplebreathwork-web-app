@@ -208,11 +208,9 @@ header {
 
 /* Theme Toggle - UPDATED */
 .theme-toggle {
-    position: sticky;
     top: 6rem; /* Distance from top when sticky */
     right: 0;
     margin-right: 2rem; /* Space from right edge */
-    float: right; /* Float to the right */
     background: var(--card-bg);
     border: none;
     border-radius: 50%;
@@ -225,7 +223,6 @@ header {
     transition: transform 0.3s ease, background-color 0.3s ease;
     box-shadow: 0 2px 5px var(--shadow);
 }
-
 
 .theme-toggle:hover {
     transform: scale(1.1);
