@@ -1,0 +1,114 @@
+/* Theme variables */
+:root {
+    --legal-bg: #F5F7FA;
+    --legal-text: #2C3E50;
+    --legal-heading: #4CA1AF;
+    --legal-section-bg: #FFFFFF;
+    --legal-border: rgba(0, 0, 0, 0.1);
+    --legal-shadow: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --legal-bg: #121212;
+    --legal-text: #E0E0E0;
+    --legal-heading: #7FC7D2;
+    --legal-section-bg: #1E1E1E;
+    --legal-border: rgba(255, 255, 255, 0.1);
+    --legal-shadow: rgba(255, 255, 255, 0.05);
+}
+
+/* Container styles */
+.legal-container {
+    width: min(90%, 1000px);
+    margin: 2rem auto;
+    padding: 0 clamp(0.5rem, 2vw, 2rem);
+}
+
+.legal-content {
+    background: var(--legal-section-bg);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border-radius: 15px;
+    box-shadow: 0 10px 20px var(--legal-shadow);
+    transition: all 0.3s ease;
+}
+
+/* Typography */
+.last-updated {
+    color: var(--legal-heading);
+    font-style: italic;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--legal-border);
+    font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+h3 {
+    color: var(--legal-heading);
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--legal-border);
+}
+
+h4 {
+    color: var(--legal-heading);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin: clamp(1rem, 3vw, 1.5rem) 0 clamp(0.5rem, 2vw, 1rem);
+}
+
+p, li {
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Lists */
+ul, ol {
+    margin: 1rem 0 1rem clamp(1.5rem, 4vw, 2rem);
+}
+
+/* Links */
+a {
+    color: var(--legal-link);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+/* Contact section */
+.contact-section {
+    background: var(--legal-section-bg);
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border-radius: 8px;
+    border: 1px solid var(--legal-border);
+    margin-top: 2rem;
+}
+.email-link {
+    color: var(--legal-heading);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+}
+
+.email-link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+/* Media queries */
+@media screen and (max-width: 768px) {
+    .legal-container {
+        width: 95%;
+    }
+    
+    .legal-content {
+        padding: clamp(1rem, 3vw, 1.5rem);
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .legal-container {
+        margin: 1rem auto;
+    }
+}

@@ -1,0 +1,162 @@
+/* Styles specific to the blog index page content */
+/* Blog Header Styling - Target elements directly */
+.blog-page h1 { /* Target h1 within .blog-page or main */
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin-bottom: 0.5rem;
+    color: var(--text);
+    margin-top: 1rem; /* Add some top margin */
+}
+
+.blog-page .blog-intro { /* Target the specific intro paragraph */
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-muted, var(--text));
+    opacity: 0.8;
+    max-width: 600px;
+    margin: 0 auto 3rem auto; /* Center tagline and add bottom margin */
+}
+
+/* Blog Grid Layout */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    /* margin-top: 2rem; */ /* Removed, handled by .blog-intro margin */
+}
+
+/* Blog Header Styling */
+.blog-header {
+    text-align: center;
+    margin-bottom: 3rem; /* Space below the header */
+    /* Add top margin if needed, or let .container handle padding */
+    /* margin-top: 2rem; */
+}
+
+.blog-header h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem); /* Match h1 size from main.css if possible */
+    margin-bottom: 0.5rem; /* Adjust spacing */
+    /* Use standard text color, remove gradient */
+    color: var(--text);
+    /* Ensure gradient properties are removed/commented */
+    /* background: none; */
+    /* -webkit-background-clip: initial; */
+    /* background-clip: initial; */
+}
+
+.blog-header p { /* Style for optional tagline */
+    font-size: 1.1rem;
+    color: var(--text-muted, var(--text)); /* Use muted color if available */
+    opacity: 0.8;
+    max-width: 600px; /* Limit width for readability */
+    margin: 0 auto; /* Center tagline */
+}
+
+
+/* Blog Grid Layout */
+.blog-grid {
+    display: grid;
+    /* Use auto-fill for responsiveness, minmax defines card size range */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem; /* Space between cards */
+    margin-top: 2rem; /* Space below the blog header */
+}
+
+/* Individual Article Card Styling (Copied from previous context for completeness) */
+.article-card {
+    background: var(--card-bg);
+    border-radius: 12px; /* Consistent rounded corners */
+    overflow: hidden; /* Ensures image corners are clipped */
+    box-shadow: 0 4px 8px var(--shadow-light, rgba(0, 0, 0, 0.05)); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Use flexbox for vertical layout */
+    flex-direction: column; /* Stack image and content vertically */
+    height: 100%; /* Make cards in a row equal height if needed */
+}
+
+.article-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 12px var(--shadow, rgba(0, 0, 0, 0.1)); /* Stronger shadow on hover */
+}
+
+.article-card:hover {
+    transform: scale(1.05); /* Slight zoom effect on image hover */
+}
+
+.article-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allow content to fill remaining card space */
+}
+
+.article-category {
+    font-size: 0.8rem;
+    color: var(--text-muted, var(--text));
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.5rem;
+}
+
+.article-title {
+    margin: 0 0 0.75rem 0; /* Space below title */
+    font-size: 1.25rem;
+    color: var(--text);
+    line-height: 1.3;
+}
+
+.article-excerpt {
+    color: var(--text-muted, var(--text));
+    opacity: 0.9;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex-grow: 1; /* Push meta/link to bottom */
+}
+
+.article-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: var(--text-muted, var(--text));
+    opacity: 0.7;
+    margin-bottom: 1rem;
+    margin-top: auto; /* Pushes meta and link down */
+    padding-top: 0.5rem; /* Space above meta if excerpt is short */
+}
+
+.article-link {
+    display: inline-block;
+    color: var(--accent-color, var(--text)); /* Use accent color if defined */
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.3s ease;
+    margin-top: 0.5rem; /* Space above link */
+}
+
+.article-link:hover {
+    opacity: 0.8;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .blog-header h1 {
+        font-size: clamp(1.8rem, 4.5vw, 2.2rem); /* Slightly smaller on mobile */
+    }
+
+    .blog-grid {
+        /* Switch to single column */
+        grid-template-columns: 1fr;
+        gap: 1.5rem; /* Adjust gap for single column */
+    }
+}
+
+@media (max-width: 480px) {
+    .article-title {
+        font-size: 1.1rem; /* Smaller titles on very small screens */
+    }
+    .article-content {
+        padding: 1rem; /* Reduce padding inside cards */
+    }
+}

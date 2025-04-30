@@ -1,0 +1,11 @@
+<div class="links">
+    <li><a href="/index/">Home</a></li>
+    <li><a href="/blog/">Blog</a></li> 
+    <li><a href="/about/">About Us</a></li>
+    <li><a href="/privacy/">Privacy Policy</a></li>
+    <li><a href="/terms/">Terms of Use</a></li>
+    <li><a href="/feedback/" class="footer-button">Share Feedback</a></li>
+</div>
+<div class="copyright">
+    © <span id="copyright-year">2025</span> simplebreathwork.com All Rights Reserved.
+</div>

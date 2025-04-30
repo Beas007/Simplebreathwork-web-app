@@ -1,0 +1,340 @@
+/* --- Article Content Area --- */
+.article-content {
+    color: var(--text);
+    line-height: 1.7; /* Increase for better readability */
+    font-size: 1.05rem; /* Slightly larger base font for posts */
+    /* Consider slightly wider max-width for better line length on large screens */
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem; /* Add some padding for spacing */
+}
+
+/* --- Headings --- */
+.article-content h1,
+.article-content h2,
+.article-content h3 {
+     line-height: 1.3; /* Tighter line height for headings */
+     font-weight: 600; /* Ensure sufficient weight */
+}
+
+.article-content h1 {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    margin-bottom: 1rem; /* Adjusted margin */
+    line-height: 1.2;
+    color: var(--text);
+    text-align: center; /* Center main title */
+}
+
+/* Publish Date Styling */
+.publish-date {
+    color: var(--color-text-muted, #666);
+    font-size: 0.9rem;
+    text-align: center; /* Center date below title */
+    margin-bottom: 1.5rem; /* Space below date */
+}
+
+.article-content h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--shadow-light, #eee);
+    color: var(--text);
+}
+.article-content h3 {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+/* --- Back Link --- */
+.back-link-container {
+    text-align: center; /* Center the link */
+    margin-bottom: 1.5rem; /* Space below the link */
+    /* padding-top: 1rem; */ /* Removed, handled by article padding */
+}
+
+.back-link {
+    display: inline-block; /* Allows padding/margin */
+    padding: 0.5rem 1rem; /* Use consistent padding */
+    background-color: var(--color-background-alt, #f0f0f0); /* Use theme variable or fallback */
+    color: var(--color-text, #333);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-size: 0.9rem;
+    font-weight: 500; /* Added from original style */
+}
+
+.back-link:hover,
+.back-link:focus {
+    background-color: var(--color-primary, #007bff); /* Use theme variable or fallback */
+    color: var(--color-background, #fff);
+    /* Keep hover style consistent */
+}
+
+
+/* --- Sticky Table of Contents Container --- */
+.toc-container {
+    position: sticky;
+    top: 10px; /* Adjust this value based on your header height or desired spacing */
+    z-index: 100; /* Ensure it stays above other content */
+    margin-bottom: 1.5rem; /* Space below TOC */
+    background-color: var(--background, #fff); /* Give it a background to avoid content showing through */
+    padding: 5px 0; /* Optional padding */
+    border-bottom: 1px solid var(--shadow-light, #eee); /* Optional separator */
+}
+
+/* --- TOC Controls (Dropdown Style) --- */
+.toc-controls {
+    position: relative; /* Needed for dropdown positioning */
+    /* Centering can be done via parent (.toc-container) if needed, or keep left */
+    /* max-width: var(--container-width); */
+    /* margin: 0 auto; */
+}
+
+.toc-toggle-button {
+    background-color: var(--card-bg, #f9f9f9);
+    color: var(--text);
+    border: 1px solid var(--shadow, #ddd);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.toc-toggle-button:hover {
+    background-color: var(--card-bg-hover, #eee);
+    border-color: var(--shadow-dark, #ccc);
+}
+.toc-toggle-button[aria-expanded="true"] {
+    background-color: var(--card-bg-hover, #eee);
+}
+
+/* --- TOC Dropdown --- */
+.toc-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--background, #fff);
+    border: 1px solid var(--shadow, #ddd);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px var(--shadow-light, rgba(0, 0, 0, 0.1));
+    z-index: 101; /* Above sticky container */
+    padding: 0.8rem;
+    margin-top: 0.5rem;
+    min-width: 280px;
+    max-width: 90vw;
+    max-height: 60vh;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+}
+.toc-dropdown.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* --- TOC List Styling --- */
+.toc { padding: 0; border: none; }
+.toc ul { list-style: none; padding-left: 0; margin: 0; }
+.toc li a {
+    display: block;
+    padding: 0.5rem 0.3rem;
+    color: var(--text-muted, var(--text));
+    text-decoration: none;
+    font-size: 0.85rem;
+    border-left: 3px solid transparent;
+    transition: background-color 0.2s ease, color 0.2s ease, border-left-color 0.2s ease;
+    border-radius: 4px;
+    line-height: 1.3;
+}
+.toc li a:hover {
+    background-color: var(--card-bg-hover, #eee);
+    color: var(--text);
+}
+.toc .subheading a {
+    padding-left: 1.2rem;
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+/* --- Main Article Body --- */
+.article-body {
+    padding-top: 1rem; /* Add some padding if the sticky TOC overlaps */
+}
+
+/* --- Paragraphs and Lists --- */
+.article-body p,
+.article-body ul,
+.article-body ol {
+    margin-bottom: 1.25rem;
+    font-size: 1rem; /* Standard font size within article body */
+}
+.article-body ul,
+.article-body ol {
+    padding-left: 1.5rem;
+}
+.article-body li {
+    margin-bottom: 0.6rem;
+    padding-left: 0.5rem;
+}
+.article-body ul { list-style-type: disc; }
+.article-body ol { list-style-type: decimal; }
+
+/* --- Blockquotes --- */
+.article-body blockquote {
+    border-left: 3px solid var(--wim-text); /* Use accent color */
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background-color: var(--card-bg); /* Match card background */
+    border-radius: 0 8px 8px 0;
+    font-style: normal;
+    font-size: 1rem;
+    color: var(--text);
+    opacity: 0.9;
+}
+.article-body blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* --- Links within article body --- */
+.article-body a:not(.cta-button):not(.btn):not([href*="exercise.html?type="]) { /* Exclude exercise links */
+    color: var(--accent-color, #6E48AA);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: opacity 0.2s ease;
+}
+.article-body a:not(.cta-button):not(.btn):not([href*="exercise.html?type="]):hover {
+    opacity: 0.7;
+}
+
+/* Style for specific exercise links within the article body */
+.article-body a[href*="exercise.html?type="] {
+    background-color: var(--color-secondary, #6c757d); /* Example: Different background */
+    color: #fff;
+    padding: 0.3em 0.6em;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    display: inline-block; /* Ensure padding applies correctly */
+    margin: 0.2em 0; /* Add slight vertical margin */
+}
+
+.article-body a[href*="exercise.html?type="]:hover,
+.article-body a[href*="exercise.html?type="]:focus {
+    background-color: var(--color-secondary-dark, #5a6268); /* Example: Darker hover */
+}
+
+
+/* --- Emphasis --- */
+.article-body strong { font-weight: 600; }
+.article-body em { font-style: italic; }
+
+/* --- Code Blocks --- */
+.article-body pre {
+    background-color: var(--code-bg, var(--card-bg, #f5f5f5));
+    padding: 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--code-text, var(--text));
+    margin: 1.5rem 0;
+}
+.article-body code { /* Inline code */
+     background-color: var(--code-bg-inline, rgba(0,0,0,0.05));
+     padding: 0.2em 0.4em;
+     border-radius: 4px;
+     font-size: 0.9em;
+}
+
+/* --- Interaction Section --- */
+.article-interactions {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--shadow-light, #eee);
+    /* display: flex; */ /* Consider flex for alignment */
+    /* justify-content: space-between; */ /* Example alignment */
+    /* align-items: center; */
+}
+
+.share-buttons a,
+.feedback-buttons button {
+    color: var(--text);
+    background: none;
+    border: 1px solid var(--shadow, #ccc);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin: 0 0.2rem;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.feedback-buttons button {
+     border-radius: 20px;
+     width: auto;
+     padding: 0.4rem 1rem;
+     gap: 0.4rem;
+}
+
+.share-buttons a:hover,
+.feedback-buttons button:hover {
+    opacity: 1;
+    border-color: var(--text);
+    background-color: var(--card-bg); /* Subtle background on hover */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+/* Liked state */
+.like-button.liked {
+    border-color: var(--wim-text); /* Use accent color */
+    color: var(--wim-text);
+    background-color: transparent; /* Remove bg color */
+    opacity: 1;
+}
+
+.like-button.liked i.fas { display: inline-block; }
+.like-button.liked i.far { display: none; }
+.like-button:not(.liked) i.fas { display: none; }
+.like-button:not(.liked) i.far { display: inline-block; }
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .article-content h1 { font-size: clamp(1.8rem, 5vw, 2.2rem); }
+    .article-content h2 { font-size: clamp(1.4rem, 4vw, 1.7rem); margin-top: 2rem; }
+    .article-content h3 { font-size: clamp(1.1rem, 3.5vw, 1.4rem); margin-top: 1.5rem; }
+    .article-interactions { flex-direction: column; align-items: flex-start; } /* If using flex */
+    .article-content { line-height: 1.6; }
+}
+@media (max-width: 480px) {
+    .toc-dropdown { min-width: 90vw; }
+    .article-body p, .article-body li { font-size: 0.95rem; } /* Slightly larger on mobile */
+    .article-body blockquote { padding: 0.8rem 1.2rem; }
+    /* Make exercise links full width on small screens if desired */
+    /* .article-body a[href*="exercise.html?type="] {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    } */
+    .feedback-buttons button { padding: 0.3rem 0.8rem; font-size: 0.9rem; }
+    .share-buttons a { width: 32px; height: 32px; font-size: 0.9rem; }
+}

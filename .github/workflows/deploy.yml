@@ -1,0 +1,27 @@
+name: Deploy via SSH
+
+on:
+  push:
+    branches:
+      - main  # Trigger deployment on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2  # Pulls the latest code from the repository
+
+    - name: Deploy via SSH
+      uses: appleboy/ssh-action@v0.1.5
+      with:
+        host: 145.223.89.134
+        username: u221328250
+        key: ${{ secrets.SSH_PRIVATE_KEY }}  # Reference to your private SSH key stored in GitHub Secrets
+        port: 65002  # Default SSH port; change if your server uses a custom port
+        script: |
+          cd /home/u221328250/domains/simplebreathwork.com/public_html  # Navigate to the directory on the server
+          git reset --hard HEAD  # Discard any local changes
+          git clean -fd          # Remove untracked files and directories
+          git pull origin main   # Pull the latest changes from the main branch

@@ -1,0 +1,125 @@
+---
+layout: base.html
+title: Simple Breathwork - Calm Your Mind, Energize Your Body
+description: Simple Breathwork homepage providing overview and links to techniques.
+additional_head_content: '<link rel="stylesheet" href="/styles/main.css">'
+additional_scripts: '' # No page-specific scripts identified for index
+---
+
+<main>
+    <div class="hero">
+        <h2>Welcome to Simple Breathwork!</h2>
+        <!-- Combined the two paragraphs into one with the correct ID -->
+        <p id="hero-description">
+            Welcome to Simple Breathwork, your sanctuary for harnessing one of the most powerful, yet often overlooked, tools for well-being: your breath. We believe that everyone deserves easy access to techniques that can instantly shift their mental and physical state. Forget complicated apps or expensive courses; this platform offers straightforward, visual guides to scientifically-backed breathing patterns designed to reduce stress, enhance focus, manage anxiety, and even boost your energy levels naturally.
+            Dive into potent methods like the calming <span class="box-text">Box Breathing</span>, the deeply relaxing <span class="zen-text">4-8 "Instant Zen"</span> rhythm, or the invigorating <span class="wim-text">Wim Hof</span> technique. Each card below represents a unique path to transforming how you feel, moment by moment. Our goal is to empower you with simple, effective breathwork tools you can use anywhere, anytime. Choose an exercise that resonates with your needs today and experience the profound impact of intentional breathing. It's <span class="free-text">FREE</span> to use without any hidden fees, enjoy!
+        </p>
+        <!-- Button placed correctly after the target paragraph -->
+        <button id="read-more-toggle" class="read-more-btn" aria-expanded="false">Read More</button>
+    </div>
+
+    <div class="card-container">
+        <!-- Box Breathing Card -->
+        <div class="card" data-technique="box">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>Box Breathing</h2>
+                    <img src="images/breathwork-icon.svg" alt="a head with inhale arrow towards nose and exhale arrow out the mouth" class="card-image" width="150" height="150">
+                    <div class="timing">4-4-4-4</div>
+                </div>
+                <div class="card-back">
+                    <h2>Calm Your Mind</h2>
+                    <p>Box Breathing involves inhaling, holding, exhaling, and holding your breath for equal counts. This technique activates the parasympathetic nervous system, reducing stress and anxiety while enhancing focus. Practice for 5 minutes, 1-2 times daily, to feel immediate relaxation and improved emotional regulation.</p>
+                    <button class="start-btn" onclick="window.location.href='exercise.html?type=box'">Begin Session</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4-8 Breathing Card -->
+        <div class="card" data-technique="48">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>Instant Zen</h2>
+                    <img src="images/breathwork-icon.svg" alt="a head with inhale arrow towards nose and exhale arrow out the mouth" class="card-image" width="150" height="150">
+                    <div class="timing">4-8</div>
+                </div>
+                <div class="card-back">
+                    <h2>Find Your Balance</h2>
+                        <p>Instant Zen emphasizes a longer exhale compared to the inhale, promoting deep relaxation. This method activates the parasympathetic system, helping you quickly reduce stress and anxiety. Start with 5-10 minutes daily, and you’ll notice calming effects almost immediately.</p>
+                    <button class="start-btn" onclick="window.location.href='exercise.html?type=48'">Begin Session</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wim Hof Card -->
+        <div class="card" data-technique="wim-hof">
+            <div class="card-inner">
+                <div class="card-front">
+                    <h2>Wim Hof Method</h2>
+                    <img src="images/breathwork-icon.svg" alt="a head with inhale arrow towards nose and exhale arrow out the mouth" class="card-image" width="150" height="150">
+                    <div class="timing">30 x 3</div>
+                </div>
+                <div class="card-back">
+                    <h2>Boost Your Resilience</h2>
+                    <p>The Wim Hof Method combines deep breathing with breath holds, stimulating both the sympathetic and parasympathetic systems. This technique can enhance oxygen uptake, increase energy, and even boost immune function over time. Practice for 15-20 minutes once a day to experience increased vitality and stress resilience.</p>
+                    <button class="start-btn" onclick="window.location.href='exercise.html?type=wim-hof'">Begin Session</button>
+                </div>
+            </div>
+        </div>
+        <!-- Belly Breathing Card -->
+                    <div class="card" data-technique="belly">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <h2>Belly Breathing</h2>
+                                <!-- Using the same placeholder image, replace if you have a specific one -->
+                                <img src="images/nose-icon-blue.svg" alt="Nose with inhale exhale arrows" class="card-image" width="150" height="150">
+                                <div class="timing">4-6 Rhythm</div> <!-- Example timing -->
+                            </div>
+                            <div class="card-back">
+                                <h2>Deep Relaxation</h2>
+                                <p>Focus on breathing deep into your belly, allowing it to gently rise on the inhale and fall on the exhale. This engages the diaphragm for calming, efficient breaths, activating the body's relaxation response. Inhale slowly through your nose, exhale slowly through your nose or mouth. Practice for 5-10 minutes, 1-2 times daily or whenever feeling stressed, to notice reduced tension and increased calm..</p>
+                                <button class="start-btn" onclick="window.location.href='exercise.html?type=belly'">Begin Session</button>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Buteyko (Reduced Breathing) Card -->
+                    <div class="card" data-technique="buteyko">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <h2>Buteyko Breathing</h2> <!-- Focus on the pattern, related to Buteyko -->
+                                <!-- Using the same placeholder image, replace if you have a specific one -->
+                                <img src="images/nose-icon.svg" alt="Nose with inhale exhale arrows" class="card-image" width="150" height="150">
+                                <div class="timing">Inhale-Exhale-Pause</div> <!-- Example timing description -->
+                            </div>
+                            <div class="card-back">
+                                <h2>Calm & Balance</h2>
+                                <p>Inspired by Buteyko principles, this exercise uses gentle, light nasal breathing with brief, comfortable pauses after exhaling. It aims to normalize breathing patterns and gently increase CO2 tolerance, promoting calm and nervous system balance. Always breathe softly in and out through your nose. Consistency is key; practice for 5 minutes, 2-3 times daily, focusing on ease, to potentially improve respiratory comfort.</p>
+                                <button class="start-btn" onclick="window.location.href='exercise.html?type=buteyko'">Begin Session</button>
+                            </div>
+                        </div>
+                    </div>
+    </div>
+    <!-- Replace the existing blog container section -->
+    <section class="blog-container">
+        <h2 class="section-title">Latest Articles</h2>
+        <div class="articles-grid">
+            <!-- Reverse the collection first (latest first), then limit to 3 -->
+            {% assign latestPosts = collections.post | reverse | slice: 0, 3 %}
+            {% for post in latestPosts %}
+                <article class="article-card">
+                    <div class="article-content">
+                        <span class="article-category">{{ post.data.category | default: "Breathing Technique" }}</span>
+                        <h3 class="article-title">{{ post.data.title }}</h3>
+                        <p class="article-excerpt">
+                            {{ post.data.description }}
+                        </p>
+                        <a href="{{ post.url }}" class="article-link">Read More →</a>
+                    </div>
+                </article>
+            {% else %}
+                <p>No articles found yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+        </main>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Default Description (can be overridden) -->
+    <meta name="description" content="Learn simple breathwork techniques for relaxation, focus, and well-being.">
+    <!-- Dynamic Page Title -->
+    <title>Simple Breathwork</title>
+
+    <!-- Common Stylesheets -->
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Placeholder for additional page-specific CSS -->
+    <link rel="stylesheet" href="/styles/blog.css">
+
+    <!-- Favicon Links (Example) -->
+    <!-- <link rel="icon" href="/favicon.ico" sizes="any"> -->
+    <!-- <link rel="icon" href="/favicon.svg" type="image/svg+xml"> -->
+    <!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png"> -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E6Q283JEH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6E6Q283JEH');
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8592180021114462"
+    crossorigin="anonymous"></script>
+</head>
+<body >
+    <header>
+        <!-- Header component will be loaded here by template-loader.js -->
+        <div id="header-placeholder"></div>
+    </header>
+
+    <!-- Main Content Placeholder -->
+    
+    <!-- Use the common container class for consistent page width/padding -->
+    <main class="container">
+
+        <!-- Blog page header section -->
+        <div class="blog-header">
+            <h1>Blog Articles</h1>
+            <!-- Optional: Add a short tagline if desired -->
+            <!-- <p>Insights and guides on conscious breathing</p> -->
+        </div>
+
+        <!-- Container for server-rendered blog posts -->
+        <!-- The ID 'blog-posts-container' is kept, but content is NOT dynamically loaded here anymore -->
+        <div class="blog-grid" id="blog-posts-container">
+
+            <!--- Start Liquid Loop to list all blog articles --- #}
+            {# Get the 'post' collection. Assuming 'post' is the collection name configured in .eleventy.js #}
+            {# You can add filters here, e.g., | reverse to show newest first, | limit: 10 for pagination -->
+             
+
+             <!--{# Check if there are any posts in the collection #}-->
+                <!-- Iterate through each post found in the collection -->
+                
+                    <!-- --- Start Article Card HTML --- -->
+                    <!--{# Adapt this structure to match the articles-grid and article-card HTML from your index.html #}-->
+                    <article class="article-card">
+                        <div class="article-content">
+                            <!-- You can use Front Matter data here, e.g., post.data.category -->
+                            <span class="article-category">Breathing Technique</span> 
+                            <!-- Use the post's title from Front Matter -->
+                            <h3 class="article-title">Wim Hof Breathing- Unlock Your Inner Superhuman</h3>
+                            <!--- Use the post's description (excerpt) from Front Matter -->
+                            <p class="article-excerpt">
+                                Learn the science, benefits, and step-by-step technique of Wim Hof breathing.
+                            </p>
+                            <!----- Crucially, use /post/2025-4-29-wim-hof-breathing/ for the link --- -->
+                            <a href="/post/2025-4-29-wim-hof-breathing/" class="article-link">Read More →</a>
+                        </div>
+                    </article>
+                    <!-- --- End Article Card HTML --- -->
+                
+            
+            <!-- --- End Liquid Loop --- #}-->
+
+        </div>
+
+    </main>
+
+    <!-- You removed the script loader tag from here. Ensure it's included in your base.html #}
+    {# For example, the <script src="/scripts/template-loader.js"></script> should be in base.html #}
+    {# And template-loader.js should load app.js if needed for other functionalities. #}-->
+</html>
+       
+    <footer>
+        <!-- Footer component will be loaded here by template-loader.js -->
+        <div id="footer-placeholder"></div>
+    </footer>
+
+    <!-- Common Scripts Loader -->
+    <!-- Loads components, data, app.js, and initializes UI -->
+    <script src="/scripts/template-loader.js"></script>
+
+    <!-- Placeholder for additional page-specific JS -->
+    
+</body>
+</html>

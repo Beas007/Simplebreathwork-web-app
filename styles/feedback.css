@@ -1,0 +1,68 @@
+/* Form specific styles */
+.feedback-container {
+    width: min(90%, 1000px);
+    margin: 2rem auto;
+    padding: 0 clamp(0.5rem, 2vw, 1rem);
+}
+
+.form-wrapper {
+    background: var(--card-bg);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border-radius: 15px;
+    box-shadow: 0 4px 12px var(--shadow);
+    transition: background-color 0.3s ease;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+    font-size: 1.1rem;
+}
+
+input, 
+select, 
+textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--input-border, var(--primary));
+    border-radius: 8px;
+    background: var(--card-bg);
+    color: var(--text);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+textarea {
+    min-height: 200px;
+    resize: vertical;
+    line-height: 1.6;}
+
+input:focus, 
+select:focus, 
+textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(76, 161, 175, 0.1);}
+
+    .submit-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(145deg, var(--primary), var(--text));
+    color: rgb(79, 77, 77);
+    border:black;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+}
