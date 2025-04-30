@@ -15,11 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleButton.addEventListener('click', (e) => {
 
         toggleToc();
+        });
     });
 
     // Close when clicking a TOC link and scroll smoothly
     tocDropdown.addEventListener('click', (e) => {
         if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+            toggleToc(false);
+        }
+    });
 
     document.addEventListener('click', (e) => {
         if (tocDropdown.classList.contains('is-open') &&
@@ -30,15 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-<
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && tocDropdown.classList.contains('is-open')) {
             toggleToc(false);
         }
-    });
+    }
+);
 
-
-}
+/**
+ * Generates the Table of Contents list by finding H2 and H3 headings with IDs
+ */
 
 /**
  * Generates the Table of Contents list by finding H2 and H3 headings with IDs
