@@ -1,3 +1,6 @@
+// filepath: .eleventy.js
+const { URL } = require("url"); // Add this line at the top of the file
+
 module.exports = function(eleventyConfig) {
     // Copy static assets (CSS, JS, images, etc.) to the output directory
     eleventyConfig.addPassthroughCopy("styles");
@@ -33,7 +36,15 @@ module.exports = function(eleventyConfig) {
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return dateObj.toLocaleDateString('en-US', options); // Adjust 'en-US' if needed for your locale
     });
-
+    // Filter to generate absolute URLs (needed for sharing links, RSS, etc.)
+    eleventyConfig.addFilter("absoluteUrl", (url, base) => {
+      try {
+        return (new URL(url, base)).href;
+      } catch (e) {
+        console.error(`Trying to convert ${url} to be an absolute url with base ${base} but failed.`);
+        return url;
+      }
+    });
     // ... rest of your .eleventy.js configuration (like input/output directories)
     return {
       dir: {
