@@ -1,6 +1,4 @@
-<h1 id="contributing-guidelines" tabindex="-1"><a class="header-anchor" href="#contributing-guidelines">Contributing Guidelines</a></h1>
-<h2 id="project-setup" tabindex="-1"><a class="header-anchor" href="#project-setup">Project Setup</a></h2>
-<h3 id="file-structure" tabindex="-1"><a class="header-anchor" href="#file-structure">File Structure</a></h3>
+
 <pre><code class="language-bash">simplebreathwork-web-app/
 ├── scripts/
 │   ├── app.js          # Core application logic
@@ -12,8 +10,6 @@
     ├── header.html     # Navigation component
     └── footer.html     # Footer component
 </code></pre>
-<h3 id="code-style-guide" tabindex="-1"><a class="header-anchor" href="#code-style-guide">Code Style Guide</a></h3>
-<h4 id="javascript" tabindex="-1"><a class="header-anchor" href="#javascript">JavaScript</a></h4>
 <ul>
 <li>Use <code>const</code> and <code>let</code> (avoid <code>var</code>)</li>
 <li>Follow camelCase naming convention</li>
@@ -32,42 +28,41 @@ var init = function() {
     // Too generic name, inconsistent spacing
 }
 </code></pre>
-<h4 id="css" tabindex="-1"><a class="header-anchor" href="#css">CSS</a></h4>
+
 <ul>
 <li>Use CSS variables for theming</li>
 <li>Follow BEM naming convention</li>
 <li>Group related properties</li>
 <li>Add comments for complex selectors</li>
 </ul>
-<h4 id="html" tabindex="-1"><a class="header-anchor" href="#html">HTML</a></h4>
+
 <ul>
 <li>Use semantic elements</li>
 <li>Include proper ARIA attributes</li>
 <li>Keep components modular</li>
 <li>Validate accessibility</li>
 </ul>
-<h3 id="vs-code-setup" tabindex="-1"><a class="header-anchor" href="#vs-code-setup">VS Code Setup</a></h3>
-<h4 id="required-extensions" tabindex="-1"><a class="header-anchor" href="#required-extensions">Required Extensions</a></h4>
+
 <ul>
 <li>ESLint</li>
 <li>Prettier</li>
 <li>Live Server</li>
 </ul>
-<h4 id="workspace-settings" tabindex="-1"><a class="header-anchor" href="#workspace-settings">Workspace Settings</a></h4>
+
 <pre><code class="language-json">{
   &quot;editor.formatOnSave&quot;: true,
   &quot;editor.tabSize&quot;: 2,
   &quot;files.encoding&quot;: &quot;utf8&quot;
 }
 </code></pre>
-<h4 id="mac-shortcuts" tabindex="-1"><a class="header-anchor" href="#mac-shortcuts">Mac Shortcuts</a></h4>
+
 <ul>
 <li>Save: ⌘ + S</li>
 <li>Format: ⌘ + Shift + F</li>
 <li>Terminal: ⌘ + `</li>
 <li>Quick Open: ⌘ + P</li>
 </ul>
-<h3 id="git-workflow" tabindex="-1"><a class="header-anchor" href="#git-workflow">Git Workflow</a></h3>
+
 <pre><code class="language-bash"># Start new feature
 git checkout -b feature/name
 

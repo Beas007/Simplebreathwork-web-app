@@ -10,27 +10,7 @@ module.exports = function(eleventyConfig) {
       });
       // Make sure the glob pattern matches your post file location (e.g., posts/*.md or content/blog/*.md)
       // Based on your error message, it seems like your posts are in ./posts/
-      const markdownIt = require("markdown-it");
-      const markdownItAnchor = require("markdown-it-anchor");
-      
-      module.exports = function(eleventyConfig) {
-        // Add your existing addPassthroughCopy and addCollection calls here...
-      
-        // Configure Markdown-it
-        eleventyConfig.setLibrary("md", markdownIt({
-          html: true, // Allow HTML in markdown
-          breaks: true, // Convert newline characters to <br>
-          linkify: true // Auto-convert URLs to links
-        }).use(markdownItAnchor, {
-          permalink: markdownItAnchor.permalink.headerLink() // Add permalink icons next to headings
-        }));
-      
-        // Add your existing filters here...
-      
-        return {
-          // ... your dir configuration ...
-        };
-      };
+
   
     // Add date filters
     eleventyConfig.addFilter("htmlDateString", (dateObj) => {
@@ -54,20 +34,6 @@ module.exports = function(eleventyConfig) {
       return dateObj.toLocaleDateString('en-US', options); // Adjust 'en-US' if needed for your locale
     });
 
-    eleventyConfig.addFilter("htmlDateString", (dateObj) => { /* ... */ });
-  eleventyConfig.addFilter("readableDate", (dateObj) => { /* ... */ });
-
-
-  // --- Add this configuration for Markdown-it and the Anchor plugin ---
-  eleventyConfig.setLibrary("md", markdownIt({
-    html: true,         // Enable HTML tags in source
-    breaks: true,       // Convert '\n' in input into <br>
-    linkify: true       // Autoconvert URL-like text to links
-  }).use(markdownItAnchor, {
-    permalink: markdownItAnchor.permalink.headerLink() // Adds a link icon next to the heading
-  }));
-  // --- End Markdown configuration ---
-  
     // ... rest of your .eleventy.js configuration (like input/output directories)
     return {
       dir: {
