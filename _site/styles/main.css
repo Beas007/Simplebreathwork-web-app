@@ -253,33 +253,32 @@ body.menu-open {
     overflow: hidden; /* Prevent scrolling background when mobile menu is open */
 }
 
-/* --- ADDED: Desktop Navigation Styles --- */
-@media (min-width: 769px) { /* Adjust breakpoint as needed */
+/* --- REMOVED/COMMENTED OUT: Desktop Navigation Styles --- */
+/*
+@media (min-width: 769px) {
     .hamburger {
-        display: none; /* Hide hamburger on desktop */
+        display: none;
     }
 
     .nav-menu {
-        position: static; /* Override fixed position */
+        position: static;
         right: auto;
         width: auto;
         height: auto;
         background: none;
-        flex-direction: row; /* Display items horizontally */
+        flex-direction: row;
         padding: 0;
-        gap: 1.5rem; /* Adjust spacing between links */
+        gap: 1.5rem;
         box-shadow: none;
-        /* Ensure it's visible */
         display: flex;
-        align-items: center; /* Align links vertically with logo/controls */
-        /* order: 2; /* Example: Place nav menu between logo and controls */
+        align-items: center;
     }
 
-    /* Hide button within nav menu on desktop if it's mobile-only */
     .nav-menu button {
        display: none;
     }
 }
+*/
 /* --- END DESKTOP NAVIGATION STYLES --- */
 
 /* Mobile Responsive Adjustments (Existing) */
@@ -684,6 +683,7 @@ footer {
     flex-direction: column;
     align-items: center;
     transition: background-color 0.3s ease;
+    
 }
 
 .links {
