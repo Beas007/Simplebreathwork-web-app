@@ -64,4 +64,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
         listItem.appendChild(link);
         tocMenu.appendChild(listItem);
-    });
+    
+        const copyButton = document.getElementById('copy-link-button');
+        if (copyButton) {
+            copyButton.addEventListener('click', () => {
+                const urlToCopy = window.location.href; // Get the current page URL
+                navigator.clipboard.writeText(urlToCopy).then(() => {
+                    // Success feedback (optional)
+                    const icon = copyButton.querySelector('i');
+                    const originalIconClass = icon.className;
+                    copyButton.setAttribute('aria-label', 'Link copied!'); // Update aria-label
+                    icon.className = 'fas fa-check'; // Change icon to checkmark
+    
+                    // Revert after a short delay
+                    setTimeout(() => {
+                        icon.className = originalIconClass; // Restore original icon
+                         copyButton.setAttribute('aria-label', 'Copy link to clipboard'); // Restore original aria-label
+                    }, 2000); // Revert after 2 seconds
+    
+                }).catch(err => {
+                    console.error('Failed to copy link: ', err);
+                    // You could add fallback logic here if needed (e.g., prompt)
+                    copyButton.setAttribute('aria-label', 'Failed to copy');
+                     setTimeout(() => {
+                         copyButton.setAttribute('aria-label', 'Copy link to clipboard');
+                    }, 2000);
+                });
+            });
+        }
+        // Add smooth scrolling to the link});

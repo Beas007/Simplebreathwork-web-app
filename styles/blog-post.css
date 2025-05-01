@@ -271,7 +271,7 @@
 }
 
 .share-buttons a,
-.feedback-buttons button {
+.feedback-buttons button .copy-link-button{
     color: var(--text);
     background: none;
     border: 1px solid var(--shadow, #ccc);
@@ -288,7 +288,7 @@
     cursor: pointer;
 }
 
-.feedback-buttons button {
+.feedback-buttons button .copy-link-button{
      border-radius: 20px;
      width: auto;
      padding: 0.4rem 1rem;
@@ -296,7 +296,8 @@
 }
 
 .share-buttons a:hover,
-.feedback-buttons button:hover {
+.feedback-buttons button:hover,
+copy-link-button:hover {
     opacity: 1;
     border-color: var(--text);
     background-color: var(--card-bg); /* Subtle background on hover */
