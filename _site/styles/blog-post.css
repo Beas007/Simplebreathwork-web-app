@@ -270,8 +270,21 @@
     /* align-items: center; */
 }
 
+.share-buttons {
+    display: flex; /* Use flex for alignment */
+    align-items: center;
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+    gap: 0.75rem; /* Space between buttons */
+    margin-bottom: 1rem; /* Space below share buttons if feedback is separate */
+}
+
+.share-buttons span {
+    margin-right: 0.5rem; /* Space after "Share:" text */
+    font-weight: 500;
+}
+
 .share-buttons a,
-.feedback-buttons button .copy-link-button{
+.feedback-buttons button.copy-link-button {
     color: var(--text);
     background: none;
     border: 1px solid var(--shadow, #ccc);
@@ -296,15 +309,24 @@
 }
 
 .share-buttons a:hover,
-.feedback-buttons button:hover,
-copy-link-button:hover {
+.feedback-buttons button.copy-link-button:hover {
     opacity: 1;
     border-color: var(--text);
     background-color: var(--card-bg); /* Subtle background on hover */
     box-shadow: 0 2px 5px rgba(0,0,0,0.08);
 }
 
-/* Liked state */
+* Optional: Style for the success state of copy button */
+.share-buttons button.copy-link-button i.fa-check {
+    color: green; /* Indicate success */
+}
+
+
+/* --- Feedback Buttons (If you have them) --- */
+/* .feedback-buttons { ... } */
+/* .feedback-buttons button { ... } */
+
+/* Liked state (Assuming .like-button is separate or part of .feedback-buttons) */
 .like-button.liked {
     border-color: var(--wim-text); /* Use accent color */
     color: var(--wim-text);
@@ -318,24 +340,28 @@ copy-link-button:hover {
 .like-button:not(.liked) i.far { display: inline-block; }
 
 
-/* --- Responsive Adjustments --- */
+* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
     .article-content h1 { font-size: clamp(1.8rem, 5vw, 2.2rem); }
     .article-content h2 { font-size: clamp(1.4rem, 4vw, 1.7rem); margin-top: 2rem; }
     .article-content h3 { font-size: clamp(1.1rem, 3.5vw, 1.4rem); margin-top: 1.5rem; }
-    .article-interactions { flex-direction: column; align-items: flex-start; } /* If using flex */
+    /* .article-interactions { flex-direction: column; align-items: flex-start; } */ /* Adjust if needed */
     .article-content { line-height: 1.6; }
 }
 @media (max-width: 480px) {
     .toc-dropdown { min-width: 90vw; }
-    .article-body p, .article-body li { font-size: 0.95rem; } /* Slightly larger on mobile */
+    .article-body p, .article-body li { font-size: 0.95rem; }
     .article-body blockquote { padding: 0.8rem 1.2rem; }
-    /* Make exercise links full width on small screens if desired */
-    /* .article-body a[href*="exercise.html?type="] {
-        width: 100%;
-        text-align: center;
-        box-sizing: border-box;
-    } */
-    .feedback-buttons button { padding: 0.3rem 0.8rem; font-size: 0.9rem; }
-    .share-buttons a { width: 32px; height: 32px; font-size: 0.9rem; }
+    /* .feedback-buttons button { padding: 0.3rem 0.8rem; font-size: 0.9rem; } */ /* Adjust if using feedback buttons */
+
+    /* Adjust share button size for smaller screens */
+    .share-buttons a,
+    .share-buttons button.copy-link-button {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    .share-buttons {
+        gap: 0.5rem; /* Reduce gap slightly */
+    }
 }
