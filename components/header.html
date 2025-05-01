@@ -1,21 +1,28 @@
-<nav class="navbar">
-    <div class="nav-container">
-        <a href="#" class="logo">Simple Breathwork</a>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-            <span class="theme-icon">🌙</span>
-        </button>
-        </div>
-        <ul class="nav-menu">
-            <li><a href="/index/">Home</a></li>
-            <li><a href="/blog/">Blog</a></li> 
-            <li><a href="/about/">About Us</a></li>
-            <li><a href="/privacy/">Privacy Policy</a></li>
-            <li><a href="/terms/">Terms of Use</a></li>
-            <li><a href="/feedback/" class="footer-button">Share Feedback</a></li>
-        </ul>
-</nav>
+<header class="site-header"> <!-- Use <header> for semantics -->
+    <nav class="navbar">
+        <div class="nav-container"> <!-- Container starts -->
+            <a href="/" class="logo">Simple Breathwork</a> <!-- Link logo to homepage -->
+
+            <!-- Group interactive elements -->
+            <div class="nav-controls">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span> <!-- Icon updated by JS -->
+                </button>
+                <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+
+            <ul class="nav-menu" id="main-nav-menu"> <!-- Menu is INSIDE container -->
+                <li><a href="/">Home</a></li> <!-- Use root-relative paths -->
+                <li><a href="/blog/">Blog</a></li>
+                <li><a href="/about/">About Us</a></li>
+                <li><a href="/privacy/">Privacy Policy</a></li>
+                <li><a href="/terms/">Terms of Use</a></li>
+                <li><a href="/feedback/">Share Feedback</a></li> <!-- Removed footer-button class -->
+            </ul>
+        </div> <!-- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Container closes HERE -->
+    </nav>
+</header>

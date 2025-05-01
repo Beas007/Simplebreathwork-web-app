@@ -37,19 +37,21 @@ body_class: blog-post-page-body-class # Optional class for body styling
 
     <!-- Main Article Content from Markdown -->
     <div class="article-body">
-        {{ content }} {# -- CRITICAL: This inserts the processed Markdown content #}
+        {{ content }} <!--{# <-- CRITICAL: This inserts the processed Markdown content #}-->
     </div>
 
     <!-- Article Interactions (Sharing, Feedback) -->
     <section class="article-interactions">
-        <!-- ... sharing/feedback buttons ... -->
          <div class="share-buttons">
             <span>Share:</span>
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absoluteUrl(metadata.url) }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://twitter.com/intent/tweet?url={{ page.url | absoluteUrl(metadata.url) }}&text={{ title }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absoluteUrl(metadata.url) }}&title={{ title }}&summary={{ description }}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-             <a href="mailto:?subject={{ title }}&body=Check out this article: {{ page.url | absoluteUrl(metadata.url) }}" aria-label="Share via Email"><i class="fas fa-envelope"></i></a>
+            <!--{# Corrected filter syntax: use colon : instead of parentheses () #}-->
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absoluteUrl: metadata.url }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/intent/tweet?url={{ page.url | absoluteUrl: metadata.url }}&text={{ title }}" target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ page.url | absoluteUrl: metadata.url }}&title={{ title }}&summary={{ description }}" target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+             <a href="mailto:?subject={{ title }}&body=Check out this article: {{ page.url | absoluteUrl: metadata.url }}" aria-label="Share via Email"><i class="fas fa-envelope"></i></a>
         </div>
+        <!-- Add feedback link/button here if desired -->
+        <!-- <a href="/feedback/?article={{ page.url | url_encode }}" class="feedback-link">Leave Feedback</a> -->
     </section>
 
 </article>
