@@ -105,11 +105,11 @@ additional_scripts: '' # No page-specific scripts identified for index
         <h2 class="section-title">Latest Articles</h2>
         <div class="articles-grid">
             <!-- Reverse the collection first (latest first), then limit to 3 -->
-            {% assign latestPosts = collections.post | reverse | slice: 0, 3 %}
+            {% set latestPosts = collections.post | reverse | slice(3) %}
             {% for post in latestPosts %}
                 <article class="article-card">
                     <div class="article-content">
-                        <span class="article-category">{{ post.data.category | default: "Breathing Technique" }}</span>
+                        <span class="article-category">{{ post.data.category | default("Breathing Technique") }}</span>
                         <h3 class="article-title">{{ post.data.title }}</h3>
                         <p class="article-excerpt">
                             {{ post.data.description }}

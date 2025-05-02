@@ -1,55 +1,70 @@
-// filepath: .eleventy.js
-const { URL } = require("url"); // Add this line at the top of the file
+const { URL } = require("url");
+const markdownIt = require("markdown-it"); // Keep using require for markdown-it (likely CJS)
+// const markdownItAnchor = require("markdown-it-anchor"); // <-- REMOVE THIS LINE
 
-module.exports = function(eleventyConfig) {
-    // Copy static assets (CSS, JS, images, etc.) to the output directory
+// Make the exported function async
+module.exports = async function(eleventyConfig) {
+
+    // Dynamically import markdown-it-anchor
+    // We often need .default when dynamically importing ESM into CJS
+    const markdownItAnchor = (await import('markdown-it-anchor')).default;
+
+    // Passthrough Copies
     eleventyConfig.addPassthroughCopy("styles");
     eleventyConfig.addPassthroughCopy("scripts");
-    eleventyConfig.addPassthroughCopy("images"); 
-    eleventyConfig.addPassthroughCopy("components");// if you have an images folder
-    // Optional: Add collection for blog posts if needed (as suggested earlier)
-    eleventyConfig.addCollection("post", function(collectionApi) {
-        return collectionApi.getFilteredByGlob("post/*.md"); // <-- Corrected path
-      });
-      // Make sure the glob pattern matches your post file location (e.g., posts/*.md or content/blog/*.md)
-      // Based on your error message, it seems like your posts are in ./posts/
+    eleventyConfig.addPassthroughCopy("images");
+    eleventyConfig.addPassthroughCopy("components");
 
-  
-    // Add date filters
+    // Collections
+    eleventyConfig.addCollection("post", function(collectionApi) {
+        return collectionApi.getFilteredByGlob("post/*.md");
+    });
+
+    // Filters (htmlDateString, readableDate, absoluteUrl)
+    // ... (keep your existing filters) ...
     eleventyConfig.addFilter("htmlDateString", (dateObj) => {
-      // dateObj will be a Date object from front matter or collection
-      if (!dateObj || !(dateObj instanceof Date)) {
-        // Handle cases where dateObj might be null, undefined, or not a Date object
-        return ""; // Or some other placeholder
-      }
-      // Use ISO string and slice to get YYYY-MM-DD format for datetime attribute
+      if (!dateObj || !(dateObj instanceof Date)) { return ""; }
       return dateObj.toISOString().split('T')[0];
     });
-  
     eleventyConfig.addFilter("readableDate", (dateObj) => {
-      // dateObj will be a Date object
-       if (!dateObj || !(dateObj instanceof Date)) {
-           return "N/A"; // Or some other placeholder
-       }
-      // Use JavaScript's built-in toLocaleDateString for a readable format
-      // Example: October 27, 2023
+       if (!dateObj || !(dateObj instanceof Date)) { return "N/A"; }
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      return dateObj.toLocaleDateString('en-US', options); // Adjust 'en-US' if needed for your locale
+      return dateObj.toLocaleDateString('en-US', options);
     });
-    // Filter to generate absolute URLs (needed for sharing links, RSS, etc.)
     eleventyConfig.addFilter("absoluteUrl", (url, base) => {
-      try {
-        return (new URL(url, base)).href;
-      } catch (e) {
-        console.error(`Trying to convert ${url} to be an absolute url with base ${base} but failed.`);
-        return url;
-      }
+      try { return (new URL(url, base)).href; }
+      catch (e) { console.error(`Failed absoluteUrl: ${url}, ${base}`); return url; }
     });
-    // ... rest of your .eleventy.js configuration (like input/output directories)
+
+    // --- Add Markdown Configuration ---
+    let markdownLibrary = markdownIt({
+        html: true,
+        breaks: true,
+        linkify: true
+    }).use(markdownItAnchor, { // Use the dynamically imported module
+        permalink: markdownItAnchor.permalink.ariaHidden({
+            placement: 'after',
+            class: 'heading-anchor',
+            symbol: '#',
+            ariaHidden: true,
+        }),
+        level: [2, 3]
+    });
+    eleventyConfig.setLibrary("md", markdownLibrary);
+    // --- End Markdown Configuration ---
+
+
+    // Return your config object
     return {
-      dir: {
-        input: ".",
-        output: "_site"
-      }
+        dir: {
+            input: ".",
+            output: "_site",
+            includes: "_includes",
+            layouts: "_includes",
+            data: "_data"
+        },
+        markdownTemplateEngine: "njk",
+        htmlTemplateEngine: "njk",
+        templateFormats: ["md", "njk", "html", "liquid"]
     };
-  };
+};

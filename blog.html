@@ -19,7 +19,7 @@ additional_scripts: ''
     <div class="blog-grid" id="blog-posts-container">
 
         <!-- Get the 'post' collection and reverse it -->
-        {% assign allPosts = collections.post | reverse %}
+        {% set allPosts = collections.post | reverse %}
 
         <!-- Loop through each post -->
         {% for post in allPosts %}
@@ -27,7 +27,8 @@ additional_scripts: ''
             <!-- Start Article Card HTML -->
             <article class="article-card">
                 <div class="article-content">
-                    <span class="article-category">{{ post.data.category | default: "Breathing Technique" }}</span>
+                    {# Corrected Nunjucks default filter syntax #}
+                    <span class="article-category">{{ post.data.category | default("Breathing Technique") }}</span>
                     <h3 class="article-title">{{ post.data.title }}</h3>
                     <p class="article-excerpt">
                         {{ post.data.description }}

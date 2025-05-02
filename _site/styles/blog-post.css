@@ -316,7 +316,7 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.08);
 }
 
-* Optional: Style for the success state of copy button */
+/* Optional: Style for the success state of copy button */
 .share-buttons button.copy-link-button i.fa-check {
     color: green; /* Indicate success */
 }
@@ -340,14 +340,15 @@
 .like-button:not(.liked) i.far { display: inline-block; }
 
 
-* --- Responsive Adjustments --- */
+/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
-    .article-content h1 { font-size: clamp(1.8rem, 5vw, 2.2rem); }
+    .article-content h1 { font-size: clamp(1.8rem, 5vw, 2.2rem); } 
     .article-content h2 { font-size: clamp(1.4rem, 4vw, 1.7rem); margin-top: 2rem; }
     .article-content h3 { font-size: clamp(1.1rem, 3.5vw, 1.4rem); margin-top: 1.5rem; }
     /* .article-interactions { flex-direction: column; align-items: flex-start; } */ /* Adjust if needed */
     .article-content { line-height: 1.6; }
 }
+
 @media (max-width: 480px) {
     .toc-dropdown { min-width: 90vw; }
     .article-body p, .article-body li { font-size: 0.95rem; }

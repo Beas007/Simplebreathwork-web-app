@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/Beas007/Simplebreathwork-web-app#readme",
   "devDependencies": {
-
+    "markdown-it-anchor": "^9.2.0"
   }
 }
