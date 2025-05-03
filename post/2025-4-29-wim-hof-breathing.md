@@ -1,14 +1,12 @@
 ---
-layout: article.html
-title: Wim Hof Breathing- Unlock Your Inner Superhuman
-date: 2023-10-27
-description: Learn the science, benefits, and step-by-step technique of Wim Hof breathing.
-# author: Your Name # Example of a commented-out line
-# tags: # Example of a list key
-#   - wim hof # List items are indented
-#   - breathing
-#   - cold exposure
-#   - science
+# filepath: post/2025-4-29-wim-hof-breathing.md
+title: "Unlock Your Potential with Wim Hof Breathing" # Make sure this line exists and has text
+description: "Explore the powerful Wim Hof Method breathing technique, known for its benefits on energy, focus, and cold tolerance." # Make sure this line exists and has text
+date: 2025-04-29 # Or your actual date
+layout: article.html # Ensure it uses the correct layout
+tags: post # Ensure it's tagged for the collection
+category: "Advanced Techniques" # Optional category
+# Add any other front matter variables you use
 ---
 
 
@@ -17,7 +15,7 @@ description: Learn the science, benefits, and step-by-step technique of Wim Hof 
 
 This section provides a brief overview of the Wim Hof Method, focusing on its breathing component and potential benefits like improved immunity, energy, and stress resilience.
 
-[Wim Hof Breathwork](https://simplebreathwork.com/exercise.html?type=wim-hof)
+[Wim Hof Breathwork](https://simplebreathwork.com/exercise/?type=wim-hof)
 
 ## 2. Who is Wim Hof? The Man Behind the Method
 
@@ -57,7 +55,7 @@ Here's how to do the Wim Hof breathing technique:
 
 Now, I know what you're thinking. "That's it? That's the secret to superhuman abilities?" Well, yes and no. The magic happens when you do this consistently and combine it with the other aspects of the Wim Hof Method. But even on its own, this breathing technique can do some pretty amazing things.
 
-[Wim Hof Breathwork](https://simplebreathwork.com/exercise.html?type=wim-hof)
+[Wim Hof Breathwork](https://simplebreathwork.com/exercise/?type=wim-hof)
 
 ### 3.2 Safety First! Because We Want You to Be a Superhero... Safely
 
@@ -203,7 +201,7 @@ Ready to begin your journey? Here's how:
 
 Remember, Rome wasn't built in a day, and neither is a breathing superhero. Be patient with yourself, listen to your body, and enjoy the journey!
 
-[Wim Hof Breathwork](https://simplebreathwork.com/exercise.html?type=wim-hof)
+[Wim Hof Breathwork](https://simplebreathwork.com/exercise/?type=wim-hof)
 
 ## 8. Conclusion: Your Breath, Your Superpower
 

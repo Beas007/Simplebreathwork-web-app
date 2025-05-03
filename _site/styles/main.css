@@ -672,7 +672,35 @@ main {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
+.view-all-link-container {
+    text-align: center; /* Center the button */
+    margin-top: 1.5rem; /* Add space above the button */
+    
+}
 
+.view-all-btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color); /* Use your theme's primary color */
+    color: var(--background-color); /* Text color that contrasts with primary */
+    text-decoration: none;
+    border: 1px solid #1f1f3a;
+    border-radius: var(--border-radius, 4px);
+    font-weight: bold;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.view-all-btn:hover,
+.view-all-btn:focus {
+    background-color: var(--primary-color-dark); /* Darker shade for hover/focus */
+    color: var(--background-color);
+    transform: translateY(-2px);
+    outline: none;
+}
+.view-all-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
 /* Footer */
 footer {
     width: 100%;

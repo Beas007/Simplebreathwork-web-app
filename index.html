@@ -105,7 +105,7 @@ additional_scripts: '' # No page-specific scripts identified for index
         <h2 class="section-title">Latest Articles</h2>
         <div class="articles-grid">
             <!-- Reverse the collection first (latest first), then limit to 3 -->
-            {% set latestPosts = collections.post | reverse | slice(3) %}
+            {% set latestPosts = collections.post | reverse | slice(1) %}
             {% for post in latestPosts %}
                 <article class="article-card">
                     <div class="article-content">
@@ -120,6 +120,10 @@ additional_scripts: '' # No page-specific scripts identified for index
             {% else %}
                 <p>No articles found yet.</p>
             {% endfor %}
+        </div>
+        {# Add a prominent link to the main blog page below the latest article card #}
+        <div class="view-all-link-container">
+             <a href="/blog/" class="view-all-btn">View All Articles</a> {# Ensure '/blog/' is the correct path to your blog index #}
         </div>
     </section>
         </main>
