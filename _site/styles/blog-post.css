@@ -77,72 +77,170 @@
 
 
 /* --- Sticky Table of Contents Container --- */
-.toc-container {
+/* --- Sticky TOC Layout --- */
+
+.article-layout-wrapper {
+    display: grid;
+    /* Define columns: TOC width, gap, main content */
+    grid-template-columns: 150px 1fr; /* Adjust TOC width (e.g., 240px) */
+    gap: 1.5rem; /* Adjust gap between TOC and content */
+    align-items: flex-start; /* Align items to the top */
+    margin-top: 2rem; /* Add some space above the two columns */
+}
+
+.toc-sidebar {
     position: sticky;
-    top: 10px; /* Adjust this value based on your header height or desired spacing */
-    z-index: 100; /* Ensure it stays above other content */
-    margin-bottom: 1.5rem; /* Space below TOC */
-    background-color: var(--background, #fff); /* Give it a background to avoid content showing through */
-    padding: 5px 0; /* Optional padding */
-    border-bottom: 1px solid var(--shadow-light, #eee); /* Optional separator */
+    top: 2rem; /* Adjust based on header height or desired spacing */
+    /* Prevent TOC from exceeding viewport height */
+    max-height: calc(100vh - 4rem); /* Viewport height minus top/bottom margins */
+    overflow-y: auto; /* Enable scrolling within TOC if it's too long */
 }
 
-/* --- TOC Controls (Dropdown Style) --- */
-.toc-controls {
-    position: relative; /* Needed for dropdown positioning */
-    /* Centering can be done via parent (.toc-container) if needed, or keep left */
-    /* max-width: var(--container-width); */
-    /* margin: 0 auto; */
+/* Styles for the always-visible TOC content */
+.toc-sidebar .toc-container {
+    /* Add padding or other container styles if desired */
+    padding: 0.5rem;
 }
 
-.toc-toggle-button {
-    background-color: var(--card-bg, #f9f9f9);
-    color: var(--text);
-    border: 1px solid var(--shadow, #ddd);
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-}
-.toc-toggle-button:hover {
-    background-color: var(--card-bg-hover, #eee);
-    border-color: var(--shadow-dark, #ccc);
-}
-.toc-toggle-button[aria-expanded="true"] {
-    background-color: var(--card-bg-hover, #eee);
+.toc-sidebar .toc-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    color: var(--text-color-secondary);
+    /* Add other title styles */
 }
 
-/* --- TOC Dropdown --- */
-.toc-dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: var(--background, #fff);
-    border: 1px solid var(--shadow, #ddd);
-    border-radius: 8px;
-    box-shadow: 0 5px 15px var(--shadow-light, rgba(0, 0, 0, 0.1));
-    z-index: 101; /* Above sticky container */
-    padding: 0.8rem;
-    margin-top: 0.5rem;
-    min-width: 280px;
-    max-width: 90vw;
-    max-height: 60vh;
-    overflow-y: auto;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
-}
-.toc-dropdown.is-open {
+.toc-sidebar .toc-dropdown {
+    /* Override any dropdown-specific positioning/hiding */
+    position: static;
+    display: block;
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-height: none; /* Remove height limits if any */
 }
+
+.toc-sidebar .toc ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.toc-sidebar .toc li {
+    margin-bottom: 0.4rem;
+}
+
+.toc-sidebar .toc a {
+    text-decoration: none;
+    color: var(--text-color-secondary);
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+    display: block; /* Make link take full width for easier clicking */
+    padding: 0.2rem 0;
+}
+
+.toc-sidebar .toc a:hover,
+.toc-sidebar .toc a:focus {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* Indentation for subheadings (H3) */
+.toc-sidebar .toc li.subheading {
+    padding-left: 1rem;
+}
+.toc-sidebar .toc li.subheading a {
+    font-size: 0.85rem; /* Slightly smaller font for subheadings */
+}
+
+
+/* --- Responsive: Revert to Dropdown on Smaller Screens --- */
+@media (max-width: 1024px) { /* Adjust breakpoint as needed */
+
+    .article-layout-wrapper {
+        display: block; /* Stack elements vertically */
+        grid-template-columns: 1fr; /* Reset grid */
+        margin-top: 1rem;
+    }
+
+    .toc-sidebar {
+        position: static; /* Remove stickiness */
+        max-height: none;
+        overflow-y: visible;
+        margin-bottom: 1.5rem; /* Space below TOC before article body */
+        width: 100%;
+        padding: 0; /* Reset padding if added */
+    }
+
+    /* Hide the static TOC title on small screens */
+    .toc-sidebar .toc-title {
+        display: none;
+    }
+
+    /* Restore original TOC container relative positioning for dropdown */
+    .toc-sidebar .toc-container {
+       position: relative; /* Needed for absolute positioning of dropdown */
+       padding: 0;
+    }
+
+    /* Re-insert and style the toggle button (needs to be added back to HTML if removed) */
+    /* If you didn't remove the button from HTML, just style it */
+     .toc-toggle-button { /* Assuming you add the button back inside .toc-container for mobile */
+        display: inline-flex; /* Or block */
+        align-items: center;
+        padding: 0.5rem 1rem;
+        background-color: var(--background-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: var(--text-color);
+        margin-bottom: 0.5rem; /* Space below button */
+     }
+     .toc-toggle-button i {
+        margin-right: 0.5rem;
+     }
+
+
+    /* Restore original dropdown styles */
+    .toc-sidebar .toc-dropdown {
+        position: absolute;
+        top: 100%; /* Position below the button */
+        left: 0;
+        display: none; /* Hidden by default */
+        opacity: 0;
+        visibility: hidden;
+        background-color: var(--background-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        padding: 0.75rem;
+        margin-top: 0.25rem;
+        min-width: 250px; /* Example width */
+        transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    /* Restore open state */
+    .toc-sidebar .toc-dropdown.is-open {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+    }
+
+     /* Reset TOC link styles if needed for dropdown */
+    .toc-sidebar .toc a {
+        padding: 0.3rem 0;
+    }
+}
+
+/* --- End Sticky TOC Layout --- */
+
 
 /* --- TOC List Styling --- */
 .toc { padding: 0; border: none; }
@@ -274,51 +372,58 @@
     display: flex; /* Use flex for alignment */
     align-items: center;
     flex-wrap: wrap; /* Allow buttons to wrap on small screens */
-    gap: 0.75rem; /* Space between buttons */
-    margin-bottom: 1rem; /* Space below share buttons if feedback is separate */
+    gap: 0.5rem; /* Space between buttons */
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    border-top: 1px solid var(--border-color); /* Example separator */
+    padding-top: 1rem;
 }
 
 .share-buttons span {
     margin-right: 0.5rem; /* Space after "Share:" text */
-    font-weight: 500;
+    font-weight: bold;
+    color: var(--text-color-secondary);
 }
 
 .share-buttons a,
-.feedback-buttons button.copy-link-button {
-    color: var(--text);
-    background: none;
-    border: 1px solid var(--shadow, #ccc);
-    border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    display: inline-flex;
-    align-items: center;
+.share-buttons .copy-link-button { /* Target both links and the button */
+    display: inline-flex; /* Use flex to center icon inside */
     justify-content: center;
+    align-items: center;
+    width: 36px; /* Example fixed size */
+    height: 36px; /* Example fixed size */
+    background-color: var(--background-secondary); /* Match background */
+    color: var(--text-color); /* Match text/icon color */
+    border-radius: 50%; /* Make it circular */
     text-decoration: none;
-    margin: 0 0.2rem;
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    font-size: 1rem;
-    cursor: pointer;
+    font-size: 1rem; /* Adjust icon size if needed */
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    border: 1px solid var(--border-color); /* Optional border */
+    padding: 0; /* Remove default padding if any */
+    margin: 0; /* Remove default margin if any */
+    cursor: pointer; /* Ensure pointer cursor */
 }
 
-.feedback-buttons button .copy-link-button{
-     border-radius: 20px;
-     width: auto;
-     padding: 0.4rem 1rem;
-     gap: 0.4rem;
+/* Specific styles to reset button defaults */
+.share-buttons .copy-link-button {
+    background: var(--background-secondary); /* Ensure background override */
+    border: 1px solid var(--border-color); /* Ensure border override */
+    /* Add any other specific overrides if needed */
 }
 
+/* Hover effect for ALL items */
 .share-buttons a:hover,
-.feedback-buttons button.copy-link-button:hover {
-    opacity: 1;
-    border-color: var(--text);
-    background-color: var(--card-bg); /* Subtle background on hover */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+.share-buttons .copy-link-button:hover {
+    background-color: var(--primary-color); /* Example hover background */
+    color: var(--accent-color); /* Example hover text/icon color */
+    transform: translateY(-2px); /* Slight lift effect */
 }
 
-/* Optional: Style for the success state of copy button */
-.share-buttons button.copy-link-button i.fa-check {
-    color: green; /* Indicate success */
+/* Focus styles for accessibility */
+.share-buttons a:focus,
+.share-buttons .copy-link-button:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 
