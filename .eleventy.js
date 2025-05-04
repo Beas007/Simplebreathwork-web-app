@@ -14,6 +14,12 @@ module.exports = async function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("scripts");
     eleventyConfig.addPassthroughCopy("images");
     eleventyConfig.addPassthroughCopy("components");
+    eleventyConfig.addPassthroughCopy("favicon.ico");
+    eleventyConfig.addPassthroughCopy("site.webmanifest");
+    eleventyConfig.addPassthroughCopy("images/favicon");
+
+    // Explicitly ignore the _templates directory
+    eleventyConfig.ignores.add("_templates/**");
 
     // Collections
     eleventyConfig.addCollection("post", function(collectionApi) {
@@ -35,6 +41,10 @@ module.exports = async function(eleventyConfig) {
       try { return (new URL(url, base)).href; }
       catch (e) { console.error(`Failed absoluteUrl: ${url}, ${base}`); return url; }
     });
+    // Add this to your .eleventy.js file with your other filters
+eleventyConfig.addFilter("url_encode", function(value) {
+    return encodeURIComponent(value);
+  });
 
     // --- Add Markdown Configuration ---
     let markdownLibrary = markdownIt({

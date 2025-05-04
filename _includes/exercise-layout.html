@@ -1,23 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Use description from front matter, fallback to metadata -->
     <meta name="description" content="{{ description | default(metadata.description) | default('Learn simple breathwork techniques for relaxation, focus, and well-being.') }}">
-    <!-- Use title from front matter, fallback to metadata -->
     <title>{{ title | default(metadata.title) | default('Simple Breathwork') }}</title>
 
     <!-- Common Stylesheets -->
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Placeholder for additional page-specific CSS -->
+    
+    <!-- Page-specific CSS -->
     {{ additional_head_content | safe }}
-
-    <!-- Favicons -->
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
 
     <!-- Google Analytics/Ads -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E6Q283JEH"></script>
@@ -31,21 +25,19 @@
     crossorigin="anonymous"></script>
 </head>
 <body {% if body_class %}class="{{ body_class }}"{% endif %}>
-
-    {% include "components/header.html" %} <!-- Eleventy includes the header content -->
-
+    <!-- No header/navbar included -->
+    
     <!-- Main Content Area -->
     <main>
-      {{ content | safe }} <!-- Page-specific content is inserted here -->
+      {{ content | safe }}
     </main>
 
-    {% include "components/footer.html" %} <!-- Eleventy includes the footer content -->
+    <!-- No footer included -->
 
-    <!-- Common Scripts (Load your main app logic) -->
-    <script src="/scripts/app.js"></script> <!-- For theme toggling, mobile menu, etc. -->
-
-    <!-- Placeholder for additional page-specific JS -->
+    <!-- Common Scripts -->
+    <script src="/scripts/app.js"></script>
+    
+    <!-- Page-specific JS -->
     {{ additional_scripts | safe }}
-
 </body>
 </html>

@@ -1,20 +1,30 @@
 /* Styles specific to the blog index page content */
-/* Blog Header Styling - Target elements directly */
-.blog-page h1 { /* Target h1 within .blog-page or main */
+
+/* Blog Hero Section */
+.blog-header {
     text-align: center;
-    font-size: clamp(2rem, 5vw, 2.8rem);
-    margin-bottom: 0.5rem;
-    color: var(--text);
-    margin-top: 1rem; /* Add some top margin */
+    background: var(--box-gradient, linear-gradient(145deg, #bf73dd, #6E48AA));
+    color: white;
+    padding: 4rem 1rem; /* Vertical/horizontal padding */
+    margin-bottom: 3rem; /* Space below the header */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    position: relative;
 }
 
-.blog-page .blog-intro { /* Target the specific intro paragraph */
-    text-align: center;
-    font-size: 1.1rem;
-    color: var(--text-muted, var(--text));
-    opacity: 0.8;
-    max-width: 600px;
-    margin: 0 auto 3rem auto; /* Center tagline and add bottom margin */
+.blog-header h1 {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: 0.8rem;
+    color: white;
+    font-weight: 600;
+}
+
+.blog-header p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+    font-weight: 400;
 }
 
 /* Blog Grid Layout */
@@ -22,72 +32,39 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
-    /* margin-top: 2rem; */ /* Removed, handled by .blog-intro margin */
+    padding: 0 1rem; /* Add side padding for better mobile view */
+    max-width: 1200px; /* Limit maximum width */
+    margin: 0 auto; /* Center the grid */
 }
 
-/* Blog Header Styling */
-.blog-header {
-    text-align: center;
-    margin-bottom: 3rem; /* Space below the header */
-    /* Add top margin if needed, or let .container handle padding */
-    /* margin-top: 2rem; */
-}
-
-.blog-header h1 {
-    font-size: clamp(2rem, 5vw, 2.8rem); /* Match h1 size from main.css if possible */
-    margin-bottom: 0.5rem; /* Adjust spacing */
-    /* Use standard text color, remove gradient */
-    color: var(--text);
-    /* Ensure gradient properties are removed/commented */
-    /* background: none; */
-    /* -webkit-background-clip: initial; */
-    /* background-clip: initial; */
-}
-
-.blog-header p { /* Style for optional tagline */
-    font-size: 1.1rem;
-    color: var(--text-muted, var(--text)); /* Use muted color if available */
-    opacity: 0.8;
-    max-width: 600px; /* Limit width for readability */
-    margin: 0 auto; /* Center tagline */
-}
-
-
-/* Blog Grid Layout */
-.blog-grid {
-    display: grid;
-    /* Use auto-fill for responsiveness, minmax defines card size range */
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem; /* Space between cards */
-    margin-top: 2rem; /* Space below the blog header */
-}
-
-/* Individual Article Card Styling (Copied from previous context for completeness) */
+/* Individual Article Card Styling */
 .article-card {
     background: var(--card-bg);
-    border-radius: 12px; /* Consistent rounded corners */
-    overflow: hidden; /* Ensures image corners are clipped */
-    box-shadow: 0 4px 8px var(--shadow-light, rgba(0, 0, 0, 0.05)); /* Subtle shadow */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px var(--shadow-light, rgba(0, 0, 0, 0.05));
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; /* Use flexbox for vertical layout */
-    flex-direction: column; /* Stack image and content vertically */
-    height: 100%; /* Make cards in a row equal height if needed */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .article-card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
-    box-shadow: 0 6px 12px var(--shadow, rgba(0, 0, 0, 0.1)); /* Stronger shadow on hover */
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px var(--shadow, rgba(0, 0, 0, 0.1));
 }
 
-.article-card:hover {
-    transform: scale(1.05); /* Slight zoom effect on image hover */
+.article-image {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    width: 100%;
 }
 
 .article-content {
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* Allow content to fill remaining card space */
+    flex-grow: 1;
 }
 
 .article-category {
@@ -100,7 +77,7 @@
 }
 
 .article-title {
-    margin: 0 0 0.75rem 0; /* Space below title */
+    margin: 0 0 0.75rem 0;
     font-size: 1.25rem;
     color: var(--text);
     line-height: 1.3;
@@ -112,7 +89,7 @@
     margin-bottom: 1rem;
     font-size: 0.95rem;
     line-height: 1.6;
-    flex-grow: 1; /* Push meta/link to bottom */
+    flex-grow: 1;
 }
 
 .article-meta {
@@ -122,41 +99,70 @@
     color: var(--text-muted, var(--text));
     opacity: 0.7;
     margin-bottom: 1rem;
-    margin-top: auto; /* Pushes meta and link down */
-    padding-top: 0.5rem; /* Space above meta if excerpt is short */
+    margin-top: auto;
+    padding-top: 0.5rem;
 }
 
 .article-link {
     display: inline-block;
-    color: var(--accent-color, var(--text)); /* Use accent color if defined */
+    color: var(--accent-color, var(--text));
     text-decoration: none;
     font-weight: 600;
     transition: opacity 0.3s ease;
-    margin-top: 0.5rem; /* Space above link */
+    margin-top: 0.5rem;
 }
 
 .article-link:hover {
     opacity: 0.8;
 }
 
-/* Responsive adjustments for smaller screens */
+/* No-results message styling */
+.no-articles-message {
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 3rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 2px 6px var(--shadow-light, rgba(0, 0, 0, 0.05));
+}
+
+.no-articles-message h2 {
+    margin-bottom: 1rem;
+    color: var(--text);
+}
+
+.no-articles-message p {
+    color: var(--text-muted, var(--text));
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Responsive adjustments */
 @media (max-width: 768px) {
+    .blog-header {
+        padding: 3rem 1rem; /* Slightly smaller padding on mobile */
+    }
+    
     .blog-header h1 {
-        font-size: clamp(1.8rem, 4.5vw, 2.2rem); /* Slightly smaller on mobile */
+        font-size: clamp(1.8rem, 4.5vw, 2.2rem);
     }
 
     .blog-grid {
-        /* Switch to single column */
         grid-template-columns: 1fr;
-        gap: 1.5rem; /* Adjust gap for single column */
+        gap: 1.5rem;
     }
 }
 
 @media (max-width: 480px) {
-    .article-title {
-        font-size: 1.1rem; /* Smaller titles on very small screens */
+    .blog-header {
+        padding: 2rem 1rem; /* Even smaller padding on tiny screens */
     }
+    
+    .article-title {
+        font-size: 1.1rem;
+    }
+    
     .article-content {
-        padding: 1rem; /* Reduce padding inside cards */
+        padding: 1rem;
     }
 }

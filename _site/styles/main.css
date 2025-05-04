@@ -31,12 +31,19 @@
     --shadow: rgba(0, 0, 0, 0.2);
     --footer-bg: #1f1f3a;
 
-    /* Dark Theme Card Gradients */
+    /* Dark Theme Card Gradients - FRONT */
     --box-gradient: linear-gradient(145deg, #2d3250, #424874);
     --48-gradient: linear-gradient(145deg, #1a454e, #2c6975);
     --wim-gradient: linear-gradient(145deg, #2b445d, #455565);
     --belly-gradient: linear-gradient(145deg, #2e6e60, #45564e);
     --buteyko-gradient: linear-gradient(145deg, #2c4268, #455a64);
+
+/* Card Back Gradients - BACK */
+--box-back: linear-gradient(145deg, #353b5e, #4a5085);
+--48-back: linear-gradient(145deg, #204f59, #327a87);
+--wim-back: linear-gradient(145deg, #324d66, #4c6170);
+--belly-back: linear-gradient(145deg, #357a6b, #4d6256);
+--buteyko-back: linear-gradient(145deg, #324c76, #4d6370);
 
     /* Dark theme text colors */
     .hero h2 {
@@ -680,11 +687,12 @@ main {
 
 .view-all-btn {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
+    padding: 1.5rem;
+    margin-bottom: 2.5rem;           ;
     background-color: var(--primary-color); /* Use your theme's primary color */
-    color: var(--background-color); /* Text color that contrasts with primary */
+    color:#55adbd; /* Text color that contrasts with primary */
     text-decoration: none;
-    border: 1px solid #1f1f3a;
+    border: 1px solid #55adbd;
     border-radius: var(--border-radius, 4px);
     font-weight: bold;
     transition: background-color 0.2s ease, transform 0.2s ease;
@@ -692,8 +700,8 @@ main {
 
 .view-all-btn:hover,
 .view-all-btn:focus {
-    background-color: var(--primary-color-dark); /* Darker shade for hover/focus */
-    color: var(--background-color);
+    background-color: #55adbd; /* Darker shade for hover/focus */
+    color: white;
     transform: translateY(-2px);
     outline: none;
 }

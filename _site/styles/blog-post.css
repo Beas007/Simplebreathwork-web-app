@@ -75,6 +75,103 @@
     /* Keep hover style consistent */
 }
 
+/* --- Social Sharing Section --- */
+.share-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1.5rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid var(--shadow-light, #eee);
+    border-bottom: 1px solid var(--shadow-light, #eee);
+}
+
+.share-links p {
+    margin: 0 0 0.75rem 0;
+    font-weight: 500;
+    color: var(--color-text-muted, #666);
+}
+
+.share-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+    gap: 0.75rem; /* Space between buttons */
+}
+
+/* Unified button styling with platform colors */
+.share-button,
+.share-buttons a,
+.share-buttons button,
+.share-buttons .copy-link-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Slightly larger for better touch targets */
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    background-color: var(--primary-color, #6a5acd); /* Default color from your theme */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Platform-specific colors */
+.email-share, 
+.share-buttons a[href^="mailto"] {
+    background-color: #EA4335;
+}
+
+.facebook-share,
+.share-buttons a[href*="facebook.com"] {
+    background-color: #1877F2;
+}
+
+.twitter-share,
+.share-buttons a[href*="twitter.com"] {
+    background-color: #1DA1F2;
+}
+
+.linkedin-share,
+.share-buttons a[href*="linkedin.com"] {
+    background-color: #0077B5;
+}
+
+.pinterest-share,
+.share-buttons a[href*="pinterest.com"] {
+    background-color: #E60023;
+}
+
+.link-share,
+.share-buttons button#copy-link-button,
+.share-buttons .copy-link-button {
+    background-color: #333333;
+}
+
+/* Hover effects */
+.share-button:hover,
+.share-buttons a:hover,
+.share-buttons button:hover,
+.share-buttons .copy-link-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    color: white; /* Ensure text remains white on hover */
+}
+
+/* Focus styles for accessibility */
+.share-button:focus,
+.share-buttons a:focus,
+.share-buttons button:focus,
+.share-buttons .copy-link-button:focus {
+    outline: 2px solid var(--primary-color, #6a5acd);
+    outline-offset: 2px;
+    color: white;
+}
 
 /* --- Sticky Table of Contents Container --- */
 /* --- Sticky TOC Layout --- */
@@ -368,70 +465,7 @@
     /* align-items: center; */
 }
 
-.share-buttons {
-    display: flex; /* Use flex for alignment */
-    align-items: center;
-    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
-    gap: 0.5rem; /* Space between buttons */
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
-    border-top: 1px solid var(--border-color); /* Example separator */
-    padding-top: 1rem;
-}
-
-.share-buttons span {
-    margin-right: 0.5rem; /* Space after "Share:" text */
-    font-weight: bold;
-    color: var(--text-color-secondary);
-}
-
-.share-buttons a,
-.share-buttons .copy-link-button { /* Target both links and the button */
-    display: inline-flex; /* Use flex to center icon inside */
-    justify-content: center;
-    align-items: center;
-    width: 36px; /* Example fixed size */
-    height: 36px; /* Example fixed size */
-    background-color: var(--background-secondary); /* Match background */
-    color: var(--text-color); /* Match text/icon color */
-    border-radius: 50%; /* Make it circular */
-    text-decoration: none;
-    font-size: 1rem; /* Adjust icon size if needed */
-    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
-    border: 1px solid var(--border-color); /* Optional border */
-    padding: 0; /* Remove default padding if any */
-    margin: 0; /* Remove default margin if any */
-    cursor: pointer; /* Ensure pointer cursor */
-}
-
-/* Specific styles to reset button defaults */
-.share-buttons .copy-link-button {
-    background: var(--background-secondary); /* Ensure background override */
-    border: 1px solid var(--border-color); /* Ensure border override */
-    /* Add any other specific overrides if needed */
-}
-
-/* Hover effect for ALL items */
-.share-buttons a:hover,
-.share-buttons .copy-link-button:hover {
-    background-color: var(--primary-color); /* Example hover background */
-    color: var(--accent-color); /* Example hover text/icon color */
-    transform: translateY(-2px); /* Slight lift effect */
-}
-
-/* Focus styles for accessibility */
-.share-buttons a:focus,
-.share-buttons .copy-link-button:focus {
-    outline: 2px solid var(--primary-color);
-    outline-offset: 2px;
-}
-
-
-/* --- Feedback Buttons (If you have them) --- */
-/* .feedback-buttons { ... } */
-/* .feedback-buttons button { ... } */
-
-/* Liked state (Assuming .like-button is separate or part of .feedback-buttons) */
+/* --- Liked state (Assuming .like-button is separate or part of .feedback-buttons) --- */
 .like-button.liked {
     border-color: var(--wim-text); /* Use accent color */
     color: var(--wim-text);
@@ -458,16 +492,18 @@
     .toc-dropdown { min-width: 90vw; }
     .article-body p, .article-body li { font-size: 0.95rem; }
     .article-body blockquote { padding: 0.8rem 1.2rem; }
-    /* .feedback-buttons button { padding: 0.3rem 0.8rem; font-size: 0.9rem; } */ /* Adjust if using feedback buttons */
-
+    
     /* Adjust share button size for smaller screens */
-    .share-buttons a,
-    .share-buttons button.copy-link-button {
-        width: 32px;
-        height: 32px;
-        font-size: 0.9rem;
-    }
     .share-buttons {
         gap: 0.5rem; /* Reduce gap slightly */
+    }
+    
+    .share-button,
+    .share-buttons a,
+    .share-buttons button,
+    .share-buttons .copy-link-button {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
     }
 }

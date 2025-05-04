@@ -96,6 +96,8 @@ body {
     background-color: var(--background);
     transition: background-color 0.3s ease;
     display: flex; /* Use flex to help center container */
+    justify-content: center;
+    align-items: center;
     overflow: hidden; /* Prevent scrollbars */
 }
 
@@ -104,13 +106,13 @@ body {
     width: 100%;
     max-width: 600px; /* Max width for content */
     padding: 20px; /* Consistent padding */
-    margin: auto; /* Horizontal and vertical centering within body */
+    margin: 0 auto; /* Horizontal and vertical centering within body */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Center items vertically */
     align-items: center;     /* Center items horizontally */
     text-align: center;      /* Center inline text */
-    /* min-height: 100vh; Removed, body handles min-height */
+    height: 100vh;/* min-height: 100vh; Removed, body handles min-height */
 }
 
 /* Guide Stacking */
@@ -119,8 +121,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem; /* Space between animation and timer */
-    margin-bottom: 1.5rem; /* Space below timer/guide */
+    gap: 2rem; /* Space between animation and timer */
+    margin-bottom: 2rem; /* Space below timer/guide */
 }
 
 /* Animation Container Sizing */
@@ -128,7 +130,7 @@ body {
     position: relative; /* Keep for potential absolute indicators */
     width: min(300px, 75vw); /* Responsive width */
     height: min(300px, 75vw); /* Keep aspect ratio */
-    /* margin: 0 auto; Removed, parent flex centers it */
+    margin: 0 auto;
 }
 
 /* Circle Styling & Internal Centering */
@@ -178,8 +180,18 @@ body {
     color: var(--text);
     font-weight: bold;
     min-height: 2.5rem; /* Keep space reservation */
-    /* margin-top: 1rem; Removed, use parent gap */
+    text-align: center; /* Ensure text is centered */
+    width: 100%;/* margin-top: 1rem; Removed, use parent gap */
 }
+/* Back button styling */
+.back-nav {
+    padding: 1rem;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+  }
+
 
 /* ================================================= */
 /* === YOUR ORIGINAL ANIMATION KEYFRAMES BELOW === */
@@ -306,24 +318,30 @@ body {
 /* ================================================= */
 
 .exit-btn {
-    position: fixed; /* Keep button fixed to viewport */
+    position: fixed;
     top: 1rem;
     right: 1rem;
     padding: 0.8rem 1.5rem;
     border: none;
     border-radius: 25px;
-    background: rgba(128, 128, 128, 0.3); /* Adjusted background */
-    backdrop-filter: blur(5px); /* Optional blur */
+    background: rgba(128, 128, 128, 0.3);
+    backdrop-filter: blur(5px);
     color: var(--text);
     cursor: pointer;
     transition: all 0.3s ease;
-    z-index: 10; /* Keep above other elements */
+    z-index: 10;
+    text-decoration: none; /* Remove underline since it's now an <a> tag */
+    font-size: 1rem;
+    font-weight: 500;
+    display: inline-block; /* Proper display for link */
 }
 
 .exit-btn:hover {
-    background: rgba(128, 128, 128, 0.5); /* Adjusted hover background */
+    background: rgba(128, 128, 128, 0.5);
     transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 
 /* Media Queries - Simplified slightly */
 @media screen and (max-width: 768px) {
