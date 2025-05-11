@@ -824,3 +824,204 @@ footer a:hover, footer button:hover {
         font-size: 0.85rem;
     }
 }
+
+/* Article Section Styles */
+.article-section {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    color: var(--text);
+}
+
+.article-hero {
+    background-image: linear-gradient(rgba(26,28,31, 0.7), var(--background) 80%), 
+                      url('https://storage.googleapis.com/e-object-409003.firebasestorage.app/breathwork-science-benefits-techniques-k8ev6872fo.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+
+.article-hero h1 {
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+}
+
+.article-hero h3 {
+    color: #aaaaaa;
+    font-weight: normal;
+    text-align: left;
+    border-left: 6px solid var(--wim-text, #4CA1AF);
+    padding-left: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.article-content {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px var(--shadow);
+}
+
+.article-content h2 {
+    color: var(--box-text, #cc9900);
+    margin: 2rem 0 1rem;
+    font-size: 1.8rem;
+}
+
+.article-content h3 {
+    color: var(--zen-text, #388278);
+    margin: 1.5rem 0 1rem;
+    font-size: 1.5rem;
+}
+
+.article-content h4 {
+    color: var(--wim-text, #7FA86E);
+    margin: 1.2rem 0 0.8rem;
+    font-size: 1.2rem;
+}
+
+.article-divider {
+    border: 0;
+    height: 1px;
+    background: var(--shadow);
+    margin: 2rem 0;
+}
+
+.highlights-list {
+    background: rgba(56,130,120,0.1);
+    padding: 1.5rem;
+    border-radius: 10px;
+    border-left: 8px solid var(--zen-text, #388278);
+    margin: 1.5rem 0;
+}
+
+.article-image-container {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.article-image {
+    max-width: 100%;
+    border-radius: 8px;
+    height: auto;
+}
+
+.image-caption {
+    font-size: 0.9rem;
+    color: var(--text);
+    opacity: 0.7;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.benefits-table-container {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.benefits-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.benefits-table th, .benefits-table td {
+    padding: 0.8rem;
+    text-align: left;
+    border: 1px solid var(--shadow);
+}
+
+.benefits-table th {
+    background-color: rgba(56,130,120,0.2);
+}
+
+.benefits-table tr:nth-child(even) {
+    background-color: rgba(0,0,0,0.05);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    margin: 1.5rem 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.faq-container {
+    margin: 1.5rem 0;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+}
+
+.faq-question {
+    background-color: var(--zen-text, #388278);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.faq-arrow {
+    position: absolute;
+    right: 1rem;
+}
+
+.faq-answer {
+    display: none;
+    padding: 1.5rem;
+    background-color: rgba(56,130,120,0.1);
+    border-radius: 0 0 10px 10px;
+}
+
+.article-footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--zen-text, #388278);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .article-hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .article-hero h3 {
+        font-size: 1rem;
+    }
+    
+    .benefits-table-container {
+        display: none; /* Hide table on mobile */
+    }
+    
+    .article-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .article-content h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-only-note {
+        display: none;
+    }
+}
