@@ -824,3 +824,302 @@ footer a:hover, footer button:hover {
         font-size: 0.85rem;
     }
 }
+
+/* Article Section Styles */
+.article-section {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    color: var(--text);
+}
+
+.article-hero {
+    background-image: linear-gradient(145deg, #7FC7D2, #546E7A);
+    
+    background-size: cover;
+    background-position: center;
+    padding: 3.5rem 1.5rem;
+    text-align: center;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+.article-hero h1 {
+    background: linear-gradient(145deg, #ffffff, #e0e0e0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1.5rem;
+    font-size: 2.2rem;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.article-hero h3 {
+    color: #e0e0e0;
+    font-weight: 400;
+    text-align: left;
+    border-left: 6px solid var(--wim-text, #4CA1AF);
+    padding-left: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+.article-content {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px var(--shadow);
+    line-height: 1.6;
+}
+
+.article-content p {
+    color: var(--text);
+    margin-bottom: 1.2rem;
+}
+
+.article-content h2 {
+    background: var(--48-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 2.5rem 0 1.2rem;
+    font-size: 1.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(204, 153, 0, 0.2);
+}
+
+.article-content h3 {
+    background: var(--box-gradient);
+     -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin: 2rem 0 1rem;
+    font-size: 1.5rem;
+}
+
+.article-content h4 {
+    color: var(--wim-text, #4CA1AF);
+    margin: 1.5rem 0 0.8rem;
+    font-size: 1.3rem;
+}
+
+.article-divider {
+    border: 0;
+    height: 1px;
+    background: var(--shadow);
+    margin: 2.5rem 0;
+    opacity: 0.6;
+}
+
+.highlights-list {
+    background: rgba(31, 92, 157, 0.1);  /* Light blue background matching Buteyko */
+    padding: 1.8rem 2rem;
+    border-radius: 15px;
+    border-left: 8px solid var(--buteyko-gradient, #1f5c9d);  /* Changed to Buteyko blue */
+    margin: 1.8rem 0;
+    list-style-position: inside;
+}
+
+.highlights-list li {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.highlights-list li:last-child {
+    margin-bottom: 0;
+}
+
+.highlights-list b {
+     color: #1f5c9d;  /* Fixed this to use the solid Buteyko blue color */
+}
+
+/* For dark mode compatibility */
+[data-theme="dark"] .highlights-list {
+    background: rgba(44, 66, 104, 0.15);  /* Darker Buteyko blue for dark mode */
+    border-left: 8px solid var(--buteyko-gradient, #2c4268);
+}
+
+[data-theme="dark"] .highlights-list b {
+    color: #4d6370;  /* Dark mode Buteyko accent color */
+}
+
+.article-image-container {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.article-image {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px var(--shadow);
+    height: auto;
+}
+
+.image-caption {
+    font-size: 0.9rem;
+    color: var(--text);
+    opacity: 0.75;
+    margin-top: 0.8rem;
+    font-style: italic;
+}
+
+.benefits-table-container {
+    overflow-x: auto;
+    margin: 2rem 0;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+.benefits-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.benefits-table th, .benefits-table td {
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid var(--shadow);
+}
+
+.benefits-table th {
+    background-color: rgba(76, 161, 175, 0.2);
+    color: var(--text);
+    font-weight: 600;
+}
+
+.benefits-table tr:nth-child(even) {
+    background-color: rgba(0,0,0,0.03);
+}
+
+.benefits-table tr:hover {
+    background-color: rgba(76, 161, 175, 0.05);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    margin: 2rem 0;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px var(--shadow);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+}
+
+.faq-container {
+    margin: 2rem 0;
+}
+
+.faq-item {
+    margin-bottom: 1.2rem;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px var(--shadow);
+}
+
+.faq-question {
+    background: var(--wim-gradient, linear-gradient(145deg, #4CA1AF, #2C3E50));
+    color: white;
+    padding: 1.2rem;
+    border-radius: 15px 15px 0 0;
+    cursor: pointer;
+    position: relative;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+    opacity: 0.95;
+}
+
+.faq-arrow {
+    position: absolute;
+    right: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.faq-answer {
+    display: none;
+    padding: 1.5rem;
+    background-color: rgba(76, 161, 175, 0.1);
+    border-radius: 0 0 15px 15px;
+    color: var(--text);
+}
+
+.mobile-table-notice {
+    display: none;
+    background: rgba(76, 161, 175, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    border-left: 4px solid var(--wim-text, #4CA1AF);
+    margin: 1.5rem 0;
+}
+
+.article-footer {
+    text-align: center;
+    margin-top: 3rem;
+    color: var(--zen-text, #388278);
+    font-style: italic;
+    opacity: 0.9;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .article-hero {
+        padding: 2.5rem 1.2rem;
+    }
+    
+    .article-hero h1 {
+        font-size: 1.7rem;
+    }
+    
+    .article-hero h3 {
+        font-size: 1rem;
+        padding-left: 12px;
+    }
+    
+    .article-content {
+        padding: 1.5rem;
+    }
+    
+    .benefits-table-container {
+        display: none; /* Hide table on mobile */
+    }
+    
+    .mobile-table-notice {
+        display: block;
+    }
+    
+    .article-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .article-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .article-content h4 {
+        font-size: 1.1rem;
+    }
+    
+    .highlights-list {
+        padding: 1.2rem 1rem 1.2rem 1.5rem;
+    }
+}
+
+@media (min-width: 769px) {
+    .mobile-table-notice {
+        display: none;
+    }
+}
