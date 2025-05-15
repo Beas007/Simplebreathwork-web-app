@@ -40,6 +40,12 @@
 --animation-glow-hold:   rgba(144, 202, 249, 0.45); /* Lighter Blue */
 --animation-glow-exhale: rgba(66, 165, 245, 0.5);   /* Slightly Deeper Blue */
 }
+/* Labour Breathwork - Light Theme */
+[data-current-technique="labour-slow"] {
+--animation-glow-inhale: rgba(226, 135, 178, 0.5);  /* Light Pink */
+--animation-glow-hold:   rgba(233, 163, 196, 0.45); /* Lighter Pink */
+--animation-glow-exhale: rgba(199, 107, 149, 0.5);  /* Deeper Pink */
+}
 
 
 /* --- Base Dark Theme (Defaults & Base Colors) --- */
@@ -80,6 +86,12 @@
 --animation-glow-inhale: rgba(144, 164, 174, 0.45);  /* Blue-Grey */
 --animation-glow-hold:   rgba(176, 190, 197, 0.4);   /* Lighter Grey */
 --animation-glow-exhale: rgba(120, 135, 150, 0.45);  /* Grey */
+}
+/* Labour Breathwork - Dark Theme */
+[data-theme="dark"] [data-current-technique="labour-slow"] {
+--animation-glow-inhale: rgba(199, 107, 149, 0.45);  /* Medium Pink */
+--animation-glow-hold:   rgba(215, 143, 176, 0.4);   /* Lighter Pink */
+--animation-glow-exhale: rgba(156, 80, 118, 0.45);   /* Deeper Pink */
 }
 
 *, *::before, *::after {

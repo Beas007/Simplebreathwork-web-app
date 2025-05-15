@@ -1,0 +1,17 @@
+<svg width="150" height="150" viewBox="0 0 150 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circles -->
+  <circle cx="75" cy="75" r="75" fill="#FFFFFF" opacity="0.2"/>
+  <circle cx="75" cy="75" r="65" fill="#FFFFFF" opacity="0.3"/>
+  
+  <!-- Small wave (top) -->
+  <path d="M30 55C40 50 45 60 55 60C65 60 70 50 80 50C90 50 95 60 105 60C115 60 120 55 130 50" 
+        stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Medium wave (middle) - representing increasing intensity -->
+  <path d="M25 75C35 65 45 85 55 85C65 85 70 65 85 65C100 65 105 85 115 85C125 85 130 75 135 70" 
+        stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Large wave (bottom) - representing peak breathing -->
+  <path d="M20 100C30 85 40 115 55 115C70 115 75 85 90 85C105 85 110 115 120 115C130 115 135 100 140 95" 
+        stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+</svg>

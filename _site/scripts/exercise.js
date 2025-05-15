@@ -75,6 +75,13 @@ document.addEventListener('DOMContentLoaded', () => {
             rounds: 10, // Example rounds
             background: { light: '#eceff1', dark: '#263238' },
             arrow: { up: ['Gentle Inhale'], down: ['Relaxed Exhale'], none: ['Pause'] }
+        },
+        'labour-slow': {
+            sequence: ['Inhale slowly', 'Exhale gently'],
+            durations: [5, 7],
+            rounds: 8, // 8 rounds (about 1.5 minutes)
+            background: { light: '#f8e1ec', dark: '#3d263a' }, // Soft pink for labour theme
+            arrow: { up: ['Inhale slowly'], down: ['Exhale gently'], none: [] }
         }
     };
 

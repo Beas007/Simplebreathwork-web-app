@@ -1,0 +1,76 @@
+---
+layout: layouts/manual-exercise-layout.html
+title: Labour Breathing Guide
+description: Interactive, self-paced breathing guide for labour. Follow along at your own pace through contractions and pushing phases.
+additional_head_content: '<link rel="stylesheet" href="/styles/manual-exercise.css">'
+additional_scripts: '<script src="/scripts/manual-exercise.js"></script>'
+---
+
+<style>
+/* Make sure our wrapper takes the full page */
+.full-page-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Ensure container is properly centered */
+.manual-exercise-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+
+<div class="full-page-wrapper">
+    <div class="manual-exercise-container">
+    <div class="technique-title">
+        <h1 id="technique-name">Labour Breathing Guide</h1>
+        <p id="technique-description">Follow at your own pace</p>
+    </div>
+    
+    <div class="breathing-guide">
+        <div class="breath-animation">
+            <div class="circle">
+                <div class="breathing-text-container">
+                    <div class="main-text">Ready to Begin</div>
+                    <div class="sub-text">Select a phase below</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="manual-controls">
+            <!-- Initial start button -->
+            <button id="start-session" class="control-btn primary-btn">Start Session</button>
+            
+            <!-- Phase selection buttons (hidden initially) -->
+            <div id="phase-controls" style="display: none;">
+                <div class="instructions">Tap circle to progress or select phase below</div>
+                <div class="phase-buttons">
+                    <button class="phase-btn" data-phase="start">Start Contraction</button>
+                    <button class="phase-btn" data-phase="easy-inhale">Easy Inhale</button>
+                    <button class="phase-btn" data-phase="easy-exhale">Easy Exhale</button>
+                    <button class="phase-btn" data-phase="building-inhale">Building Inhale</button>
+                    <button class="phase-btn" data-phase="building-exhale">Building Exhale</button>
+                    <button class="phase-btn" data-phase="peak-quick">Peak Intensity</button>
+                    <button class="phase-btn" data-phase="easing-inhale">Easing Inhale</button>
+                    <button class="phase-btn" data-phase="easing-exhale">Easing Exhale</button>
+                    <button class="phase-btn" data-phase="end">End Contraction</button>
+                    <button class="phase-btn" data-phase="rest">Rest Between</button>
+                </div>
+                <button id="stop-session" class="control-btn secondary-btn">Stop Session</button>
+            </div>
+        </div>
+    </div>
+    
+    <a href="/index/?showTechniques=true" class="exit-btn">Exit</a>
+    </div>
+</div>

@@ -84,7 +84,7 @@ Dive into potent methods like the calming <span class="box-text">Box Breathing</
                         </div>
                     </div>
         
-                    <!-- Buteyko (Reduced Breathing) Card -->
+        <!-- Buteyko (Reduced Breathing) Card -->
                     <div class="card" data-technique="buteyko">
                         <div class="card-inner">
                             <div class="card-front">
@@ -100,6 +100,20 @@ Dive into potent methods like the calming <span class="box-text">Box Breathing</
                             </div>
                         </div>
                     </div>
+        <!-- Labour Breathwork Card -->
+            <div class="card" data-technique="labour">
+                 <div class="card-inner">
+                     <div class="card-front">
+                        <h2>Labour Breathwork</h2>
+                        <img src="images/breath-wave-icon.svg" alt="Breath rhythm waves" class="card-image" width="150" height="150">            <div class="timing">Multiple Techniques</div>
+        </div>
+        <div class="card-back">
+            <h2>Birth Support</h2>
+            <p>These evidence-based breathing techniques are designed specifically for pregnancy and childbirth. They can help manage contraction pain, maintain focus during labor, and assist with the pushing stage. Each technique serves different purposes throughout the birthing process.</p>
+            <button class="labour-options-btn">Choose Technique</button>
+        </div>
+    </div>
+            </div>
 </div>
 
 <!-- Article Section -->
@@ -314,6 +328,130 @@ Dive into potent methods like the calming <span class="box-text">Box Breathing</
         </div>
     </div>
 </section>
+
+<!-- Labour Breathwork Technique Selection Popup -->
+<div id="labour-popup" class="technique-popup">
+    <div class="popup-content">
+        <span class="close-popup">&times;</span>
+        <h2>Choose a Labour Breathing Technique</h2>
+        <p>Select the most appropriate technique for your current stage:</p>
+        
+        <div class="technique-options">
+            <div class="technique-option" data-technique="labour-slow">
+                <h3>Slow, Deep Breathing</h3>
+                <p>For early labor and between contractions. Promotes relaxation and oxygen flow.</p>
+                <button class="start-option-btn">Begin Practice</button>
+            </div>
+            
+            <div class="technique-option" data-technique="labour-patterned">
+                <h3>Patterned Breathing</h3>
+                <p>For active labor. Follows the wave of contractions with changing breath patterns.</p>
+                <button class="info-option-btn">View Technique</button>
+            </div>
+            
+            <div class="technique-option" data-technique="labour-push">
+                <h3>Exhale Pushing</h3>
+                <p>For the pushing stage. Coordinates breathing with the urge to push.</p>
+                <button class="info-option-btn">View Technique</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Static Information Modals for Labour Techniques -->
+<div id="labour-patterned-modal" class="info-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-header">
+            <h2>Patterned Breathing During Contractions</h2>
+            <h3>Follow the wave of your contraction</h3>
+        </div>
+        <div class="modal-body">
+            <div class="modal-image-container">
+                <img src="images/labour-patterned.svg" alt="Contraction wave diagram with breathing pattern" class="modal-image">
+            </div>
+            
+            <h3>How to Practice:</h3>
+            <ol>
+                <li><strong>Beginning of contraction:</strong> Take a cleansing breath (deep inhale through nose, slow exhale through mouth).</li>
+                <li><strong>During rising intensity:</strong> Breathe slowly and deeply, focusing on complete exhalations.</li>
+                <li><strong>At peak intensity:</strong> Switch to lighter, faster breathing (about 2 breaths per second).</li>
+                <li><strong>As intensity decreases:</strong> Return to slower, deeper breathing.</li>
+                <li><strong>End of contraction:</strong> Take another cleansing breath to signal completion.</li>
+            </ol>
+            
+            <div class="technique-benefits">
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>Prevents hyperventilation while maintaining focus</li>
+                    <li>Provides rhythm to follow during intense sensations</li>
+                    <li>Ensures adequate oxygen for you and baby</li>
+                    <li>Helps avoid breath-holding, which can increase tension</li>
+                </ul>
+            </div>
+            
+            <div class="technique-notes">
+                <h4>Important Notes:</h4>
+                <p>You may naturally make sounds during this breathing pattern - sighs, moans, or "hee-hoo" sounds are all normal and beneficial. Follow your body's cues and adapt the pattern to what feels most helpful.</p>
+            </div>
+            
+            <div class="practice-reminder">
+                <p>Practice this technique daily during the third trimester so it becomes automatic when labor begins.</p>
+                <!-- Replace this button -->
+    <button class="manual-follow-along-btn" onclick="window.location.href='/manual-exercise/'">
+        Start Follow-Along Guide
+    </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="labour-push-modal" class="info-modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-header">
+            <h2>Exhale Pushing Technique</h2>
+            <h3>Push with your breath, not against it</h3>
+        </div>
+        <div class="modal-body">
+            <div class="modal-image-container">
+                <img src="images/labour-pushing.svg" alt="Diagram showing exhale pushing technique" class="modal-image">
+            </div>
+            
+            <h3>How to Practice:</h3>
+            <ol>
+                <li><strong>When you feel the urge to push:</strong> Take a deep breath through your nose, filling your lungs.</li>
+                <li><strong>As you begin pushing:</strong> Start exhaling slowly through your mouth while bearing down.</li>
+                <li><strong>During push:</strong> Make a low-pitched sound (moan, groan, or "ahhhh") while continuing to exhale for 6-10 seconds.</li>
+                <li><strong>After pushing:</strong> Take a cleansing breath before the next push.</li>
+                <li><strong>Between contractions:</strong> Return to slow, deep breathing to rest and gather energy.</li>
+            </ol>
+            
+            <div class="technique-benefits">
+                <h4>Benefits:</h4>
+                <ul>
+                    <li>More physiologically effective than holding your breath</li>
+                    <li>Maintains better oxygen flow to you and your baby</li>
+                    <li>Reduces strain on your pelvic floor</li>
+                    <li>Helps you conserve energy during this demanding phase</li>
+                    <li>Can reduce the risk of tearing</li>
+                </ul>
+            </div>
+            
+            <div class="technique-notes">
+                <h4>Important Notes:</h4>
+                <p>Push only when you feel the natural urge, not when someone counts for you. Listen to your body's cues and your birth team's guidance. Your body knows when and how to push.</p>
+            </div>
+
+            <!-- Add this button -->
+            <div class="practice-reminder">
+                <button class="manual-follow-along-btn" onclick="window.location.href='/manual-exercise/?type=labour-push'">
+                    Start Follow-Along Guide
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Add this to your scripts file or include at the end of the body -->
 <script>

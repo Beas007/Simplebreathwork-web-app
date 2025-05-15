@@ -167,9 +167,116 @@ function updateCopyrightYear() {
     }
 }
 
-// --- REMOVED Article Card Generation & Loading Functions ---
-// Functions like createArticleCardHTML, loadHomepageArticles, loadAllBlogArticles
-// are removed as Eleventy now handles generating this HTML server-side.
+// --- Labour Breathwork Interaction Logic ---
+function initializeLabourBreathwork() {
+    // Elements
+    const labourOptionsBtn = document.querySelector('.labour-options-btn');
+    const labourPopup = document.getElementById('labour-popup');
+    const closePopupBtn = document.querySelector('.close-popup');
+    const startOptionBtns = document.querySelectorAll('.start-option-btn');
+    const infoOptionBtns = document.querySelectorAll('.info-option-btn');
+    const labourPatternedModal = document.getElementById('labour-patterned-modal');
+    const labourPushModal = document.getElementById('labour-push-modal');
+    const closeModalBtns = document.querySelectorAll('.close-modal');
+    
+    // If required elements don't exist, skip initialization
+    if (!labourOptionsBtn || !labourPopup) {
+        console.debug('Labour breathwork elements not found. Skipping initialization.');
+        return;
+    }
+    
+// ADD THIS CODE HERE - Check URL parameters when page loads
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // If returning from a labour breathing exercise
+    if (urlParams.get('showLabourTechniques') === 'true') {
+        // Show the labour techniques popup
+        if (labourPopup) {
+            labourPopup.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            
+            // Clean up the URL (optional)
+            history.replaceState({}, document.title, window.location.pathname);
+        }
+    }
+    
+
+    // Open technique selection popup when button is clicked
+    labourOptionsBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        labourPopup.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    });
+    
+    // Close popup when X is clicked
+    if (closePopupBtn) {
+        closePopupBtn.addEventListener('click', function() {
+            labourPopup.style.display = 'none';
+            document.body.style.overflow = ''; // Enable scrolling
+        });
+    }
+    
+    // Close popup when clicking outside the content
+    window.addEventListener('click', function(e) {
+        if (e.target === labourPopup) {
+            labourPopup.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Navigate to exercise page for Slow Deep Breathing
+    startOptionBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const technique = this.closest('.technique-option').getAttribute('data-technique');
+            window.location.href = `/exercise/?type=${technique}`;
+        });
+    });
+    
+    // Open info modals for the static techniques
+    infoOptionBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const technique = this.closest('.technique-option').getAttribute('data-technique');
+            
+            // Close the technique selection popup
+            labourPopup.style.display = 'none';
+            
+            // Open the appropriate modal
+            if (technique === 'labour-patterned' && labourPatternedModal) {
+                labourPatternedModal.style.display = 'block';
+            } else if (technique === 'labour-push' && labourPushModal) {
+                labourPushModal.style.display = 'block';
+            }
+        });
+    });
+    
+    // Close modals when X is clicked
+    closeModalBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.closest('.info-modal').style.display = 'none';
+            document.body.style.overflow = '';
+        });
+    });
+    
+    // Close modals when clicking outside the content
+    window.addEventListener('click', function(e) {
+        if (e.target.classList.contains('info-modal')) {
+            e.target.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Add escape key functionality to close popups and modals
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            if (labourPopup) labourPopup.style.display = 'none';
+            if (labourPatternedModal) labourPatternedModal.style.display = 'none';
+            if (labourPushModal) labourPushModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    });
+    
+    console.log("Labour Breathwork Initialized");
+}
 
 // --- Potentially Deferred or Idle Functions ---
 function loadDeferredScripts() {
@@ -204,7 +311,6 @@ function loadDeferredScripts() {
     }
 }
 
-
 // --- Global Initialization ---
 // Wait for the DOM to be fully loaded before running any initialization code
 document.addEventListener('DOMContentLoaded', () => {
@@ -219,6 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // These functions will check internally if their elements exist
     initializeCardFlipping();
     initializeReadMore();
+    initializeLabourBreathwork(); // Added the labour breathwork initialization
 
     // Load less critical scripts after a delay or when idle
     // loadDeferredScripts(); // Uncomment if you want to use this

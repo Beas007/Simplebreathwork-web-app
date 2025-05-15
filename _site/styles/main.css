@@ -13,6 +13,8 @@
     --wim-gradient: linear-gradient(145deg, #4CA1AF, #2C3E50);
     --belly-gradient: linear-gradient(145deg, #63e0c5, #4ef5a2);
     --buteyko-gradient: linear-gradient(145deg, #1f5c9d, #a2b1c0);
+    --labour-gradient: linear-gradient(145deg, #e287b2, #9c5076);
+    
 
     /* Card Back Gradients */
     --box-back: linear-gradient(145deg, #BE8AD4, #9B7CC3);
@@ -20,6 +22,7 @@
     --wim-back: linear-gradient(145deg, #7FC7D2, #546E7A);
     --belly-back: linear-gradient(145deg, #63e0c5, #4ef5a2);
     --buteyko-back: linear-gradient(145deg, #1f5c9d, #8ea0b2);
+    --labour-back: linear-gradient(145deg, #d278a3, #b15f88);
 }
 
 /* 2. Dark Theme */
@@ -37,13 +40,15 @@
     --wim-gradient: linear-gradient(145deg, #2b445d, #455565);
     --belly-gradient: linear-gradient(145deg, #2e6e60, #45564e);
     --buteyko-gradient: linear-gradient(145deg, #2c4268, #455a64);
-
+    --labour-gradient: linear-gradient(145deg, #38263a, #4a3249); /* Added labour gradient */
+    
 /* Card Back Gradients - BACK */
 --box-back: linear-gradient(145deg, #353b5e, #4a5085);
 --48-back: linear-gradient(145deg, #204f59, #327a87);
 --wim-back: linear-gradient(145deg, #324d66, #4c6170);
 --belly-back: linear-gradient(145deg, #357a6b, #4d6256);
 --buteyko-back: linear-gradient(145deg, #324c76, #4d6370);
+--labour-back: linear-gradient(145deg, #3d263a, #533550); /* Added labour back */
 
     /* Dark theme text colors */
     .hero h2 {
@@ -530,6 +535,8 @@ main {
 .card[data-technique="wim-hof"] .card-front { background: var(--wim-gradient); color: white; }
 .card[data-technique="belly"] .card-front { background: var(--belly-gradient); color: white; }
 .card[data-technique="buteyko"] .card-front { background: var(--buteyko-gradient); color: white; }
+.card[data-technique="labour"] .card-front { background: var(--labour-gradient); color: white; }
+
 
 .card-back {
     transform: rotateY(180deg);
@@ -556,6 +563,7 @@ main {
 .card[data-technique="wim-hof"] .card-back { background: var(--wim-back); color: white; }
 .card[data-technique="belly"] .card-back { background: var(--belly-back); color: white; }
 .card[data-technique="buteyko"] .card-back { background: var(--buteyko-back); color: white; }
+.card[data-technique="labour"] .card-back { background: var(--labour-back); color: white; }
 
 .card-front h2 {
     font-size: 1.8rem;
@@ -568,7 +576,7 @@ main {
     padding-top: 0.5rem;
 }
 
-.start-btn {
+.start-btn, .labour-options-btn {
     background: rgba(255, 255, 255, 0.2);
     color: white;
     border: none;
@@ -582,7 +590,7 @@ main {
     width: fit-content;
 }
 
-.start-btn:hover {
+.start-btn:hover, .labour-options-btn:hover {
     background: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
 }
@@ -787,7 +795,7 @@ footer a:hover, footer button:hover {
     .timing {
         font-size: 1rem;
     }
-    .start-btn {
+    .start-btn, .labour-options-btn {
         padding: 0.6rem 1.2rem;
         font-size: 0.9rem;
     }
@@ -1122,4 +1130,268 @@ footer a:hover, footer button:hover {
     .mobile-table-notice {
         display: none;
     }
+}
+
+/* Technique Selection Popup */
+.technique-popup {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+}
+
+/* Labour-specific popup styling with pink gradient */
+#labour-popup .popup-content {
+    background: var(--labour-back, linear-gradient(145deg, #d278a3, #b15f88));
+    color: white;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px var(--shadow);
+    max-width: 800px;
+    animation: popupFadeIn 0.4s ease-out;
+}
+
+#labour-popup .popup-content h2,
+#labour-popup .popup-content p {
+    color: white;
+}
+
+#labour-popup .close-popup {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+#labour-popup .technique-option {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+#labour-popup .technique-option:hover {
+    transform: translateY(-3px);
+}
+
+#labour-popup .technique-option h3 {
+    color: white;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+#labour-popup .technique-option p {
+    color: white;
+    opacity: 0.9;
+}
+
+.start-option-btn, .info-option-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: 25px;
+    margin-top: 12px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.start-option-btn:hover, .info-option-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Dark Theme Labour Support */
+[data-theme="dark"] #labour-popup .popup-content {
+    background: var(--labour-back); /* Use the variable instead of inline gradient */
+}
+
+[data-theme="dark"] #labour-popup .technique-option {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Static Information Modal */
+.info-modal {
+    display: none;
+    position: fixed;
+    z-index: 1100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(7px);
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px var(--shadow);
+    max-width: 850px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: modalSlideIn 0.5s ease-out;
+}
+
+.close-modal {
+    color: var(--text);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: var(--labour-text, #e287b2);
+}
+
+.modal-header h2 {
+    color: var(--labour-text, #e287b2);
+    margin-top: 5px;
+}
+
+.modal-header h3 {
+    color: var(--text);
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 5px;
+    margin-bottom: 25px;
+}
+
+.modal-body {
+    color: var(--text);
+    line-height: 1.6;
+}
+
+.modal-image-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.modal-image {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 10px;
+}
+
+.modal-body h3 {
+    color: var(--labour-text, #e287b2);
+    margin: 25px 0 15px;
+}
+
+.modal-body h4 {
+    color: var(--labour-text, #e287b2);
+    margin: 20px 0 10px;
+}
+
+.modal-body ol, .modal-body ul {
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+
+.modal-body li {
+    margin-bottom: 10px;
+}
+
+.technique-benefits {
+    background: rgba(226, 135, 178, 0.1);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border-left: 4px solid var(--labour-text, #e287b2);
+}
+
+[data-theme="dark"] .technique-benefits {
+    background: rgba(156, 80, 118, 0.2);
+    border-left: 4px solid #9c5076;
+}
+
+[data-theme="dark"] .modal-header h2, 
+[data-theme="dark"] .modal-body h3,
+[data-theme="dark"] .modal-body h4 {
+    color: #e287b2;
+}
+
+.technique-notes {
+    background: rgba(0, 0, 0, 0.05);
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+[data-theme="dark"] .technique-notes {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.practice-reminder {
+    font-style: italic;
+    text-align: center;
+    margin: 25px 0 5px;
+    font-weight: 500;
+}
+
+@keyframes popupFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes modalSlideIn {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .popup-content, .modal-content {
+        margin: 5% 15px;
+        padding: 20px;
+    }
+    
+    .modal-content {
+        max-height: 85vh;
+    }
+}
+/* Manual Follow-Along Button */
+.manual-follow-along-btn {
+    background: var(--labour-back);
+    color: white;
+    border: none;
+    padding: 0.9rem 1.5rem;
+    border-radius: 25px;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.manual-follow-along-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .manual-follow-along-btn {
+    background: var(--labour-gradient);
 }

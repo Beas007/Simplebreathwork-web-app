@@ -17,6 +17,9 @@ module.exports = async function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("favicon.ico");
     eleventyConfig.addPassthroughCopy("site.webmanifest");
     eleventyConfig.addPassthroughCopy("images/favicon");
+    eleventyConfig.addPassthroughCopy({
+    "manual-exercise.html": "manual-exercise.html"
+});
 
     // Explicitly ignore the _templates directory
     eleventyConfig.ignores.add("_templates/**");
