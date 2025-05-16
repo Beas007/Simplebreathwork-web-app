@@ -1,6 +1,6 @@
 const { URL } = require("url");
 const markdownIt = require("markdown-it"); // Keep using require for markdown-it (likely CJS)
-// const markdownItAnchor = require("markdown-it-anchor"); // <-- REMOVE THIS LINE
+// const markdownItAnchor = require("markdown-it-anchor"); // <-- REMOVED
 
 // Make the exported function async
 module.exports = async function(eleventyConfig) {
@@ -18,11 +18,23 @@ module.exports = async function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("site.webmanifest");
     eleventyConfig.addPassthroughCopy("images/favicon");
     eleventyConfig.addPassthroughCopy({
-    "manual-exercise.html": "manual-exercise.html"
-});
+        "manual-exercise.html": "manual-exercise.html"
+    });
+    
+    eleventyConfig.setTemplateFormats([
+        // your template formats
+    ]);
+    
+    eleventyConfig.addPassthroughCopy({"src/assets": "assets"});
+    
+    // Exclude .DS_Store files
+    eleventyConfig.watchIgnores.add(".DS_Store");
 
     // Explicitly ignore the _templates directory
     eleventyConfig.ignores.add("_templates/**");
+    
+    // Completely exclude .DS_Store files from build
+    eleventyConfig.ignores.add("**/.DS_Store");
 
     // Collections
     eleventyConfig.addCollection("post", function(collectionApi) {
@@ -30,24 +42,26 @@ module.exports = async function(eleventyConfig) {
     });
 
     // Filters (htmlDateString, readableDate, absoluteUrl)
-    // ... (keep your existing filters) ...
     eleventyConfig.addFilter("htmlDateString", (dateObj) => {
       if (!dateObj || !(dateObj instanceof Date)) { return ""; }
       return dateObj.toISOString().split('T')[0];
     });
+    
     eleventyConfig.addFilter("readableDate", (dateObj) => {
        if (!dateObj || !(dateObj instanceof Date)) { return "N/A"; }
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
       return dateObj.toLocaleDateString('en-US', options);
     });
+    
     eleventyConfig.addFilter("absoluteUrl", (url, base) => {
       try { return (new URL(url, base)).href; }
       catch (e) { console.error(`Failed absoluteUrl: ${url}, ${base}`); return url; }
     });
-    // Add this to your .eleventy.js file with your other filters
-eleventyConfig.addFilter("url_encode", function(value) {
-    return encodeURIComponent(value);
-  });
+    
+    // URL encoding filter
+    eleventyConfig.addFilter("url_encode", function(value) {
+        return encodeURIComponent(value);
+    });
 
     // --- Add Markdown Configuration ---
     let markdownLibrary = markdownIt({
@@ -65,7 +79,6 @@ eleventyConfig.addFilter("url_encode", function(value) {
     });
     eleventyConfig.setLibrary("md", markdownLibrary);
     // --- End Markdown Configuration ---
-
 
     // Return your config object
     return {

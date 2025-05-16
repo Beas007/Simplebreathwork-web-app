@@ -2,3 +2,5 @@
 node_modules/
 # Ignore built site
 _site/
+.DS_Store
+**/.DS_Store
