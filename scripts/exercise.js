@@ -23,9 +23,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const subText       = document.querySelector('.sub-text');
     const pauseBtn      = document.getElementById('pause-btn');
     const progressDots  = document.getElementById('progress-dots');
-    const countdownOverlay = document.getElementById('countdown-overlay');
-    const countdownNumber  = document.getElementById('countdown-number');
+    const countdownOverlay  = document.getElementById('countdown-overlay');
+    const countdownNumber   = document.getElementById('countdown-number');
     const completionOverlay = document.getElementById('completion-overlay');
+    const audioMuteBtn      = document.getElementById('audio-mute-btn');
+
+    // Pro audio — active only when user has a valid access code
+    const isProUser = window.ProAccess && window.ProAccess.isActive();
+    const audioGuide = isProUser ? new window.AudioGuide(exerciseType) : null;
+
+    if (audioGuide && audioMuteBtn) {
+        audioMuteBtn.style.display = 'flex';
+        audioMuteBtn.addEventListener('click', () => {
+            const muted = audioGuide.toggleMute();
+            audioMuteBtn.textContent  = muted ? '🔇' : '🔊';
+            audioMuteBtn.classList.toggle('muted', muted);
+        });
+    }
 
     if (!circle || !timer || !mainText || !subText) {
         console.error('Essential DOM elements not found.');
@@ -200,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function completeExercise() {
         if (pauseBtn) pauseBtn.style.display = 'none';
+        if (audioGuide) { audioGuide.playComplete(); audioGuide.destroy(); }
         timer.textContent = '';
         updateBreathingText('', '');
 
@@ -239,6 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
                 circle.className = 'circle quick-breath';
                 circle.style.animationDuration = '';
+                if (audioGuide && breathCount === 1) audioGuide.playPhase('quick-breath');
 
                 setTimeout(() => {
                     if (breathCount < exercise.totalBreaths) {
@@ -257,6 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
             circle.style.animationDuration = '';
             circle.style.cursor = 'pointer';
             updateBreathingText(`Set ${currentSet} - Exhale & Hold`, 'Click circle when you inhale');
+            if (audioGuide) audioGuide.playPhase('retention');
             retentionStartTime = Date.now();
 
             timerInterval = setInterval(() => {
@@ -277,6 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
             circle.className = 'circle recovery';
             circle.style.animationDuration = `${recoveryTime}s`;
             updateBreathingText(`Set ${currentSet} - Recovery Hold`, 'Deep breath in & hold');
+            if (audioGuide) audioGuide.playPhase('recovery');
             timer.textContent = recoveryTime;
 
             timerInterval = setInterval(() => {
@@ -344,6 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
             timer.textContent = timeLeft;
             updateBreathingText(phaseName, `Round ${currentRound}/${exercise.rounds}`);
             setCircleAnimation(phaseName, timeLeft);
+            if (audioGuide) audioGuide.playPhase(phaseName);
             startPhaseInterval();
         }
 

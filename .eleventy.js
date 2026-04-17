@@ -14,6 +14,7 @@ module.exports = async function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("scripts");
     eleventyConfig.addPassthroughCopy("images");
     eleventyConfig.addPassthroughCopy("components");
+    eleventyConfig.addPassthroughCopy("audio");
     eleventyConfig.addPassthroughCopy("favicon.ico");
     eleventyConfig.addPassthroughCopy("site.webmanifest");
     eleventyConfig.addPassthroughCopy("images/favicon");

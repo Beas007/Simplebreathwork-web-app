@@ -3,15 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Use description from front matter, fallback to metadata -->
     <meta name="description" content="{{ description | default(metadata.description) | default('Learn simple breathwork techniques for relaxation, focus, and well-being.') }}">
-    <!-- Use title from front matter, fallback to metadata -->
     <title>{{ title | default(metadata.title) | default('Simple Breathwork') }}</title>
+
+    <!-- Canonical -->
+    <link rel="canonical" href="{{ metadata.url }}{{ page.url }}">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ title | default(metadata.title) | default('Simple Breathwork') }}">
+    <meta property="og:description" content="{{ description | default(metadata.description) | default('Learn simple breathwork techniques for relaxation, focus, and well-being.') }}">
+    <meta property="og:type" content="{{ og_type | default('website') }}">
+    <meta property="og:url" content="{{ metadata.url }}{{ page.url }}">
+    <meta property="og:image" content="{{ metadata.url }}/images/og-image.jpg">
+    <meta property="og:site_name" content="Simple Breathwork">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title | default(metadata.title) | default('Simple Breathwork') }}">
+    <meta name="twitter:description" content="{{ description | default(metadata.description) | default('Learn simple breathwork techniques for relaxation, focus, and well-being.') }}">
+    <meta name="twitter:image" content="{{ metadata.url }}/images/og-image.jpg">
+
+    <!-- JSON-LD: Organisation -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Simple Breathwork",
+      "url": "{{ metadata.url }}",
+      "description": "Free guided breathwork exercises for stress relief, focus, and wellbeing.",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "{{ metadata.email }}",
+        "contactType": "customer support"
+      }
+    }
+    </script>
 
     <!-- Common Stylesheets -->
     <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Placeholder for additional page-specific CSS -->
     {{ additional_head_content | safe }}
 
     <!-- Favicons -->
@@ -19,7 +49,7 @@
     <link rel="apple-touch-icon" href="/images/favicon/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Google Analytics/Ads -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6E6Q283JEH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -32,19 +62,15 @@
 </head>
 <body {% if body_class %}class="{{ body_class }}"{% endif %}>
 
-    {% include "components/header.html" %} <!-- Eleventy includes the header content -->
+    {% include "components/header.html" %}
 
-    <!-- Main Content Area -->
     <main>
-      {{ content | safe }} <!-- Page-specific content is inserted here -->
+      {{ content | safe }}
     </main>
 
-    {% include "components/footer.html" %} <!-- Eleventy includes the footer content -->
+    {% include "components/footer.html" %}
 
-    <!-- Common Scripts (Load your main app logic) -->
-    <script src="/scripts/app.js"></script> <!-- For theme toggling, mobile menu, etc. -->
-
-    <!-- Placeholder for additional page-specific JS -->
+    <script src="/scripts/app.js"></script>
     {{ additional_scripts | safe }}
 
 </body>

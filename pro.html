@@ -1,0 +1,99 @@
+---
+layout: base.html
+title: "Voice-Guided Breathwork Pro — Simple Breathwork"
+description: "Upgrade to voice-guided breathwork. A calm voice walks you through every inhale, hold, and exhale for all 6 exercises. £4.99/month. Cancel any time."
+additional_head_content: '<link rel="stylesheet" href="/styles/pro.css">'
+additional_scripts: '<script src="/scripts/pro-access.js"></script><script src="/scripts/pro-page.js"></script>'
+---
+
+<div class="pro-page">
+
+  <!-- Active subscriber banner (shown by JS when pro access is active) -->
+  <div class="pro-active-banner" id="pro-active-banner" style="display:none">
+    <span class="pro-icon">🎧</span>
+    <div>
+      <strong>Voice guidance is active</strong>
+      Head to any exercise and the audio guide will start automatically.
+    </div>
+    <button class="pro-deactivate-link" id="pro-deactivate">Remove access</button>
+  </div>
+
+  <!-- Hero -->
+  <div class="pro-hero">
+    <span class="pro-badge">Pro</span>
+    <h1>Voice-Guided<br>Breathwork</h1>
+    <p class="tagline">A calm voice walks you through every inhale, hold, and exhale — so you can close your eyes and just breathe.</p>
+  </div>
+
+  <!-- Pricing -->
+  <div class="pro-pricing">
+    <div class="price">£4.99<span class="price-period">/month</span></div>
+    <div class="price-note">Cancel any time &nbsp;·&nbsp; Instant access</div>
+    <!--
+      SETUP: Replace the href below with your ThriveCart checkout link.
+      In ThriveCart: Products → Your product → Embed/Share → Copy checkout URL.
+      Example: https://youraccount.thrivecart.com/voice-guided-breathwork/
+    -->
+    <a href="#REPLACE_WITH_THRIVECART_URL" class="pro-cta-btn" id="pro-cta-btn">
+      Start Voice Guidance — £4.99/mo
+    </a>
+  </div>
+
+  <!-- Features -->
+  <p class="pro-section-title">What you get</p>
+  <ul class="pro-features">
+    <li><span class="check">✓</span> Voice guidance for all 6 exercises — Box Breathing, Instant Zen, Wim Hof, Belly, Buteyko, and Labour Slow Breathing</li>
+    <li><span class="check">✓</span> Perfectly timed cues that match every phase of the exercise</li>
+    <li><span class="check">✓</span> Calm, unhurried pacing — close your eyes and follow along</li>
+    <li><span class="check">✓</span> One-tap mute so you can switch between silent and guided mode</li>
+    <li><span class="check">✓</span> Works on all devices — phone, tablet, desktop</li>
+    <li><span class="check">✓</span> Monthly access code delivered to your inbox</li>
+  </ul>
+
+  <hr class="pro-divider">
+
+  <!-- Already a subscriber: unlock section -->
+  <div class="pro-unlock" id="pro-unlock-section">
+    <h2>Already subscribed?</h2>
+    <p>Enter the monthly access code from your welcome email to enable voice guidance on this device.</p>
+    <div class="unlock-form">
+      <input
+        type="text"
+        id="unlock-code-input"
+        class="unlock-input"
+        placeholder="Enter your access code"
+        autocomplete="off"
+        autocapitalize="none"
+        spellcheck="false"
+      >
+      <button class="unlock-submit-btn" id="unlock-submit-btn">Unlock</button>
+    </div>
+    <div class="unlock-message" id="unlock-message"></div>
+  </div>
+
+  <!-- FAQ -->
+  <p class="pro-section-title">Questions</p>
+  <div class="pro-faq">
+    <div class="faq-item">
+      <h3>How do I access the voice guidance after subscribing?</h3>
+      <p>After your payment is confirmed, ThriveCart sends you a welcome email containing your monthly access code. Enter it in the "Already subscribed?" box above. Your access is then saved on this device — no account or login needed.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How does the monthly code work?</h3>
+      <p>Each month, a new access code is emailed to active subscribers. Simply enter the new code when prompted. If you cancel your subscription you will not receive future codes, and the previous month's code will stop working at the next rotation.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Do I need to create an account?</h3>
+      <p>No. Access is device-based using a simple code. Enter your code once and voice guidance is active on that device for the month. If you switch devices, just enter your code again.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What audio files are used?</h3>
+      <p>Voice guidance is played as MP3 files directly in your browser. Playback requires a data connection on the first load; after that, most browsers cache the files automatically.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can I cancel?</h3>
+      <p>Yes, at any time via ThriveCart. You retain access until the end of your current billing period.</p>
+    </div>
+  </div>
+
+</div>

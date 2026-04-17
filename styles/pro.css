@@ -1,0 +1,367 @@
+/* ================================================= */
+/* === PRO PAGE STYLES                           === */
+/* ================================================= */
+
+.pro-page {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+}
+
+/* Hero */
+.pro-hero {
+    text-align: center;
+    padding: 3rem 0 2rem;
+}
+
+.pro-badge {
+    display: inline-block;
+    background: var(--accent, #6c63ff);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 50px;
+    margin-bottom: 1.2rem;
+}
+
+.pro-hero h1 {
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 0 0 1rem;
+    color: var(--heading-color, #1a1a2e);
+}
+
+[data-theme="dark"] .pro-hero h1 {
+    color: var(--text, #e6e6e6);
+}
+
+.pro-hero .tagline {
+    font-size: clamp(1rem, 3.5vw, 1.2rem);
+    color: var(--text, #555);
+    opacity: 0.8;
+    max-width: 480px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+/* Pricing Card */
+.pro-pricing {
+    background: var(--card-bg, #fff);
+    border: 1.5px solid var(--border, #e8e8e8);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    max-width: 380px;
+    margin: 0 auto 2.5rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] .pro-pricing {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.pro-pricing .price {
+    font-size: clamp(2.5rem, 8vw, 3.5rem);
+    font-weight: 800;
+    color: var(--text, #1a1a2e);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.pro-pricing .price-period {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 0.6;
+}
+
+.pro-pricing .price-note {
+    font-size: 0.85rem;
+    opacity: 0.55;
+    margin: 0.4rem 0 1.5rem;
+}
+
+/* CTA Button — replace href with your ThriveCart link */
+.pro-cta-btn {
+    display: inline-block;
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #6c63ff, #4ecdc4);
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    letter-spacing: 0.02em;
+    border: none;
+    cursor: pointer;
+}
+
+.pro-cta-btn:hover {
+    opacity: 0.92;
+    transform: translateY(-1px);
+}
+
+/* Features list */
+.pro-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.pro-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text, #333);
+}
+
+.pro-features .check {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    background: linear-gradient(135deg, #6c63ff, #4ecdc4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+/* Section headings */
+.pro-section-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text, #1a1a2e);
+}
+
+/* Audio file guide */
+.audio-file-list {
+    background: var(--card-bg, #f8f8f8);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+[data-theme="dark"] .audio-file-list {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.audio-file-list h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 0.8rem;
+}
+
+.audio-file-list code {
+    background: rgba(0,0,0,0.07);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.85rem;
+}
+
+[data-theme="dark"] .audio-file-list code {
+    background: rgba(255,255,255,0.1);
+}
+
+/* Divider */
+.pro-divider {
+    border: none;
+    border-top: 1px solid var(--border, #e8e8e8);
+    margin: 2.5rem 0;
+}
+
+[data-theme="dark"] .pro-divider {
+    border-color: rgba(255,255,255,0.1);
+}
+
+/* Unlock section */
+.pro-unlock {
+    background: var(--card-bg, #fff);
+    border: 1.5px solid var(--border, #e8e8e8);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 2.5rem;
+}
+
+[data-theme="dark"] .pro-unlock {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.pro-unlock h2 {
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem;
+}
+
+.pro-unlock p {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin: 0 0 1.2rem;
+}
+
+.unlock-form {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.unlock-input {
+    flex: 1;
+    min-width: 180px;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid var(--border, #ddd);
+    border-radius: 50px;
+    font-size: 0.95rem;
+    background: var(--input-bg, #fff);
+    color: var(--text, #333);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.unlock-input:focus {
+    border-color: #6c63ff;
+}
+
+[data-theme="dark"] .unlock-input {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.2);
+    color: var(--text, #e6e6e6);
+}
+
+.unlock-submit-btn {
+    padding: 0.75rem 1.5rem;
+    background: var(--text, #1a1a2e);
+    color: var(--background, #fff);
+    border: none;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+}
+
+.unlock-submit-btn:hover {
+    opacity: 0.85;
+}
+
+.unlock-message {
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    min-height: 1.2rem;
+}
+
+.unlock-message.success { color: #2e9e6b; }
+.unlock-message.error   { color: #e05252; }
+
+/* Active pro status banner */
+.pro-active-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: linear-gradient(135deg, rgba(108,99,255,0.1), rgba(78,205,196,0.1));
+    border: 1px solid rgba(108,99,255,0.25);
+    border-radius: 14px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.pro-active-banner .pro-icon {
+    font-size: 1.4rem;
+}
+
+.pro-active-banner strong {
+    display: block;
+    font-weight: 700;
+}
+
+.pro-deactivate-link {
+    margin-left: auto;
+    font-size: 0.8rem;
+    opacity: 0.5;
+    cursor: pointer;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 0;
+}
+
+/* FAQ */
+.pro-faq {
+    margin-bottom: 2rem;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border, #e8e8e8);
+    padding: 1rem 0;
+}
+
+[data-theme="dark"] .faq-item {
+    border-color: rgba(255,255,255,0.1);
+}
+
+.faq-item h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+}
+
+.faq-item p {
+    font-size: 0.9rem;
+    opacity: 0.75;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* ================================================= */
+/* === AUDIO INDICATOR IN EXERCISE PAGE         === */
+/* ================================================= */
+
+.audio-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(108, 99, 255, 0.15);
+    backdrop-filter: blur(6px);
+    border: 1.5px solid rgba(108, 99, 255, 0.3);
+    color: var(--text);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.audio-btn:hover {
+    background: rgba(108, 99, 255, 0.25);
+    transform: scale(1.08);
+}
+
+.audio-btn.muted {
+    opacity: 0.45;
+}
