@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
 if (exitButton) {
     exitButton.addEventListener('click', (e) => {
         e.preventDefault(); // Prevent default navigation
-        window.location.href = '/index.html?showLabourTechniques=true';
+        window.location.href = '/?showLabourTechniques=true';
     });
 }
 

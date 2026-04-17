@@ -19,7 +19,7 @@ function initializeTheme() {
 
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const initialTheme = savedTheme || 'light'; // Default to light theme regardless of system preference
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
 
     document.documentElement.setAttribute('data-theme', initialTheme);
     updateThemeIcon(initialTheme);

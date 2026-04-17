@@ -8,7 +8,22 @@ additional_head_content: |
 additional_scripts: '<script src="/scripts/exercise.js"></script>'
 ---
 
-<!-- Unique page content starts here - keeping everything exactly as you had it -->
+<!-- Countdown overlay — shown before exercise starts -->
+<div class="countdown-overlay" id="countdown-overlay">
+    <div class="countdown-number" id="countdown-number">3</div>
+    <div class="countdown-label">Get ready...</div>
+</div>
+
+<!-- Completion overlay — shown after exercise ends -->
+<div class="completion-overlay" id="completion-overlay">
+    <div class="completion-content">
+        <div class="completion-checkmark">✓</div>
+        <h2 class="completion-title">Exercise Complete</h2>
+        <p class="completion-subtitle">Well done!</p>
+        <a href="/" class="completion-btn">Return Home</a>
+    </div>
+</div>
+
 <div class="exercise-container">
     <div class="breathing-guide">
         <div class="breath-animation">
@@ -20,12 +35,12 @@ additional_scripts: '<script src="/scripts/exercise.js"></script>'
                 <div class="breathing-indicator">
                     <div class="arrow-up"></div>
                     <div class="arrow-down"></div>
-                 </div>
+                </div>
             </div>
         </div>
         <div class="timer"></div>
+        <div class="progress-dots" id="progress-dots"></div>
+        <button class="pause-btn" id="pause-btn">Pause</button>
     </div>
-    <!-- Link the existing exit button to homepage -->
     <a href="/" class="exit-btn" id="exit-exercise-btn">Exit</a>
 </div>
-<!-- Unique page content ends here -->
