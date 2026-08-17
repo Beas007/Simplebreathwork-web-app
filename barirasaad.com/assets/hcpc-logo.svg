@@ -1,0 +1,18 @@
+<!--
+  PLACEHOLDER ONLY — replace this file with the official HCPC registrant logo.
+
+  Download it from the HCPC website while logged in to your registrant account,
+  keep the file at its supplied aspect ratio, and do not recolour, stretch,
+  crop or add a box or border to it. Save the replacement here as
+  assets/hcpc-logo.svg (or change the path in content.js → credentials).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 110" width="320"
+     height="110" role="img" aria-label="Placeholder for the HCPC logo">
+  <rect x="1" y="1" width="318" height="108" rx="4" fill="#eeeae2"
+        stroke="#b9b1a3" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="160" y="46" text-anchor="middle" font-family="Georgia, serif"
+        font-size="26" fill="#6f6f66">HCPC logo</text>
+  <text x="160" y="74" text-anchor="middle"
+        font-family="Helvetica, Arial, sans-serif" font-size="15"
+        letter-spacing="1.5" fill="#8b8578">PLACEHOLDER</text>
+</svg>

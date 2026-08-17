@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+  =============================================================================
+  index.html — LAYOUT ONLY. There is no copy in this file.
+  =============================================================================
+  Every word a visitor reads comes from content.js. The elements below marked
+  data-mount="..." are empty containers that render.js fills. To change the
+  site, edit content.js and refresh. You should never need to open this file.
+  =============================================================================
+-->
+<html lang="en-GB" data-page="home">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Title, description, Open Graph tags and favicon are all set from
+       content.js by the script below, so they live in one place. -->
+  <script src="content.js"></script>
+  <script src="render.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body id="top">
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__inner">
+      <div data-mount="brand"></div>
+      <nav class="nav" aria-label="Primary" data-mount="nav"></nav>
+    </div>
+  </header>
+
+  <noscript>
+    <!-- Shown only if JavaScript is off. Keep the essentials here in sync with
+         content.js if you care about no-JS visitors; nothing else depends on
+         it. -->
+    <div class="wrap noscript">
+      <h1>Barira Saad — Registered Dietitian &amp; Health Writer</h1>
+      <p>
+        UK Registered Dietitian and freelance health writer, covering adult and
+        paediatric nutrition, with particular depth in paediatrics and in
+        writing for culturally diverse audiences. HCPC registered (DT30976) and
+        a member of the British Dietetic Association.
+      </p>
+      <p>
+        This site uses JavaScript to assemble its content. To get in touch,
+        email <a href="mailto:hello@barirasaad.com">hello@barirasaad.com</a>.
+      </p>
+    </div>
+  </noscript>
+
+  <main id="main">
+
+    <!-- 1. Hero -->
+    <section class="hero" aria-label="Introduction">
+      <div class="wrap hero__inner" data-mount="hero"></div>
+    </section>
+
+    <!-- 2. About -->
+    <section class="section section--about" id="about"
+             aria-labelledby="about-heading">
+      <div class="wrap" data-mount="about"></div>
+    </section>
+
+    <!-- 3. What I write -->
+    <section class="section section--tint" id="what-i-write"
+             aria-labelledby="what-i-write-heading">
+      <div class="wrap" data-mount="what-i-write"></div>
+    </section>
+
+    <!-- 4. Selected work -->
+    <section class="section" id="work" aria-labelledby="work-heading">
+      <div class="wrap" data-mount="work"></div>
+    </section>
+
+    <!-- 5. Selected publications -->
+    <section class="section section--tint" id="publications"
+             aria-labelledby="publications-heading">
+      <div class="wrap" data-mount="publications"></div>
+    </section>
+
+    <!-- 6. Featured by the HCPC (trust strip, not a writing sample) -->
+    <section class="section section--strip" id="hcpc"
+             aria-labelledby="hcpc-heading">
+      <div class="wrap" data-mount="hcpc"></div>
+    </section>
+
+    <!-- 7. Credentials & verification -->
+    <section class="section" id="credentials"
+             aria-labelledby="credentials-heading">
+      <div class="wrap" data-mount="credentials"></div>
+    </section>
+
+    <!-- 8. Testimonials — hidden until content.js has at least one quote -->
+    <section class="section section--tint" id="testimonials"
+             aria-labelledby="testimonials-heading" hidden>
+      <div class="wrap" data-mount="testimonials"></div>
+    </section>
+
+    <!-- 9. Enquiry form -->
+    <section class="section section--enquiry" id="enquiry"
+             aria-labelledby="enquiry-heading">
+      <div class="wrap wrap--narrow" data-mount="enquiry"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap" data-mount="footer"></div>
+  </footer>
+
+</body>
+</html>

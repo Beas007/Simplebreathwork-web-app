@@ -1,0 +1,19 @@
+<!--
+  PLACEHOLDER ONLY — replace this file with the official BDA member logo.
+
+  Request the member logo from the British Dietetic Association, keep it at its
+  supplied aspect ratio, and do not recolour, stretch, crop or box it. Save the
+  replacement here as assets/bda-logo.svg (or change the path in content.js →
+  credentials). The logo must remain linked to https://www.bda.uk.com — that
+  link is already set in content.js.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 110" width="320"
+     height="110" role="img" aria-label="Placeholder for the BDA logo">
+  <rect x="1" y="1" width="318" height="108" rx="4" fill="#eeeae2"
+        stroke="#b9b1a3" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="160" y="46" text-anchor="middle" font-family="Georgia, serif"
+        font-size="26" fill="#6f6f66">BDA logo</text>
+  <text x="160" y="74" text-anchor="middle"
+        font-family="Helvetica, Arial, sans-serif" font-size="15"
+        letter-spacing="1.5" fill="#8b8578">PLACEHOLDER</text>
+</svg>
